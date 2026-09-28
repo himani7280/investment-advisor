@@ -1,6 +1,5 @@
 "use client";
 
-import React from "react";
 import {
   Users,
   FileText,
@@ -33,60 +32,43 @@ const stats = [
 
 const Trusted = () => {
   return (
-    <section className="relative w-full overflow-hidden bg-[#082d5b]">
-      {/* Background Image */}
+    <section className="relative w-full overflow-hidden pt-6 sm:pt-8 lg:pt-8 top-16 pb-16 ">
+
+      {/* ================= BACKGROUND IMAGE ================= */}
       <div className="absolute inset-0">
         <img
-          src="/trusted-bg.png"
+          src="/building.png"
           alt=""
-          className="h-full w-full object-cover object-center"
+          className="
+            h-full
+            w-full
+            object-cover
+            object-center
+          "
         />
       </div>
 
-      {/* Dark Overlay */}
-      <div className="absolute inset-0 bg-[#062b58]/85" />
-
-      {/* Gradient */}
+      {/* ================= DARK OVERLAY ================= */}
       <div
         className="
           absolute
           inset-0
-          bg-gradient-to-r
-          from-[#062653]/90
-          via-[#0b376b]/75
-          to-[#062653]/90
+          bg-[#062b58]/80
         "
       />
 
-      {/* Left Circle */}
+      {/* ================= GRADIENT OVERLAY ================= */}
       <div
         className="
           absolute
-          -left-[100px]
-          top-[110px]
-          h-[220px]
-          w-[220px]
-          rounded-full
-          border-[24px]
-          border-[#3f8de0]/25
+          inset-0
+          bg-blue/90
         "
       />
 
-      {/* Right Circle */}
-      <div
-        className="
-          absolute
-          -right-[110px]
-          bottom-[-110px]
-          h-[320px]
-          w-[320px]
-          rounded-full
-          border-[22px]
-          border-[#3f8de0]/25
-        "
-      />
 
-      {/* Main Content */}
+
+      {/* ================= CONTENT ================= */}
       <div
         className="
           relative
@@ -98,18 +80,16 @@ const Trusted = () => {
           py-8
           sm:px-8
           sm:py-9
+          md:py-10
           lg:px-10
           lg:py-10
           xl:px-12
         "
       >
-        {/* =========================
-            HEADER
-        ========================== */}
 
+        {/* ================= HEADING ================= */}
         <div className="mx-auto max-w-[850px] text-center">
 
-          {/* Small Heading */}
           <div className="flex items-center justify-center gap-3">
             <span className="h-[1px] w-[40px] bg-white/75" />
 
@@ -129,7 +109,6 @@ const Trusted = () => {
             <span className="h-[1px] w-[40px] bg-white/75" />
           </div>
 
-          {/* Main Heading */}
           <h2
             className="
               mt-3
@@ -139,6 +118,7 @@ const Trusted = () => {
               tracking-[-0.7px]
               text-white
               sm:text-[32px]
+              md:text-[34px]
               lg:text-[36px]
               xl:text-[38px]
             "
@@ -149,7 +129,6 @@ const Trusted = () => {
             </span>
           </h2>
 
-          {/* Description */}
           <p
             className="
               mx-auto
@@ -169,10 +148,7 @@ const Trusted = () => {
           </p>
         </div>
 
-        {/* =========================
-            STATISTICS
-        ========================== */}
-
+        {/* ================= STATS ================= */}
         <div
           className="
             relative
@@ -197,12 +173,14 @@ const Trusted = () => {
                   flex-col
                   items-center
                   px-4
-                  py-3
+                  py-4
                   text-center
+                  sm:py-5
                   lg:py-1
                 "
               >
-                {/* Vertical Divider */}
+
+                {/* Divider */}
                 {index !== 0 && (
                   <div
                     className="
@@ -268,7 +246,7 @@ const Trusted = () => {
                   {stat.label}
                 </p>
 
-                {/* Blue Line */}
+                {/* Bottom Line */}
                 <div
                   className="
                     mt-3

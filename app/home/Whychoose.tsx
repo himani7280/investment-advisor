@@ -1,6 +1,4 @@
 "use client";
-
-import React from "react";
 import Image from "next/image";
 import Link from "next/link";
 import {
@@ -12,11 +10,8 @@ import {
 
 const Whychoose = () => {
   return (
-    <section className="relative w-full overflow-hidden bg-[#031d46]">
-      {/* =====================================================
-          BACKGROUND DECORATIVE CIRCLES
-      ====================================================== */}
-
+    <section className="relative w-full overflow-hidden bg-[#031d46] top-16 pb-16">
+      
       <div
         className="
           absolute
@@ -70,9 +65,7 @@ const Whychoose = () => {
         "
       />
 
-      {/* =====================================================
-          MAIN CONTAINER
-      ====================================================== */}
+     
 
       <div
         className="
@@ -80,7 +73,7 @@ const Whychoose = () => {
           z-10
           mx-auto
           flex
-          min-h-[430px]
+          min-h-[500px]
           max-w-[1440px]
           items-center
           px-5
@@ -88,6 +81,7 @@ const Whychoose = () => {
           sm:px-8
           lg:px-12
           lg:py-7
+          lg:pb-7
           xl:px-[75px]
         "
       >
@@ -101,9 +95,7 @@ const Whychoose = () => {
             lg:gap-0
           "
         >
-          {/* =================================================
-              LEFT CONTENT
-          ================================================== */}
+          
 
           <div className="relative z-20 max-w-[535px]">
             {/* Small Heading */}
@@ -308,10 +300,7 @@ const Whychoose = () => {
             </Link>
           </div>
 
-          {/* =================================================
-              RIGHT IMAGE / CIRCLES
-          ================================================== */}
-
+          
           <div
             className="
               relative
@@ -322,9 +311,8 @@ const Whychoose = () => {
               lg:h-[410px]
             "
           >
-            {/* =================================================
-                TOP IMAGE CIRCLE
-            ================================================== */}
+            
+            
 
             <div
               className="
@@ -351,9 +339,8 @@ const Whychoose = () => {
               />
             </div>
 
-            {/* =================================================
-                TOP RIGHT INSURANCE CIRCLE
-            ================================================== */}
+           
+           
 
             <div
               className="
@@ -377,7 +364,6 @@ const Whychoose = () => {
                 sm:w-[225px]
               "
             >
-              {/* Icon */}
               <div
                 className="
                   flex
@@ -429,9 +415,8 @@ const Whychoose = () => {
               </p>
             </div>
 
-            {/* =================================================
-                BOTTOM IMAGE CIRCLE
-            ================================================== */}
+            
+            
 
             <div
               className="
@@ -457,9 +442,7 @@ const Whychoose = () => {
               />
             </div>
 
-            {/* =================================================
-                CENTER STRATEGIC INVESTMENT CIRCLE
-            ================================================== */}
+           
 
             <div
               className="
@@ -484,7 +467,6 @@ const Whychoose = () => {
                 sm:w-[225px]
               "
             >
-              {/* Icon */}
               <div
                 className="
                   flex
@@ -536,10 +518,8 @@ const Whychoose = () => {
               </p>
             </div>
 
-            {/* =================================================
-                TOP DECORATIVE LINES
-            ================================================== */}
-
+            
+            
             <div className="absolute right-0 top-2 hidden sm:block">
               <span
                 className="
@@ -579,9 +559,8 @@ const Whychoose = () => {
               />
             </div>
 
-            {/* =================================================
-                LEFT DECORATIVE LINES
-            ================================================== */}
+           
+           
 
             <div className="absolute left-[20px] top-[190px] hidden sm:block">
               <span
@@ -622,9 +601,8 @@ const Whychoose = () => {
               />
             </div>
 
-            {/* =================================================
-                DOT PATTERN
-            ================================================== */}
+           
+           
 
             <div
               className="

@@ -1,26 +1,24 @@
 
 "use client";
 
-import React from "react";
-
 const Header = () => {
   return (
     <header className="w-full bg-gradient-to-r from-[#477fbd] to-[#3f75b2] text-white">
       <div className="mx-auto flex h-[37px] max-w-[1400px] items-center justify-between px-4 sm:px-6 lg:px-8">
 
-        {/* Left Side */}
-        <div className="flex items-center gap-2">
+        
+        <div className="flex items-center gap-2  px-6 sm:px-8 lg:flex xl:px-[40px]">
           <span className="text-[16px]">↗</span>
 
-          <span className="text-[13px] font-medium tracking-[0.2px] sm:text-[14px]">
+          <span className="text-[13px] font-medium tracking-[0.2px] sm:text-[14px] ">
             Invest Today. A Stronger Tomorrow.
           </span>
         </div>
 
-        {/* Right Side */}
+        
         <div className="hidden items-center md:flex">
 
-          {/* Email */}
+         
           <div className="flex items-center gap-2 px-4">
             <span className="text-[14px]">✉</span>
 
@@ -32,10 +30,10 @@ const Header = () => {
             </a>
           </div>
 
-          {/* Separator */}
+          
           <div className="h-5 w-px bg-white/40" />
 
-          {/* Phone */}
+         
           <div className="flex items-center gap-2 px-4">
             <span className="text-[14px]">☎</span>
 
@@ -47,10 +45,10 @@ const Header = () => {
             </a>
           </div>
 
-          {/* Separator */}
+         
           <div className="h-5 w-px bg-white/40" />
 
-          {/* Social Icons */}
+         
           <div className="flex items-center gap-4 pl-4">
 
             <a

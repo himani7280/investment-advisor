@@ -7,21 +7,21 @@ import { ArrowRight } from "lucide-react";
 const steps = [
   {
     number: "01",
-    image: "/hero.png",
+    image: "/goal1.png",
     title: "Understand Your Goals",
     description:
       "We start by learning about your business, objectives, and challenges to understand what truly matters to you.",
   },
   {
     number: "02",
-    image: "/hero.png",
+    image: "/goal2.png",
     title: "Plan & Strategize",
     description:
       "Our experts analyze insights and develop a customized strategy tailored to your goals.",
   },
   {
     number: "03",
-    image: "/hero.png",
+    image: "/goal3.png",
     title: "Collaborate & Execute",
     description:
       "We work closely with your team to implement the plan, ensuring seamless execution at every step.",
@@ -37,16 +37,13 @@ const steps = [
 
 const HowItWorks = () => {
   return (
-    <section className="relative w-full overflow-hidden bg-white py-10 sm:py-12 lg:py-14">
+    <section className="relative w-full overflow-hidden bg-white pt- sm:pt-8 lg:pt-16">
       <div className="mx-auto w-full max-w-[1280px] px-5 sm:px-8 lg:px-10">
 
-        {/* =========================
-            HEADER
-        ========================== */}
+       
 
         <div className="mx-auto max-w-[800px] text-center">
 
-          {/* Badge */}
           <div
             className="
               inline-flex
@@ -66,7 +63,6 @@ const HowItWorks = () => {
             HOW IT WORKS
           </div>
 
-          {/* Heading */}
           <h2
             className="
               mt-3
@@ -87,7 +83,6 @@ const HowItWorks = () => {
             </span>
           </h2>
 
-          {/* Description */}
           <p
             className="
               mx-auto
@@ -106,9 +101,7 @@ const HowItWorks = () => {
           </p>
         </div>
 
-        {/* =========================
-            STEPS SECTION
-        ========================== */}
+        
 
         <div
           className="
@@ -123,9 +116,7 @@ const HowItWorks = () => {
           "
         >
 
-          {/* =========================
-              DOTTED CONNECTING LINE
-          ========================== */}
+          
 
           <div
             className="
@@ -133,14 +124,14 @@ const HowItWorks = () => {
               absolute
               left-[12%]
               right-[12%]
-              top-[73px]
+              top-[40px]
               hidden
               lg:block
             "
           >
             <svg
               viewBox="0 0 1000 80"
-              className="h-[80px] w-full overflow-visible"
+              className="h-[90px] w-full overflow-visible"
               preserveAspectRatio="none"
             >
               <path
@@ -159,14 +150,11 @@ const HowItWorks = () => {
             </svg>
           </div>
 
-          {/* =========================
-              STEPS
-          ========================== */}
+          
 
           {steps.map((step, index) => (
             <Fragment key={step.number}>
 
-              {/* Step Card */}
 
               <div
                 className="
@@ -179,13 +167,9 @@ const HowItWorks = () => {
                 "
               >
 
-                {/* =========================
-                    IMAGE
-                ========================== */}
-
+               
                 <div className="relative mx-auto h-[145px] w-[190px]">
 
-                  {/* Outer soft circle */}
                   <div
                     className="
                       absolute
@@ -196,8 +180,6 @@ const HowItWorks = () => {
                     "
                   />
 
-                  {/* Image */}
-{/* Image Circle */}
 <div
   className="
     absolute
@@ -218,7 +200,6 @@ const HowItWorks = () => {
   />
 </div>
 
-                  {/* Number */}
                   <div
                     className="
                       absolute
@@ -244,9 +225,7 @@ const HowItWorks = () => {
                   </div>
                 </div>
 
-                {/* =========================
-                    TITLE
-                ========================== */}
+                
 
                 <h3
                   className="
@@ -262,9 +241,7 @@ const HowItWorks = () => {
                   {step.title}
                 </h3>
 
-                {/* =========================
-                    DESCRIPTION
-                ========================== */}
+                
 
                 <p
                   className="
@@ -280,7 +257,6 @@ const HowItWorks = () => {
                   {step.description}
                 </p>
 
-                {/* Bottom Line */}
                 <div
                   className="
                     mx-auto
@@ -292,9 +268,7 @@ const HowItWorks = () => {
                 />
               </div>
 
-              {/* =========================
-                  ARROW BETWEEN STEPS
-              ========================== */}
+             
 
               {index < steps.length - 1 && (
                 <div

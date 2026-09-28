@@ -13,7 +13,7 @@ const testimonials = [
     id: 1,
     name: "Rahul Mehta",
     role: "BUSINESS OWNER",
-    image: "/profile.png",
+    image: "/profile1.png",
     mainImage: "/testimonials.png",
     rating: 4,
     quote:
@@ -23,7 +23,7 @@ const testimonials = [
     id: 2,
     name: "Priya Sharma",
     role: "ENTREPRENEUR",
-    image: "/profile.png",
+    image: "/profile2.png",
     mainImage: "/testimonials.png",
     rating: 5,
     quote:
@@ -33,7 +33,7 @@ const testimonials = [
     id: 3,
     name: "Ananya Kapoor",
     role: "COMPANY DIRECTOR",
-    image: "/profile.png",
+    image: "/profile3.png",
     mainImage: "/testimonials.png",
     rating: 5,
     quote:
@@ -43,7 +43,7 @@ const testimonials = [
     id: 4,
     name: "Arjun Malhotra",
     role: "INVESTOR",
-    image: "/profile.png",
+    image: "/profile4.png",
     mainImage: "/testimonials.png",
     rating: 4,
     quote:
@@ -79,12 +79,10 @@ const Testimonials = () => {
   };
 
   return (
-    <section className="relative w-full overflow-hidden bg-white pt-10 sm:pt-12 lg:pt-16">
+    <section className="relative w-full overflow-hidden bg-white pt-6 sm:pt-8 lg:pt-16 ">
       <div className="mx-auto grid min-h-[500px] max-w-[1400px] grid-cols-1 lg:grid-cols-[45%_55%]">
 
-        {/* =====================================================
-            LEFT IMAGE
-        ====================================================== */}
+       
 
         <div className="relative h-[330px] w-full sm:h-[400px] lg:h-[500px]">
           <Image
@@ -96,7 +94,6 @@ const Testimonials = () => {
             className="object-cover object-center transition-all duration-500"
           />
 
-          {/* Quote Circle */}
           <div
             className="
               absolute
@@ -127,9 +124,7 @@ const Testimonials = () => {
           </div>
         </div>
 
-        {/* =====================================================
-            RIGHT CONTENT
-        ====================================================== */}
+       
 
         <div
           className="
@@ -147,7 +142,6 @@ const Testimonials = () => {
             lg:py-12
           "
         >
-          {/* Background Circle */}
           <div
             className="
               pointer-events-none
@@ -162,7 +156,6 @@ const Testimonials = () => {
             "
           />
 
-          {/* Dots */}
           <div
             className="
               pointer-events-none
@@ -183,10 +176,8 @@ const Testimonials = () => {
             ))}
           </div>
 
-          {/* Content */}
           <div className="relative z-10 max-w-[600px]">
 
-            {/* Small Heading */}
             <div className="flex items-center gap-3">
               <span className="h-[2px] w-[47px] bg-[#438af0]" />
 
@@ -203,7 +194,6 @@ const Testimonials = () => {
               </span>
             </div>
 
-            {/* Main Heading */}
             <h2
               className="
                 mt-4
@@ -223,9 +213,7 @@ const Testimonials = () => {
               </span>
             </h2>
 
-            {/* =================================================
-                RATING
-            ================================================== */}
+           
 
             <div
               className="
@@ -253,10 +241,7 @@ const Testimonials = () => {
               ))}
             </div>
 
-            {/* =================================================
-                PROFILE
-            ================================================== */}
-
+           
             <div className="mt-4 flex items-center gap-3">
               <div
                 className="
@@ -305,10 +290,7 @@ const Testimonials = () => {
               </div>
             </div>
 
-            {/* =================================================
-                QUOTE
-            ================================================== */}
-
+           
             <p
               className="
                 mt-4
@@ -322,13 +304,10 @@ const Testimonials = () => {
               “{testimonial.quote}”
             </p>
 
-            {/* =================================================
-                BOTTOM CONTROLS
-            ================================================== */}
+            
 
             <div className="mt-5 flex items-center gap-5">
 
-              {/* Previous */}
               <button
                 type="button"
                 onClick={previousSlide}
@@ -352,7 +331,6 @@ const Testimonials = () => {
                 <ArrowLeft size={18} strokeWidth={1.8} />
               </button>
 
-              {/* Counter */}
               <div
                 className="
                   text-[12px]
@@ -367,7 +345,6 @@ const Testimonials = () => {
                 {String(testimonials.length).padStart(2, "0")}
               </div>
 
-              {/* Next */}
               <button
                 type="button"
                 onClick={nextSlide}
@@ -393,9 +370,7 @@ const Testimonials = () => {
             </div>
           </div>
 
-          {/* =================================================
-              RIGHT PROFILE CAROUSEL
-          ================================================== */}
+          
 
           <div
             className="
@@ -411,7 +386,6 @@ const Testimonials = () => {
               lg:flex
             "
           >
-            {/* Vertical Line */}
             <div
               className="
                 absolute
@@ -454,7 +428,6 @@ const Testimonials = () => {
               </button>
             ))}
 
-            {/* Active Indicator */}
             <span
               className="
                 absolute
@@ -469,9 +442,8 @@ const Testimonials = () => {
             />
           </div>
 
-          {/* =================================================
-              BOTTOM RIGHT TEXT
-          ================================================== */}
+         
+         
 
           <div
             className="

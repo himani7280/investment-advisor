@@ -68,8 +68,7 @@ const services = [
 
 const ServiceSection = () => {
   return (
-    <section className="relative w-full overflow-hidden bg-white py-6 sm:py-8 lg:py-10">
-      {/* Background Decorative Shape */}
+    <section className="relative w-full overflow-hidden bg-white pt-6 sm:pt-8 lg:pt-16 ">
       <div
         className="
           absolute right-0 top-0
@@ -99,9 +98,7 @@ const ServiceSection = () => {
             lg:gap-5
           "
         >
-          {/* =====================================================
-              LEFT IMAGE SECTION
-          ====================================================== */}
+          
           <div className="relative mx-auto w-full max-w-[520px]">
             <div
               className="
@@ -114,7 +111,6 @@ const ServiceSection = () => {
                 lg:h-[440px]
               "
             >
-              {/* Main Image */}
               <Image
                 src="/service.png"
                 alt="PrimeCore Financial Services"
@@ -124,12 +120,9 @@ const ServiceSection = () => {
                 className="object-cover object-center"
               />
 
-              {/* Slight overlay */}
               <div className="absolute inset-0 bg-white/5" />
 
-              {/* =================================================
-                  TOP RIGHT BLUE SHAPE
-              ================================================== */}
+             
               <div
                 className="
                   absolute
@@ -146,7 +139,6 @@ const ServiceSection = () => {
                 "
               />
 
-              {/* White diagonal line */}
               <div
                 className="
                   absolute
@@ -160,9 +152,7 @@ const ServiceSection = () => {
                 "
               />
 
-              {/* =================================================
-                  BOTTOM LEFT BLUE SHAPE
-              ================================================== */}
+              
               <div
                 className="
                   absolute
@@ -209,9 +199,7 @@ const ServiceSection = () => {
                 </div>
               </div>
 
-              {/* =================================================
-                  WHITE DIAGONAL SHAPES
-              ================================================== */}
+              
               <div
                 className="
                   absolute
@@ -236,9 +224,7 @@ const ServiceSection = () => {
                 "
               />
 
-              {/* =================================================
-                  GOALS CARD
-              ================================================== */}
+              
               <div
                 className="
                   absolute
@@ -279,191 +265,202 @@ const ServiceSection = () => {
             </div>
           </div>
 
-          {/* =====================================================
-              RIGHT CONTENT
-          ====================================================== */}
-          <div className="relative z-20 w-full lg:pl-2 xl:pl-4">
-            {/* OUR SERVICES */}
+<div className="relative z-20 w-full lg:pl-2 xl:pl-4">
+  {/* OUR SERVICES */}
+  <div
+    className="
+      inline-flex
+      rounded-full
+      border
+      border-[#d4e3f7]
+      bg-white
+      px-4
+      py-1.5
+      text-[10px]
+      font-semibold
+      text-[#2d6fc4]
+      sm:text-[11px]
+    "
+  >
+    OUR SERVICES
+  </div>
+
+  {/* Main Title */}
+  <h2
+    className="
+      mt-2
+      max-w-[750px]
+      text-[30px]
+      font-bold
+      leading-[1.08]
+      tracking-[-1.5px]
+      text-[#07152f]
+      sm:text-[36px]
+      lg:text-[38px]
+      xl:text-[42px]
+    "
+  >
+    Tailored Financial Solutions
+    <br />
+    For Your{" "}
+    <span className="text-[#1264d4]">
+      Greater Tomorrow
+    </span>
+  </h2>
+
+  {/* Description */}
+  <p
+    className="
+      mt-3
+      max-w-[750px]
+      text-[11px]
+      leading-[1.6]
+      text-[#53647d]
+      sm:text-[13px]
+      lg:text-[14px]
+    "
+  >
+    At PrimeCore, we deliver expert-driven financial services
+    to help you plan, grow, and secure what matters most. Our
+    solutions are designed around your goals, with clarity and
+    confidence.
+  </p>
+
+  {/* Services */}
+  <div
+    className="
+      mt-4
+      grid
+      grid-cols-1
+      gap-3
+      sm:grid-cols-2
+      lg:grid-cols-4
+    "
+  >
+    {services.map((service) => {
+      const Icon = service.icon;
+
+      return (
+        <Link
+          href="/services"
+          key={`${service.title}-${service.subtitle}`}
+          className="
+            group
+            relative
+            flex
+            min-h-[125px]
+            flex-col
+            rounded-[7px]
+            border
+            border-[#dfe7f1]
+            bg-white
+            p-3
+            shadow-[0_2px_8px_rgba(25,65,120,0.02)]
+            transition-all
+            duration-300
+            hover:-translate-y-1
+            hover:border-[#bdd3f0]
+            hover:shadow-[0_8px_20px_rgba(30,90,160,0.08)]
+            sm:min-h-[135px]
+            sm:p-3.5
+          "
+        >
+          {/* Icon + Title */}
+          <div className="flex items-center gap-2.5">
+            {/* Icon */}
             <div
               className="
-                mx-auto
-                inline-flex
+                flex
+                h-[40px]
+                w-[40px]
+                shrink-0
+                items-center
+                justify-center
                 rounded-full
-                border
-                border-[#d4e3f7]
-                bg-white
-                px-4
-                py-1.5
-                text-[10px]
-                font-semibold
-                text-[#2d6fc4]
-                sm:text-[11px]
+                bg-[#e1edfe]
+                sm:h-[42px]
+                sm:w-[42px]
               "
             >
-              OUR SERVICES
+              <Icon
+                size={21}
+                strokeWidth={1.8}
+                className="text-[#1264d4]"
+              />
             </div>
 
-            {/* Heading */}
-            <h2
-              className="
-                mt-2
-                max-w-[750px]
-                text-[30px]
-                font-bold
-                leading-[1.05]
-                tracking-[-1.5px]
-                text-[#07152f]
-                sm:text-[36px]
-                lg:text-[38px]
-                xl:text-[42px]
-              "
-            >
-              Tailored Financial Solutions
-              <br />
-              For Your{" "}
-              <span className="text-[#1264d4]">
-                Greater Tomorrow
-              </span>
-            </h2>
+            {/* Title + Subtitle */}
+            <div className="min-w-0">
+              <h3
+                className="
+                  text-[12px]
+                  font-bold
+                  leading-[1.25]
+                  text-[#15233b]
+                  sm:text-[13px]
+                "
+              >
+                {service.title}
+              </h3>
 
-            {/* Description */}
-            <p
-              className="
-                mt-3
-                max-w-[750px]
-                text-[11px]
-                leading-[1.6]
-                text-[#53647d]
-                sm:text-[13px]
-                lg:text-[14px]
-              "
-            >
-              At PrimeCore, we deliver expert-driven financial services
-              to help you plan, grow, and secure what matters most. Our
-              solutions are designed around your goals, with clarity and
-              confidence.
-            </p>
-
-            {/* =================================================
-                SERVICE GRID
-            ================================================== */}
-            <div
-              className="
-                mt-4
-                grid
-                grid-cols-1
-                gap-3
-                sm:grid-cols-2
-                lg:grid-cols-4
-              "
-            >
-              {services.map((service) => {
-                const Icon = service.icon;
-
-                return (
-                  <Link
-                    href="/services"
-                    key={`${service.title}-${service.subtitle}`}
-                    className="
-                      group
-                      relative
-                      flex
-                      min-h-[135px]
-                      flex-col
-                      rounded-[7px]
-                      border
-                      border-[#dfe7f1]
-                      bg-white
-                      p-3
-                      shadow-[0_2px_8px_rgba(25,65,120,0.02)]
-                      transition-all
-                      duration-300
-                      hover:-translate-y-1
-                      hover:border-[#bdd3f0]
-                      hover:shadow-[0_8px_20px_rgba(30,90,160,0.08)]
-                      sm:min-h-[140px]
-                      sm:p-3.5
-                    "
-                  >
-                    {/* Icon */}
-                    <div
-                      className="
-                        flex
-                        h-[40px]
-                        w-[40px]
-                        items-center
-                        justify-center
-                        rounded-full
-                        bg-[#eaf2ff]
-                      "
-                    >
-                      <Icon
-                        size={21}
-                        strokeWidth={1.8}
-                        className="text-[#1264d4]"
-                      />
-                    </div>
-
-                    {/* Title */}
-                    <h3
-                      className="
-                        mt-2
-                        text-[12px]
-                        font-bold
-                        leading-[1.25]
-                        text-[#15233b]
-                        sm:text-[13px]
-                      "
-                    >
-                      {service.title}
-                      <br />
-                      {service.subtitle}
-                    </h3>
-
-                    {/* Description */}
-                    <p
-                      className="
-                        mt-1.5
-                        max-w-[150px]
-                        text-[9px]
-                        leading-[1.45]
-                        text-[#65758c]
-                        sm:text-[10px]
-                      "
-                    >
-                      {service.description}
-                    </p>
-
-                    {/* Arrow Circle */}
-                    <div
-                      className="
-                        mt-2.5
-                        flex
-                        h-[26px]
-                        w-[26px]
-                        items-center
-                        justify-center
-                        rounded-full
-                        bg-[#eaf2ff]
-                        transition
-                        group-hover:bg-[#1264d4]
-                      "
-                    >
-                      <ArrowRight
-                        size={14}
-                        strokeWidth={2}
-                        className="
-                          text-[#1264d4]
-                          transition
-                          group-hover:text-white
-                        "
-                      />
-                    </div>
-                  </Link>
-                );
-              })}
+              <h3
+                className="
+                  text-[12px]
+                  font-bold
+                  leading-[1.25]
+                  text-[#15233b]
+                  sm:text-[13px]
+                "
+              >
+                {service.subtitle}
+              </h3>
             </div>
           </div>
+
+          {/* Description */}
+          <p
+            className="
+              mt-2
+              max-w-[170px]
+              text-[9px]
+              leading-[1.45]
+              text-[#65758c]
+              sm:text-[10px]
+            "
+          >
+            {service.description}
+          </p>
+
+          {/* Arrow */}
+          <div
+            className="
+              mt-auto
+              flex
+              h-[26px]
+              w-[26px]
+              items-center
+              justify-center
+              rounded-full
+              bg-[#d7e5fa]
+              transition
+              group-hover:bg-[#1264d4]
+            "
+          >
+            <ArrowRight
+              size={14}
+              strokeWidth={2}
+              className="
+                text-[#1264d4]
+                transition
+                group-hover:text-white
+              "
+            />
+          </div>
+        </Link>
+      );
+    })}
+  </div>
+</div>
         </div>
       </div>
     </section>

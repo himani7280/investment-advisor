@@ -30,10 +30,8 @@ const Navbar = () => {
     <header className="w-full border-t border-[#2d6fc4] bg-white">
       <nav className="mx-auto max-w-[1440px]">
 
-        {/* ================= DESKTOP / TABLET NAVBAR ================= */}
         <div className="hidden h-[80px] items-center px-6 sm:px-8 lg:flex xl:px-[60px]">
 
-          {/* Logo */}
           <Link href="/" className="shrink-0">
             <Image
               src="/logo.png"
@@ -45,13 +43,10 @@ const Navbar = () => {
             />
           </Link>
 
-          {/* Left Divider */}
           <div className="mx-5 h-[40px] w-px bg-[#e5e7eb] xl:mx-[30px]" />
 
-          {/* Desktop Menu */}
           <div className="flex h-full flex-1 items-center justify-center gap-5 xl:gap-[30px]">
 
-            {/* Home */}
             <Link
               href="/"
               className={`relative flex h-full items-center whitespace-nowrap
@@ -71,18 +66,17 @@ const Navbar = () => {
               Home
             </Link>
 
-            {/* About */}
             <Link
               href="/aboutus"
               className={`relative flex h-full items-center whitespace-nowrap
                 text-[13px] xl:text-[14px]
                 ${
-                  isActive("/about")
+                  isActive("/aboutus")
                     ? "font-semibold text-[#1763b5]"
                     : "font-medium text-[#111827] hover:text-[#1763b5]"
                 }
                 ${
-                  isActive("/about")
+                  isActive("/aboutus")
                     ? "after:absolute after:bottom-[13px] after:left-0 after:h-[3px] after:w-full after:rounded-full after:bg-[#1763b5]"
                     : ""
                 }
@@ -91,89 +85,36 @@ const Navbar = () => {
               About Us
             </Link>
 
-            {/* Services */}
-            <div className="relative flex h-full items-center">
-
-              <button
-                type="button"
-                onClick={() => setServicesOpen(!servicesOpen)}
-                className={`relative flex h-full items-center gap-1
-                  whitespace-nowrap text-[13px] xl:text-[14px]
-                  ${
-                    servicesActive
-                      ? "font-semibold text-[#1763b5]"
-                      : "font-medium text-[#111827] hover:text-[#1763b5]"
-                  }
-                  ${
-                    servicesActive
-                      ? "after:absolute after:bottom-[13px] after:left-0 after:h-[3px] after:w-full after:rounded-full after:bg-[#1763b5]"
-                      : ""
-                  }
-                `}
-              >
-                Services
-
-                <ChevronDown
-                  size={14}
-                  className={`transition-transform duration-200 ${
-                    servicesOpen ? "rotate-180" : ""
-                  }`}
-                />
-              </button>
-
-              {/* Services Dropdown */}
-              {servicesOpen && (
-                <div
-                  className="absolute left-0 top-[68px] z-50
-                  w-[210px] overflow-hidden rounded-md
-                  border border-[#e5e7eb] bg-white
-                  py-2 shadow-[0_8px_25px_rgba(0,0,0,0.10)]"
-                >
-                  <Link
-                    href="/services/investment"
-                    onClick={() => setServicesOpen(false)}
-                    className="block px-5 py-3 text-[14px]
-                    text-[#111827] transition hover:bg-[#f5f8fc]
-                    hover:text-[#1763b5]"
-                  >
-                    Investment Advisory
-                  </Link>
-
-                  <Link
-                    href="/services/portfolio"
-                    onClick={() => setServicesOpen(false)}
-                    className="block px-5 py-3 text-[14px]
-                    text-[#111827] transition hover:bg-[#f5f8fc]
-                    hover:text-[#1763b5]"
-                  >
-                    Portfolio Management
-                  </Link>
-
-                  <Link
-                    href="/services/wealth"
-                    onClick={() => setServicesOpen(false)}
-                    className="block px-5 py-3 text-[14px]
-                    text-[#111827] transition hover:bg-[#f5f8fc]
-                    hover:text-[#1763b5]"
-                  >
-                    Wealth Planning
-                  </Link>
-                </div>
-              )}
-            </div>
-
-            {/* Investment Process */}
-            <Link
-              href="/investment-process"
+                        <Link
+              href="/service"
               className={`relative flex h-full items-center whitespace-nowrap
                 text-[13px] xl:text-[14px]
                 ${
-                  isActive("/investment-process")
+                  isActive("/service")
                     ? "font-semibold text-[#1763b5]"
                     : "font-medium text-[#111827] hover:text-[#1763b5]"
                 }
                 ${
-                  isActive("/investment-process")
+                  isActive("/service")
+                    ? "after:absolute after:bottom-[13px] after:left-0 after:h-[3px] after:w-full after:rounded-full after:bg-[#1763b5]"
+                    : ""
+                }
+              `}
+            >
+              Service
+            </Link>
+
+            <Link
+              href="/investment"
+              className={`relative flex h-full items-center whitespace-nowrap
+                text-[13px] xl:text-[14px]
+                ${
+                  isActive("/investment")
+                    ? "font-semibold text-[#1763b5]"
+                    : "font-medium text-[#111827] hover:text-[#1763b5]"
+                }
+                ${
+                  isActive("/investment")
                     ? "after:absolute after:bottom-[13px] after:left-0 after:h-[3px] after:w-full after:rounded-full after:bg-[#1763b5]"
                     : ""
                 }
@@ -182,7 +123,6 @@ const Navbar = () => {
               Investment Process
             </Link>
 
-            {/* Blog */}
             <Link
               href="/blog"
               className={`relative flex h-full items-center whitespace-nowrap
@@ -202,7 +142,6 @@ const Navbar = () => {
               Blog
             </Link>
 
-            {/* Contact */}
             <Link
               href="/contact"
               className={`relative flex h-full items-center whitespace-nowrap
@@ -224,12 +163,10 @@ const Navbar = () => {
 
           </div>
 
-          {/* Right Divider */}
           <div className="mx-5 h-[40px] w-px bg-[#e5e7eb] xl:mx-[35px]" />
 
-          {/* Consultation Button */}
           <Link
-            href="/consultation"
+            href="/contact"
             className="flex h-[46px] w-[180px] xl:w-[197px]
             shrink-0 items-center justify-center gap-3
             rounded-[6px] bg-[#2d6fc4]
@@ -248,10 +185,8 @@ const Navbar = () => {
 
         </div>
 
-        {/* ================= MOBILE NAVBAR ================= */}
         <div className="flex h-[70px] items-center justify-between px-5 sm:h-[76px] sm:px-8 lg:hidden">
 
-          {/* Mobile Logo */}
           <Link href="/" onClick={closeMobileMenu}>
             <Image
               src="/logo.png"
@@ -263,7 +198,6 @@ const Navbar = () => {
             />
           </Link>
 
-          {/* Hamburger */}
           <button
             type="button"
             aria-label={
@@ -287,7 +221,6 @@ const Navbar = () => {
 
         </div>
 
-        {/* ================= MOBILE MENU ================= */}
         {mobileMenuOpen && (
           <div
             className="border-t border-[#e5e7eb] bg-white
@@ -295,7 +228,6 @@ const Navbar = () => {
             sm:px-8 lg:hidden"
           >
 
-            {/* Home */}
             <Link
               href="/"
               onClick={closeMobileMenu}
@@ -314,26 +246,24 @@ const Navbar = () => {
               )}
             </Link>
 
-            {/* About */}
             <Link
-              href="/about"
+              href="/aboutus"
               onClick={closeMobileMenu}
               className={`flex items-center border-b border-[#f0f0f0]
                 py-4 text-[15px]
                 ${
-                  isActive("/about")
+                  isActive("/aboutus")
                     ? "font-semibold text-[#1763b5]"
                     : "font-medium text-[#111827]"
                 }`}
             >
               About Us
 
-              {isActive("/about") && (
+              {isActive("/aboutus") && (
                 <span className="ml-auto h-[3px] w-7 rounded-full bg-[#1763b5]" />
               )}
             </Link>
 
-            {/* Mobile Services */}
             <div className="border-b border-[#f0f0f0]">
 
               <button
@@ -357,12 +287,11 @@ const Navbar = () => {
                 />
               </button>
 
-              {/* Mobile Services Items */}
-              {servicesOpen && (
+              {/* {servicesOpen && (
                 <div className="mb-3 ml-3 border-l-2 border-[#2d6fc4] pl-4">
 
                   <Link
-                    href="/services/investment"
+                    href="/service"
                     onClick={closeMobileMenu}
                     className="block py-2.5 text-[14px]
                     text-[#555] hover:text-[#1763b5]"
@@ -371,7 +300,7 @@ const Navbar = () => {
                   </Link>
 
                   <Link
-                    href="/services/portfolio"
+                    href="/services/portfoli"
                     onClick={closeMobileMenu}
                     className="block py-2.5 text-[14px]
                     text-[#555] hover:text-[#1763b5]"
@@ -389,30 +318,28 @@ const Navbar = () => {
                   </Link>
 
                 </div>
-              )}
+              )} */}
 
             </div>
 
-            {/* Investment Process */}
             <Link
-              href="/investment-process"
+              href="/investment"
               onClick={closeMobileMenu}
               className={`flex items-center border-b border-[#f0f0f0]
                 py-4 text-[15px]
                 ${
-                  isActive("/investment-process")
+                  isActive("/investment")
                     ? "font-semibold text-[#1763b5]"
                     : "font-medium text-[#111827]"
                 }`}
             >
               Investment Process
 
-              {isActive("/investment-process") && (
+              {isActive("/investment") && (
                 <span className="ml-auto h-[3px] w-7 rounded-full bg-[#1763b5]" />
               )}
             </Link>
 
-            {/* Blog */}
             <Link
               href="/blog"
               onClick={closeMobileMenu}
@@ -431,7 +358,6 @@ const Navbar = () => {
               )}
             </Link>
 
-            {/* Contact */}
             <Link
               href="/contact"
               onClick={closeMobileMenu}
@@ -450,9 +376,8 @@ const Navbar = () => {
               )}
             </Link>
 
-            {/* Mobile Consultation Button */}
             <Link
-              href="/consultation"
+              href="/contact"
               onClick={closeMobileMenu}
               className="mt-5 flex h-[48px] w-full
               items-center justify-center gap-3

@@ -1,10 +1,13 @@
-import React from 'react'
-import BlogHero from './BlogHero'
+
+
+import Hero from '../components/Hero'
+import LatestBlog from './LatestBlog'
 
 const page = () => {
   return (
     <div>
-        <BlogHero/>
+      <Hero page="blog"/>
+       <LatestBlog/>
     </div>
   )
 }

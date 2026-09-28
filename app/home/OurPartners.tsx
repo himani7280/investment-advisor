@@ -42,9 +42,8 @@ const partners: Partner[] = [
 
 const OurPartners = () => {
   return (
-    <section className="relative overflow-hidden bg-white px-5 py-14 sm:px-8 lg:px-12 lg:py-16">
+    <section className="relative overflow-hidden bg-white pt-6 sm:pt-8 lg:pt-16 pb-6">
 
-      {/* Decorative dots */}
       <div className="absolute left-8 top-20 hidden sm:block">
         <div className="grid grid-cols-5 gap-[10px]">
           {Array.from({ length: 25 }).map((_, index) => (
@@ -56,7 +55,6 @@ const OurPartners = () => {
         </div>
       </div>
 
-      {/* Heading */}
       <div className="relative z-10 mx-auto max-w-[850px] text-center">
 
         <div className="mb-4 flex items-center justify-center gap-3">
@@ -85,39 +83,36 @@ const OurPartners = () => {
         </p>
       </div>
 
-      {/* Partners */}
       <div className="relative z-10 mx-auto mt-8 max-w-[1160px]">
-        <div className="grid grid-cols-2 gap-[10px] sm:grid-cols-3 lg:grid-cols-5">
+        <div className="grid grid-cols-2 gap-[4px] sm:grid-cols-3 lg:grid-cols-5">
 
           {partners.map((partner) => (
             <div
               key={partner.id}
               className="
                 flex
-                h-[92px]
+              
                 items-center
                 justify-center
                 px-3
               "
             >
-              <Image
-                src={partner.logo}
-                alt={partner.name}
-                width={300}
-                height={110}
-                sizes="(max-width: 640px) 42vw, (max-width: 1024px) 28vw, 230px"
-                className="
-                  h-auto
-                  w-auto
-                  max-h-[100px]
-                  max-w-full
-                  object-contain
-                  mix-blend-multiply
-                  transition-transform
-                  duration-300
-                  hover:scale-105
-                "
-              />
+           <Image
+  src={partner.logo}
+  alt={partner.name}
+  width={400}
+  height={200}
+  // sizes="(max-width: 640px) 42vw, (max-width: 1024px) 28vw, 230px"
+  className="
+  
+    max-w-full
+    object-contain
+    mix-blend-multiply
+    transition-transform
+    duration-300
+    hover:scale-105
+  "
+/>
             </div>
           ))}
 

@@ -1,6 +1,5 @@
 "use client";
 
-import React from "react";
 import Image from "next/image";
 import image from "../../public/hero.png";
 import Link from "next/link";
@@ -33,8 +32,7 @@ const HeroSection = () => {
   return (
     <section className="relative w-full overflow-hidden bg-white">
 
-      {/* Background Image */}
-<div className="absolute inset-0">
+           <div className="absolute inset-0">
   <Image
     src={image}
     alt="PrimeCore Investment Advisor"
@@ -42,9 +40,21 @@ const HeroSection = () => {
     priority
     className="object-cover object-[65%_center]"
   />
+
+  {/* White gradient overlay */}
+
+<div
+  className="
+    absolute inset-0
+    bg-gradient-to-r
+    from-white
+    via-white/65
+    via-60%
+    to-transparent
+  "
+/>
 </div>
 
-      {/* Main Container */}
       <div
         className="
           relative z-10 mx-auto
@@ -57,7 +67,6 @@ const HeroSection = () => {
         "
       >
 
-        {/* Hero Content */}
         <div
           className="
             flex min-h-[528px]
@@ -65,7 +74,6 @@ const HeroSection = () => {
           "
         >
 
-          {/* Left Content */}
           <div
             className="
               w-full max-w-[560px]
@@ -75,8 +83,6 @@ const HeroSection = () => {
               lg:pt-20
             "
           >
-
-            {/* Small Heading */}
             <p
               className="
                 mb-4
@@ -91,10 +97,8 @@ const HeroSection = () => {
               SMART INVESTMENTS. BRIGHTER POSSIBILITIES.
             </p>
 
-            {/* Blue Line */}
             <div className="mb-5 h-[2px] w-[34px] bg-[#2d6fc4]" />
 
-            {/* Heading */}
             <h1
               className="
                 max-w-[530px]
@@ -122,7 +126,6 @@ const HeroSection = () => {
               and Confidence.
             </h1>
 
-            {/* Description */}
             <p
               className="
                 mt-5
@@ -139,7 +142,6 @@ const HeroSection = () => {
               and create a more secure tomorrow.
             </p>
 
-            {/* Buttons */}
             <div
               className="
                 mt-6
@@ -148,7 +150,6 @@ const HeroSection = () => {
               "
             >
 
-              {/* Consultation */}
               <Link
                 href="/consultation"
                 className="
@@ -178,7 +179,6 @@ const HeroSection = () => {
                 />
               </Link>
 
-              {/* Services */}
               <Link
                 href="/services"
                 className="
@@ -208,7 +208,6 @@ const HeroSection = () => {
           </div>
         </div>
 
-        {/* ================= BOTTOM FEATURES ================= */}
 
        <div
   className="
@@ -272,7 +271,6 @@ const HeroSection = () => {
                   `}
                 >
 
-                  {/* Icon */}
                   <div
                     className="
                       flex
@@ -292,7 +290,6 @@ const HeroSection = () => {
                     />
                   </div>
 
-                  {/* Text */}
                   <div>
                     <h3
                       className="

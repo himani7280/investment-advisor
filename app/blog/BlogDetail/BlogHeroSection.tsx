@@ -1,12 +1,17 @@
-import React from 'react'
+
 import Image from "next/image";
 
-const BlogHero = () => {
+interface HeroProps {
+  title: string;
+  image: string;
+  alt?: string;
+}
+const BlogHeroSection = () => {
      return (
        <section className="relative w-full h-[55vh] min-h-[350px] max-h-[650px] overflow-hidden">
          <Image
-           src="/about/img1.png"
-           alt="About Us"
+           src="/blog.png"
+           alt="Blog "
            fill
            priority
            className="object-cover"
@@ -16,11 +21,11 @@ const BlogHero = () => {
    
          <div className="absolute inset-0 flex items-center justify-center">
            <h1 className="text-white text-4xl sm:text-5xl md:text-6xl font-bold">
-             Blog
+            Blog Detail
            </h1>
          </div>
        </section>
      );
 }
 
-export default BlogHero
+export default BlogHeroSection
