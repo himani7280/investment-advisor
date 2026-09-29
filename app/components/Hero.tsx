@@ -6,7 +6,7 @@ import { useContext } from "react";
 import { HeroContext } from "../context/HeroProvide";
 
 interface HeroProps {
-  page: "about" | "contact" | "blog" | "service" | "investment";
+  page: "about" | "contact" | "blog" | "service" | "investment" | "BlogDetail" | "serviceDetail";
 }
 
 const Hero = ({ page }: HeroProps) => {
