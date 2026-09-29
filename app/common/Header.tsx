@@ -24,6 +24,7 @@ const Header = () => {
           md:px-6
           lg:px-8
           xl:px-10
+          
         "
       >
         {/* Left - Tagline */}
@@ -34,6 +35,7 @@ const Header = () => {
             items-center
             gap-2
             py-2
+            pl-6
           "
         >
           <span className="shrink-0 text-[14px] sm:text-[15px] md:text-[16px]">
@@ -100,7 +102,7 @@ const Header = () => {
           <div className="h-5 w-px bg-white/40" />
 
           {/* Social Icons */}
-          <div className="flex items-center gap-3 px-3 lg:gap-4 lg:px-4">
+          <div className="flex items-center gap-3 px-3 lg:gap-4 lg:px-1">
             <a
               href="#"
               aria-label="LinkedIn"

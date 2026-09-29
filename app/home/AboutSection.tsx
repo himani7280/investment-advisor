@@ -67,6 +67,8 @@ const AboutSection = () => {
                 rounded-[22px]
                 sm:h-[400px]
                 lg:h-[580px]
+                xl:h-[600px]
+                2xl:h-[650px]
               "
             >
               <Image
