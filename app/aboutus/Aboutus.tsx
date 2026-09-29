@@ -1,5 +1,7 @@
 import Image from "next/image";
 
+import about from "../../public/about.png";
+
 const Aboutus = () => {
   return (
     <section
@@ -28,9 +30,9 @@ const Aboutus = () => {
             grid
             grid-cols-1
             items-center
-            gap-8
+            gap-6
             lg:grid-cols-2
-            lg:gap-12
+            lg:gap-7
           "
         >
           {/* ================= IMAGE SIDE ================= */}
@@ -38,36 +40,34 @@ const Aboutus = () => {
             className="
               relative
               mx-auto
-              h-[340px]
+              h-full
               w-full
-              max-w-[520px]
-              sm:h-[390px]
-              md:h-[410px]
-              lg:h-[420px]
+             p-4
             "
           >
             {/* Main Image */}
+           <div className="relative mx-auto w-full max-w-[570px]">
             <div
               className="
                 relative
-                h-full
+                h-[330px]
                 w-full
                 overflow-hidden
-                rounded-[25px]
+                rounded-[22px]
+                sm:h-[400px]
+                lg:h-[570px]
               "
             >
               <Image
-                src="/about.png"
-                alt="Business professionals"
+                src={about}
+                alt="PrimeCore Investment Advisors"
                 fill
                 priority
-                sizes="(max-width: 640px) 100vw, (max-width: 1024px) 90vw, 50vw"
-                className="
-                  object-cover
-                  object-[center_85%]
-                "
+                sizes="(max-width: 768px) 100vw, 50vw"
+                className="object-cover object-center"
               />
             </div>
+          </div>
           </div>
 
           {/* ================= TEXT SIDE ================= */}

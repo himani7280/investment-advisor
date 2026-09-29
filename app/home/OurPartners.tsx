@@ -42,7 +42,7 @@ const partners: Partner[] = [
 
 const OurPartners = () => {
   return (
-    <section className="relative overflow-hidden bg-white pt-6 sm:pt-8 lg:pt-16 pb-6">
+    <section className="relative overflow-hidden bg-white pt-10 sm:pt-12 md:pt-14 lg:pt-16 pt-1 sm:pb-2 md:pb-4 lg:pb-6">
 
       <div className="absolute left-8 top-20 hidden sm:block">
         <div className="grid grid-cols-5 gap-[10px]">
@@ -100,11 +100,10 @@ const OurPartners = () => {
            <Image
   src={partner.logo}
   alt={partner.name}
-  width={400}
-  height={200}
+  width={300}
+  height={120}
   // sizes="(max-width: 640px) 42vw, (max-width: 1024px) 28vw, 230px"
   className="
-  
     max-w-full
     object-contain
     mix-blend-multiply

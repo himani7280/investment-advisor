@@ -21,7 +21,7 @@ const ContactForm = () => {
   };
 
   return (
-    <section className="w-full bg-white px-4 py-8 sm:px-6 md:px-8 lg:px-10 xl:px-12">
+    <section className="w-full bg-white px-4 pt-8 sm:px-6 md:px-8 lg:px-10 xl:px-12">
       <div className="mx-auto w-full max-w-[1200px]">
         <div className="grid grid-cols-1 overflow-hidden rounded-xl bg-[#f8fbff] lg:grid-cols-[1.25fr_0.85fr]">
 

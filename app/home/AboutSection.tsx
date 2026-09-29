@@ -1,15 +1,9 @@
 "use client";
 
-
 import Image from "next/image";
 import Link from "next/link";
-import about from '../../public/about.png'
-import {
-  ArrowRight,
-  BarChart3,
-  ShieldCheck,
-  Users,
-} from "lucide-react";
+import about from "../../public/about.png";
+import { ArrowRight, BarChart3, ShieldCheck, Users } from "lucide-react";
 
 const features = [
   {
@@ -63,7 +57,6 @@ const AboutSection = () => {
             lg:gap-0
           "
         >
-          
           <div className="relative mx-auto w-full max-w-[570px]">
             <div
               className="
@@ -84,13 +77,10 @@ const AboutSection = () => {
                 sizes="(max-width: 768px) 100vw, 50vw"
                 className="object-cover object-center"
               />
-
-              
-              
             </div>
           </div>
 
-                    <div
+          <div
             className="
               relative z-20
               w-full
@@ -117,8 +107,8 @@ const AboutSection = () => {
               ABOUT US
             </div>
 
-               <h2
-  className="
+            <h2
+              className="
     mt-4
     max-w-[650px]
     text-[30px]
@@ -130,14 +120,11 @@ const AboutSection = () => {
     lg:text-[40px]
     xl:text-[44px]
   "
->
-  Empowering Businesses
-  <br />
-  To Grow{" "}
-  <span className="text-[#2d6fc4]">
-    Smarter
-  </span>
-</h2>
+            >
+              Empowering Businesses
+              <br />
+              To Grow <span className="text-[#2d6fc4]">Smarter</span>
+            </h2>
 
             <div className="mt-5 h-[3px] w-[55px] bg-[#2d6fc4]" />
 
@@ -153,13 +140,12 @@ const AboutSection = () => {
               "
             >
               At PrimeCore, we are committed to helping businesses and
-              individuals make informed financial decisions. With deep
-              market knowledge and a client-first approach, we provide
-              tailored investment advisory solutions designed to create
-              long-term value and sustainable growth.
+              individuals make informed financial decisions. With deep market
+              knowledge and a client-first approach, we provide tailored
+              investment advisory solutions designed to create long-term value
+              and sustainable growth.
             </p>
 
-           
             <div
               className="
                 mt-7
@@ -174,28 +160,23 @@ const AboutSection = () => {
                 const Icon = feature.icon;
 
                 return (
-<div
-  key={feature.title}
-  className={`
+                  <div
+                    key={feature.title}
+                    className={`
     flex
     min-w-0
     items-start
     gap-3
-    ${
-      index !== 0
-        ? "border-t border-[#dce4ef] pt-5 sm:border-l sm:border-t-0 sm:pt-0"
-        : ""
-    }
-    ${
-      index === 0
-        ? "sm:pr-4"
-        : "sm:px-4"
-    }
+    ${index !== 0
+                        ? "border-t border-[#dce4ef] pt-5 sm:border-l sm:border-t-0 sm:pt-0"
+                        : ""
+                      }
+    ${index === 0 ? "sm:pr-4" : "sm:px-4"}
   `}
->
-  {/* Icon */}
-  <div
-    className="
+                  >
+                    {/* Icon */}
+                    <div
+                      className="
       flex
       h-[44px]
       w-[44px]
@@ -207,19 +188,19 @@ const AboutSection = () => {
       sm:h-[47px]
       sm:w-[47px]
     "
-  >
-    <Icon
-      size={22}
-      strokeWidth={1.8}
-      className="text-[#2d6fc4]"
-    />
-  </div>
+                    >
+                      <Icon
+                        size={22}
+                        strokeWidth={1.8}
+                        className="text-[#2d6fc4]"
+                      />
+                    </div>
 
-  {/* Content */}
-  <div className="min-w-0">
-    {/* Title */}
-    <h3
-      className="
+                    {/* Content */}
+                    <div className="min-w-0">
+                      {/* Title */}
+                      <h3
+                        className="
         whitespace-nowrap
         text-[11px]
         font-bold
@@ -227,13 +208,13 @@ const AboutSection = () => {
         text-[#17243a]
         sm:text-[14px]
       "
-    >
-      {feature.title}
-    </h3>
+                      >
+                        {feature.title}
+                      </h3>
 
-    {/* Subtitle */}
-    <h3
-      className="
+                      {/* Subtitle */}
+                      <h3
+                        className="
         whitespace-nowrap
         text-[11px]
         font-bold
@@ -241,13 +222,13 @@ const AboutSection = () => {
         text-[#17243a]
         sm:text-[14px]
       "
-    >
-      {feature.subtitle}
-    </h3>
+                      >
+                        {feature.subtitle}
+                      </h3>
 
-    {/* Description - 2 lines */}
-    <p
-      className="
+                      {/* Description - 2 lines */}
+                      <p
+                        className="
         mt-2
         max-w-[150px]
         text-[9px]
@@ -256,17 +237,15 @@ const AboutSection = () => {
         sm:max-w-[155px]
         sm:text-[10px]
       "
-    >
-      {feature.description}
-    </p>
-  </div>
-</div>
-
+                      >
+                        {feature.description}
+                      </p>
+                    </div>
+                  </div>
                 );
               })}
             </div>
 
-           
             <div
               className="
                 mt-8
@@ -299,11 +278,7 @@ const AboutSection = () => {
                 "
               >
                 Know More
-
-                <ArrowRight
-                  size={18}
-                  strokeWidth={1.8}
-                />
+                <ArrowRight size={18} strokeWidth={1.8} />
               </Link>
 
               <div className="hidden h-[42px] w-[1px] bg-[#9ba8ba] sm:block" />

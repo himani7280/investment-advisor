@@ -36,7 +36,7 @@ const Footer = () => {
       href: "/",
     },
     {
-      name: "blog",
+      name: "Blog",
       href: "/blog",
     },
     {
@@ -52,35 +52,35 @@ const Footer = () => {
   const services = [
     {
       name: "Wealth Management",
-      href: "/services/wealth-management",
+      href: "/",
     },
     {
       name: "Financial Planning",
-      href: "/services/financial-planning",
+      href: "/",
     },
     {
       name: "Retirement Planning",
-      href: "/services/retirement-planning",
+      href: "/",
     },
     {
       name: "Mutual Funds",
-      href: "/services/mutual-funds",
+      href: "/",
     },
     {
       name: "Portfolio Management",
-      href: "/services/portfolio-management",
+      href: "/",
     },
     {
       name: "Tax Planning",
-      href: "/services/tax-planning",
+      href: "/",
     },
     {
       name: "Business Advisory",
-      href: "/services/business-advisory",
+      href: "/",
     },
     {
       name: "Risk Management",
-      href: "/services/risk-management",
+      href: "/",
     },
   ];
 
@@ -127,7 +127,7 @@ const Footer = () => {
                 rel="noopener noreferrer"
                 className="flex h-11 w-11 items-center justify-center rounded-full border border-[#dce5f1] text-[#0b2855] transition-all duration-300 hover:border-blue-600 hover:bg-blue-600 hover:text-white"
               >
-                <FaLinkedinIn size={17} />
+                <FaLinkedinIn size={20} />
               </a>
 
               <a
@@ -137,7 +137,7 @@ const Footer = () => {
                 rel="noopener noreferrer"
                 className="flex h-11 w-11 items-center justify-center rounded-full border border-[#dce5f1] text-[#0b2855] transition-all duration-300 hover:border-blue-600 hover:bg-blue-600 hover:text-white"
               >
-                <FaFacebookF size={16} />
+                <FaFacebookF size={20} />
               </a>
 
               <a
@@ -147,7 +147,7 @@ const Footer = () => {
                 rel="noopener noreferrer"
                 className="flex h-11 w-11 items-center justify-center rounded-full border border-[#dce5f1] text-[#0b2855] transition-all duration-300 hover:border-blue-600 hover:bg-blue-600 hover:text-white"
               >
-                <FaInstagram size={17} />
+                <FaInstagram size={20} />
               </a>
 
               <a
@@ -157,7 +157,7 @@ const Footer = () => {
                 rel="noopener noreferrer"
                 className="flex h-11 w-11 items-center justify-center rounded-full border border-[#dce5f1] text-[#0b2855] transition-all duration-300 hover:border-blue-600 hover:bg-blue-600 hover:text-white"
               >
-                <FaYoutube size={17} />
+                <FaYoutube size={20} />
               </a>
 
             </div>
@@ -180,7 +180,7 @@ const Footer = () => {
                     className="group flex items-center gap-2.5 text-[14px] text-[#52637e] transition-colors duration-200 hover:text-blue-600"
                   >
                     <FaChevronRight
-                      size={9}
+                      size={10}
                       className="text-blue-600 transition-transform duration-200 group-hover:translate-x-1"
                     />
 
@@ -208,7 +208,7 @@ const Footer = () => {
                     className="group flex items-center gap-2.5 text-[14px] text-[#52637e] transition-colors duration-200 hover:text-blue-600"
                   >
                     <FaChevronRight
-                      size={9}
+                      size={10}
                       className="text-blue-600 transition-transform duration-200 group-hover:translate-x-1"
                     />
 
@@ -233,7 +233,7 @@ const Footer = () => {
               {/* Address */}
               <div className="flex items-start gap-4">
                 <div className="flex h-[38px] w-[38px] shrink-0 items-center justify-center rounded-full bg-[#eaf2fd] text-[#1766d7]">
-                  <FaMapMarkerAlt size={15} />
+                  <FaMapMarkerAlt size={20} />
                 </div>
 
                 <p className="pt-[2px] text-[14px] leading-[1.55] text-[#52637e]">
@@ -246,7 +246,7 @@ const Footer = () => {
               {/* Phone */}
               <div className="flex items-start gap-4">
                 <div className="flex h-[38px] w-[38px] shrink-0 items-center justify-center rounded-full bg-[#eaf2fd] text-[#1766d7]">
-                  <FaPhoneAlt size={13} />
+                  <FaPhoneAlt size={20} />
                 </div>
 
                 <div className="pt-[2px] text-[14px] leading-[1.55] text-[#52637e]">
@@ -269,7 +269,7 @@ const Footer = () => {
               {/* Email */}
               <div className="flex items-center gap-4">
                 <div className="flex h-[38px] w-[38px] shrink-0 items-center justify-center rounded-full bg-[#eaf2fd] text-[#1766d7]">
-                  <FaEnvelope size={15} />
+                  <FaEnvelope size={20} />
                 </div>
 
                 <a
@@ -283,7 +283,7 @@ const Footer = () => {
               {/* Timing */}
               <div className="flex items-center gap-4">
                 <div className="flex h-[38px] w-[38px] shrink-0 items-center justify-center rounded-full bg-[#eaf2fd] text-[#1766d7]">
-                  <FaClock size={15} />
+                  <FaClock size={20} />
                 </div>
 
                 <p className="text-[14px] text-[#52637e]">
@@ -310,7 +310,7 @@ const Footer = () => {
           <div className="flex flex-wrap items-center justify-center gap-x-5 gap-y-2 text-[13px] text-white/85 sm:text-[14px]">
 
             <Link
-              href="/privacy-policy"
+              href="/"
               className="transition-colors hover:text-blue-400"
             >
               Privacy Policy
@@ -319,7 +319,7 @@ const Footer = () => {
             <span className="hidden h-5 w-px bg-white/40 sm:block" />
 
             <Link
-              href="/terms-conditions"
+              href="/"
               className="transition-colors hover:text-blue-400"
             >
               Terms &amp; Conditions
@@ -328,7 +328,7 @@ const Footer = () => {
             <span className="hidden h-5 w-px bg-white/40 sm:block" />
 
             <Link
-              href="/disclaimer"
+              href="/"
               className="transition-colors hover:text-blue-400"
             >
               Disclaimer
@@ -337,7 +337,7 @@ const Footer = () => {
             <span className="hidden h-5 w-px bg-white/40 sm:block" />
 
             <Link
-              href="/sitemap"
+              href="/"
               className="transition-colors hover:text-blue-400"
             >
               Sitemap

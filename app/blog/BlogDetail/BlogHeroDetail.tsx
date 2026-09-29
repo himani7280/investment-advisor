@@ -4,7 +4,7 @@ import Link from "next/link";
 
 const BlogHeroDetail = () => {
   return (
-    <section className="w-full bg-white py-8 sm:py-10 lg:py-12">
+    <section className="w-full bg-white pt-8 sm:pt-10 lg:pt-16 pb-4">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 gap-8 lg:grid-cols-[minmax(0,2.1fr)_340px] lg:gap-10">
           
@@ -132,24 +132,6 @@ const BlogHeroDetail = () => {
 
          
           <aside className="space-y-6">
-
-            <div className="rounded-lg bg-[#f4f8fd] p-4">
-              <div className="flex overflow-hidden rounded-md bg-white">
-                <input
-                  type="text"
-                  placeholder="Search articles..."
-                  className="min-w-0 flex-1 bg-transparent px-4 py-3 text-sm text-[#31558f] outline-none placeholder:text-[#9aaec9]"
-                />
-
-                <button
-                  type="button"
-                  className="flex h-12 w-12 shrink-0 items-center justify-center bg-[#1769e0] text-xl text-white"
-                  aria-label="Search"
-                >
-                  🔍
-                </button>
-              </div>
-            </div>
 
             <div className="rounded-lg bg-[#f4f8fd] p-5 sm:p-6">
               <h3 className="mb-5 text-xl font-bold text-[#102d63]">

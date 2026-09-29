@@ -3,7 +3,7 @@ import Image from "next/image";
 
 const OurLocation = () => {
   return (
-    <section className="w-full bg-white px-4 py-10 sm:px-6 md:px-8 lg:px-10 xl:px-12">
+    <section className="w-full bg-white px-4 pt-10 pb-6 sm:px-6 md:px-8 lg:px-10 xl:px-12">
       <div className="mx-auto w-full max-w-[1200px]">
 
         <div className="mb-5">

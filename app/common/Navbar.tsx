@@ -264,63 +264,23 @@ const Navbar = () => {
               )}
             </Link>
 
-            <div className="border-b border-[#f0f0f0]">
+                        <Link
+              href="/service"
+              onClick={closeMobileMenu}
+              className={`flex items-center border-b border-[#f0f0f0]
+                py-4 text-[15px]
+                ${
+                  isActive("/service")
+                    ? "font-semibold text-[#1763b5]"
+                    : "font-medium text-[#111827]"
+                }`}
+            >
+              Services
 
-              <button
-                type="button"
-                onClick={() => setServicesOpen(!servicesOpen)}
-                className={`flex w-full items-center justify-between
-                  py-4 text-[15px]
-                  ${
-                    servicesActive
-                      ? "font-semibold text-[#1763b5]"
-                      : "font-medium text-[#111827]"
-                  }`}
-              >
-                <span>Services</span>
-
-                <ChevronDown
-                  size={18}
-                  className={`transition-transform duration-200 ${
-                    servicesOpen ? "rotate-180" : ""
-                  }`}
-                />
-              </button>
-
-              {/* {servicesOpen && (
-                <div className="mb-3 ml-3 border-l-2 border-[#2d6fc4] pl-4">
-
-                  <Link
-                    href="/service"
-                    onClick={closeMobileMenu}
-                    className="block py-2.5 text-[14px]
-                    text-[#555] hover:text-[#1763b5]"
-                  >
-                    Investment Advisory
-                  </Link>
-
-                  <Link
-                    href="/services/portfoli"
-                    onClick={closeMobileMenu}
-                    className="block py-2.5 text-[14px]
-                    text-[#555] hover:text-[#1763b5]"
-                  >
-                    Portfolio Management
-                  </Link>
-
-                  <Link
-                    href="/services/wealth"
-                    onClick={closeMobileMenu}
-                    className="block py-2.5 text-[14px]
-                    text-[#555] hover:text-[#1763b5]"
-                  >
-                    Wealth Planning
-                  </Link>
-
-                </div>
-              )} */}
-
-            </div>
+              {isActive("/service") && (
+                <span className="ml-auto h-[3px] w-7 rounded-full bg-[#1763b5]" />
+              )}
+            </Link>
 
             <Link
               href="/investment"

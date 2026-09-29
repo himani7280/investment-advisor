@@ -3,7 +3,7 @@ import Image from "next/image";
 
 const ProcessWork = () => {
   return (
-    <section className="w-full bg-white py-2 sm:py-4 lg:py-6">
+    <section className="w-full bg-white py-2 sm:pt-4 lg:pt-16">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
 
         <div className="grid grid-cols-1 gap-6 lg:grid-cols-2 lg:gap-7">

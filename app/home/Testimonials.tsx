@@ -1,11 +1,12 @@
 "use client";
 
 import React, { useState } from "react";
+import { FaStar } from "react-icons/fa";
 import Image from "next/image";
 import {
   ArrowLeft,
   ArrowRight,
-  Quote,
+  Quote 
 } from "lucide-react";
 
 const testimonials = [
@@ -236,7 +237,8 @@ const Testimonials = () => {
                       : "text-[#c9d8ec]"
                   }`}
                 >
-                  ★
+                  <FaStar />
+
                 </span>
               ))}
             </div>

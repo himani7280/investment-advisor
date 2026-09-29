@@ -37,7 +37,7 @@ const steps = [
 
 const HowItWorks = () => {
   return (
-    <section className="relative w-full overflow-hidden bg-white pt- sm:pt-8 lg:pt-16">
+    <section className="relative w-full overflow-hidden bg-white pt-10 sm:pt-12 md:pt-14 lg:pt-16">
       <div className="mx-auto w-full max-w-[1280px] px-5 sm:px-8 lg:px-10">
 
        

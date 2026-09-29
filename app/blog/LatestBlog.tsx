@@ -84,7 +84,7 @@ const blogs: Blog[] = [
 ];
 const LatestBlog = () => {
     return (
-      <section className="w-full bg-white py-12 sm:py-16 lg:py-16">
+      <section className="w-full bg-white pb-6 pt-10 sm:pt-12 md:pt-14 lg:pt-16">
         <div className="mx-auto max-w-[1200px] px-5 sm:px-6 lg:px-8">
   
           

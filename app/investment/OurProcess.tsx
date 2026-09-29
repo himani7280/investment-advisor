@@ -166,7 +166,7 @@ const processSteps = [
 
 const OurProcess = () => {
   return (
-    <section className="w-full bg-white py-12 sm:py-14 lg:py-16">
+    <section className="w-full bg-white pt-12 sm:pt-14 lg:pt-16">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
 
         {/* ================= HEADING ================= */}
