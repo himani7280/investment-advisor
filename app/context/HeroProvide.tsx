@@ -1,4 +1,3 @@
-
 "use client";
 
 import React, { createContext, ReactNode } from "react";
@@ -8,12 +7,23 @@ interface HeroData {
   image: string;
 }
 
-interface HeroContextType {
+export type HeroPage =
+  | "about"
+  | "contact"
+  | "blog"
+  | "service"
+  | "investment"
+  | "BlogDetail"
+  | "serviceDetail";
+
+export interface HeroContextType {
   about: HeroData;
   contact: HeroData;
   blog: HeroData;
   service: HeroData;
   investment: HeroData;
+  BlogDetail: HeroData;
+  serviceDetail: HeroData;
 }
 
 export const HeroContext = createContext<HeroContextType | null>(null);
@@ -48,15 +58,16 @@ const HeroProvide = ({ children }: HeroProviderProps) => {
       title: "Investment Process",
       image: "/banner.png",
     },
-      BlogDetail: {
+
+    BlogDetail: {
       title: "Blog Detail",
       image: "/banner.png",
     },
-        serviceDetail: {
-      title: "service Detail",
+
+    serviceDetail: {
+      title: "Service Detail",
       image: "/banner.png",
     },
-
   };
 
   return (

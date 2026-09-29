@@ -2,17 +2,13 @@
 
 import Image from "next/image";
 import { useContext } from "react";
-import { HeroContext } from "../context/HeroProvide";
+import {
+  HeroContext,
+  type HeroPage,
+} from "../context/HeroProvide";
 
 interface HeroProps {
-  page:
-    | "about"
-    | "contact"
-    | "blog"
-    | "service"
-    | "investment"
-    | "BlogDetail"
-    | "serviceDetail";
+  page: HeroPage;
 }
 
 const Hero = ({ page }: HeroProps) => {
@@ -32,6 +28,7 @@ const Hero = ({ page }: HeroProps) => {
 
   return (
     <section className="relative w-full h-[55vh] min-h-[350px] max-h-[650px] overflow-hidden">
+      {/* Background Image */}
       <Image
         src={image}
         alt={title}
@@ -40,10 +37,12 @@ const Hero = ({ page }: HeroProps) => {
         className="object-cover"
       />
 
+      {/* Dark Overlay */}
       <div className="absolute inset-0 bg-black/35" />
 
+      {/* Title */}
       <div className="absolute inset-0 flex items-center justify-center px-4">
-        <h1 className="text-center text-4xl sm:text-5xl md:text-6xl font-bold text-white">
+        <h1 className="text-center text-4xl font-bold text-white sm:text-5xl md:text-6xl">
           {title}
         </h1>
       </div>
