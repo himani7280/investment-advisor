@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import about from "../../public/about.png";
+import about from "../../../public/about.png";
 import { ArrowRight, BarChart3, ShieldCheck, Users } from "lucide-react";
 
 const features = [
@@ -28,7 +28,7 @@ const features = [
 
 const AboutSection = () => {
   return (
-    <section className="relative w-full overflow-hidden bg-white pt-6 sm:pt-8 lg:pt-16">
+    <section className="relative w-full overflow-hidden bg-white pt-6 sm:pt-8 lg:mb-8 lg:pt-16">
       <div
         className="
           absolute right-0 top-0
@@ -86,10 +86,12 @@ const AboutSection = () => {
             className="
               relative z-20
               w-full
+              text-left
               lg:pl-7
               xl:pl-10
             "
           >
+            {/* ABOUT US Badge - Left Aligned */}
             <div
               className="
                 inline-flex
@@ -109,27 +111,30 @@ const AboutSection = () => {
               ABOUT US
             </div>
 
+            {/* Main Heading - Left Aligned */}
             <h2
               className="
-    mt-4
-    max-w-[650px]
-    text-[30px]
-    font-bold
-    leading-[1.1]
-    tracking-[-1px]
-    text-[#07152f]
-    sm:text-[36px]
-    lg:text-[40px]
-    xl:text-[44px]
-  "
+                mt-4
+                max-w-[650px]
+                text-[30px]
+                font-bold
+                leading-[1.1]
+                tracking-[-1px]
+                text-[#07152f]
+                sm:text-[36px]
+                lg:text-[40px]
+                xl:text-[44px]
+              "
             >
               Empowering Businesses
               <br />
               To Grow <span className="text-[#2d6fc4]">Smarter</span>
             </h2>
 
+            {/* Blue Line Divider - Left Aligned */}
             <div className="mt-5 h-[3px] w-[55px] bg-[#2d6fc4]" />
 
+            {/* Description - Left Aligned */}
             <p
               className="
                 mt-5
@@ -148,14 +153,16 @@ const AboutSection = () => {
               and sustainable growth.
             </p>
 
+            {/* Features List: Small screens par 2 in line 1, 3rd in line 2; Large screens par 3 in line 1 */}
             <div
               className="
                 mt-7
                 grid
-                grid-cols-1
-                gap-5
-                sm:grid-cols-3
-                sm:gap-0
+                grid-cols-2
+                gap-x-4
+                gap-y-6
+                md:grid-cols-3
+                md:gap-0
               "
             >
               {features.map((feature, index) => {
@@ -165,51 +172,61 @@ const AboutSection = () => {
                   <div
                     key={feature.title}
                     className={`
-    flex
-    min-w-0
-    items-start
-    gap-3
-    ${index !== 0
-                        ? "border-t border-[#dce4ef] pt-5 sm:border-l sm:border-t-0 sm:pt-0"
-                        : ""
+                      flex
+                      min-w-0
+                      items-start
+                      gap-3
+                      ${
+                        index === 1
+                          ? "border-l border-[#dce4ef] pl-4 md:pl-4"
+                          : ""
                       }
-    ${index === 0 ? "sm:pr-4" : "sm:px-4"}
-  `}
+                      ${
+                        index === 2
+                          ? "col-span-2 border-t border-[#dce4ef] pt-5 md:col-span-1 md:border-l md:border-t-0 md:border-[#dce4ef] md:pt-0 md:pl-4"
+                          : ""
+                      }
+                      ${index === 0 ? "pr-2 md:pr-4" : ""}
+                    `}
                   >
                     {/* Icon */}
                     <div
                       className="
-      flex
-      h-[44px]
-      w-[44px]
-      shrink-0
-      items-center
-      justify-center
-      rounded-full
-      bg-[#dfeafc]
-      sm:h-[47px]
-      sm:w-[47px]
-    "
+                        group
+                        flex
+                        h-[44px]
+                        w-[44px]
+                        shrink-0
+                        items-center
+                        justify-center
+                        rounded-full
+                        bg-[#dfeafc]
+                        transition-all
+                        duration-200
+                        hover:scale-105
+                        hover:bg-[#2d6fc4]
+                        sm:h-[47px]
+                        sm:w-[47px]
+                      "
                     >
                       <Icon
                         size={22}
                         strokeWidth={1.8}
-                        className="text-[#2d6fc4]"
+                        className="text-[#2d6fc4] transition-colors duration-200 group-hover:text-white"
                       />
                     </div>
 
                     {/* Content */}
-                    <div className="min-w-0">
+                    <div className="min-w-0 text-left">
                       {/* Title */}
                       <h3
                         className="
-        whitespace-nowrap
-        text-[11px]
-        font-bold
-        leading-[1.35]
-        text-[#17243a]
-        sm:text-[14px]
-      "
+                          text-[11px]
+                          font-bold
+                          leading-[1.35]
+                          text-[#17243a]
+                          sm:text-[14px]
+                        "
                       >
                         {feature.title}
                       </h3>
@@ -217,28 +234,27 @@ const AboutSection = () => {
                       {/* Subtitle */}
                       <h3
                         className="
-        whitespace-nowrap
-        text-[11px]
-        font-bold
-        leading-[1.35]
-        text-[#17243a]
-        sm:text-[14px]
-      "
+                          text-[11px]
+                          font-bold
+                          leading-[1.35]
+                          text-[#17243a]
+                          sm:text-[14px]
+                        "
                       >
                         {feature.subtitle}
                       </h3>
 
-                      {/* Description - 2 lines */}
+                      {/* Description */}
                       <p
                         className="
-        mt-2
-        max-w-[150px]
-        text-[9px]
-        leading-[1.5]
-        text-[#69788e]
-        sm:max-w-[155px]
-        sm:text-[10px]
-      "
+                          mt-2
+                          max-w-[150px]
+                          text-[9px]
+                          leading-[1.5]
+                          text-[#69788e]
+                          sm:max-w-[155px]
+                          sm:text-[10px]
+                        "
                       >
                         {feature.description}
                       </p>
@@ -248,6 +264,7 @@ const AboutSection = () => {
               })}
             </div>
 
+            {/* CTA Section - Left Aligned */}
             <div
               className="
                 mt-8
@@ -292,6 +309,8 @@ const AboutSection = () => {
                   leading-[1.5]
                   text-[#68778d]
                   sm:text-[11px]
+                  hidden
+                  md:block
                 "
               >
                 Turn Your Financial Goals

@@ -10,8 +10,8 @@ import {
 
 const Whychoose = () => {
   return (
-    <section className="relative w-full overflow-hidden bg-[#031d46] top-16 pb-16">
-      
+    <section className="relative w-full overflow-hidden bg-[#031d46] pt-4 pb-12 sm:pb-14 lg:pb-16">
+
       <div
         className="
           absolute
@@ -65,7 +65,7 @@ const Whychoose = () => {
         "
       />
 
-     
+
 
       <div
         className="
@@ -79,7 +79,7 @@ const Whychoose = () => {
           px-5
           py-7
           sm:px-8
-          lg:px-12
+          lg:px-8
           lg:py-7
           lg:pb-7
           xl:px-[75px]
@@ -95,7 +95,7 @@ const Whychoose = () => {
             lg:gap-0
           "
         >
-          
+
 
           <div className="relative z-20 max-w-[535px]">
             {/* Small Heading */}
@@ -157,8 +157,7 @@ const Whychoose = () => {
                 tracking-[-1.3px]
                 text-white
                 sm:text-[42px]
-                lg:text-[45px]
-                xl:text-[49px]
+                lg:text-[49px]
               "
             >
               Why You Should
@@ -175,11 +174,12 @@ const Whychoose = () => {
               className="
                 mt-4
                 max-w-[470px]
+                lg:max-w-[490px]
                 text-[11px]
                 leading-[1.5]
                 text-white/75
                 sm:text-[12px]
-                lg:text-[13px]
+                lg:text-[14px]
               "
             >
               We are committed to delivering exceptional solutions
@@ -204,6 +204,8 @@ const Whychoose = () => {
                   justify-center
                   rounded-full
                   bg-[#1554a2]
+                  lg:h-[52px]
+                  lg:w-[52px]
                 "
               >
                 <Handshake
@@ -222,6 +224,7 @@ const Whychoose = () => {
                     leading-[1.3]
                     text-white
                     sm:text-[12px]
+                    lg:text-[14px]
                   "
                 >
                   Trusted by 500+
@@ -231,7 +234,7 @@ const Whychoose = () => {
               </div>
 
               {/* Divider */}
-              <div className="mx-4 h-[48px] w-[1px] bg-white/30" />
+              <div className="mx-4 h-[48px] w-[1px] bg-white/30 lg:h-[52px]" />
 
               {/* Small Description */}
               <p
@@ -241,11 +244,12 @@ const Whychoose = () => {
                   leading-[1.45]
                   text-white/70
                   sm:text-[10px]
+                  lg:text-[12px]
                 "
               >
                 Your success is our priority,
                 <br />
-                and we're with you every
+                and we&apos;re with you every
                 <br />
                 step of the way.
               </p>
@@ -276,6 +280,9 @@ const Whychoose = () => {
                 shadow-[0_7px_20px_rgba(0,135,255,0.25)]
                 transition
                 hover:scale-[1.02]
+                lg:h-[49px]
+                lg:w-[230px]
+                lg:text-[12px]
               "
             >
               <span>Get In Touch</span>
@@ -289,6 +296,8 @@ const Whychoose = () => {
                   justify-center
                   rounded-full
                   bg-white
+                  lg:h-[38px]
+                  lg:w-[38px]
                 "
               >
                 <ArrowUpRight
@@ -300,56 +309,68 @@ const Whychoose = () => {
             </Link>
           </div>
 
-          
+
           <div
             className="
               relative
               mx-auto
-              h-[390px]
+              aspect-[1/1.12]
               w-full
               max-w-[620px]
-              lg:h-[410px]
+              sm:aspect-auto
+              sm:h-[390px]
+              lg:h-[445px]
             "
           >
-            
-            
+
+
 
             <div
               className="
                 absolute
-                right-[180px]
+                left-0
                 top-0
-                h-[185px]
-                w-[185px]
+                z-10
+                aspect-square
+                w-[54%]
+                max-w-[215px]
                 overflow-hidden
                 rounded-full
                 border-[3px]
                 border-[#48a9ff]
+                sm:absolute
                 sm:right-[205px]
+                sm:left-auto
+                sm:top-0
+                sm:mx-0
+                sm:aspect-auto
                 sm:h-[195px]
                 sm:w-[195px]
+                lg:h-[215px]
+                lg:w-[215px]
               "
             >
               <Image
-                src="/hero.png"
+                src="/team1.png"
                 alt="Financial consultation"
                 fill
-                sizes="195px"
+                sizes="(min-width: 1024px) 215px, (min-width: 640px) 195px, 54vw"
                 className="object-cover object-center"
               />
             </div>
 
-           
-           
+
+
 
             <div
               className="
                 absolute
                 right-0
-                top-0
+                top-[4%]
+                z-20
                 flex
-                h-[215px]
-                w-[215px]
+                h-[150px]
+                w-[150px]
                 flex-col
                 items-center
                 justify-center
@@ -360,19 +381,27 @@ const Whychoose = () => {
                 to-[#3732d7]
                 text-center
                 shadow-[0_12px_30px_rgba(0,0,0,0.15)]
+                sm:right-0
+                sm:top-0
                 sm:h-[225px]
                 sm:w-[225px]
+                lg:h-[248px]
+                lg:w-[248px]
               "
             >
               <div
                 className="
                   flex
-                  h-[52px]
-                  w-[52px]
+                  h-[36px]
+                  w-[36px]
                   items-center
                   justify-center
                   rounded-full
                   bg-white
+                  sm:h-[52px]
+                  sm:w-[52px]
+                  lg:h-[56px]
+                  lg:w-[56px]
                 "
               >
                 <ShieldCheck
@@ -385,11 +414,13 @@ const Whychoose = () => {
               <h3
                 className="
                   mt-2
-                  text-[16px]
+                  text-[12px]
                   font-bold
                   leading-[1.15]
                   text-white
+                  sm:text-[16px]
                   sm:text-[18px]
+                  lg:text-[20px]
                 "
               >
                 Insurance
@@ -400,11 +431,15 @@ const Whychoose = () => {
               <p
                 className="
                   mt-1
-                  max-w-[145px]
-                  text-[9px]
-                  leading-[1.45]
+                  max-w-[112px]
+                  text-[8px]
+                  leading-[1.25]
                   text-white/90
+                  sm:max-w-[145px]
+                  sm:text-[9px]
                   sm:text-[10px]
+                  lg:max-w-[160px]
+                  lg:text-[11px]
                 "
               >
                 Secure your future with
@@ -415,43 +450,53 @@ const Whychoose = () => {
               </p>
             </div>
 
-            
-            
+
+
 
             <div
               className="
                 absolute
-                bottom-[5px]
-                right-[10px]
-                h-[185px]
-                w-[185px]
+                bottom-0
+                right-0
+                z-10
+                aspect-square
+                w-[54%]
+                max-w-[215px]
                 overflow-hidden
                 rounded-full
                 border-[3px]
                 border-[#317eea]
+                sm:absolute
+                sm:bottom-[5px]
+                sm:right-[10px]
+                sm:mx-0
+                sm:aspect-auto
                 sm:h-[195px]
                 sm:w-[195px]
+                lg:h-[215px]
+                lg:w-[215px]
               "
             >
               <Image
                 src="/hero.png"
                 alt="Business meeting"
                 fill
-                sizes="195px"
+                sizes="(min-width: 1024px) 215px, (min-width: 640px) 195px, 54vw"
                 className="object-cover object-right"
               />
             </div>
 
-           
+
 
             <div
               className="
                 absolute
-                bottom-[10px]
-                left-[65px]
+                bottom-[4%]
+                left-0
+                z-20
                 flex
-                h-[215px]
-                w-[215px]
+                h-[150px]
+                w-[150px]
                 flex-col
                 items-center
                 justify-center
@@ -462,20 +507,27 @@ const Whychoose = () => {
                 to-[#3630d7]
                 text-center
                 shadow-[0_12px_30px_rgba(0,0,0,0.2)]
+                sm:bottom-[10px]
                 sm:left-[75px]
                 sm:h-[225px]
                 sm:w-[225px]
+                lg:h-[248px]
+                lg:w-[248px]
               "
             >
               <div
                 className="
                   flex
-                  h-[52px]
-                  w-[52px]
+                  h-[36px]
+                  w-[36px]
                   items-center
                   justify-center
                   rounded-full
                   bg-white
+                  sm:h-[52px]
+                  sm:w-[52px]
+                  lg:h-[56px]
+                  lg:w-[56px]
                 "
               >
                 <TrendingUp
@@ -488,11 +540,13 @@ const Whychoose = () => {
               <h3
                 className="
                   mt-2
-                  text-[16px]
+                  text-[12px]
                   font-bold
                   leading-[1.15]
                   text-white
+                  sm:text-[16px]
                   sm:text-[18px]
+                  lg:text-[20px]
                 "
               >
                 Strategic
@@ -503,11 +557,15 @@ const Whychoose = () => {
               <p
                 className="
                   mt-1
-                  max-w-[150px]
-                  text-[9px]
-                  leading-[1.45]
+                  max-w-[112px]
+                  text-[8px]
+                  leading-[1.25]
                   text-white/90
+                  sm:max-w-[150px]
+                  sm:text-[9px]
                   sm:text-[10px]
+                  lg:max-w-[160px]
+                  lg:text-[11px]
                 "
               >
                 Build wealth with
@@ -518,8 +576,8 @@ const Whychoose = () => {
               </p>
             </div>
 
-            
-            
+
+
             <div className="absolute right-0 top-2 hidden sm:block">
               <span
                 className="
@@ -559,8 +617,8 @@ const Whychoose = () => {
               />
             </div>
 
-           
-           
+
+
 
             <div className="absolute left-[20px] top-[190px] hidden sm:block">
               <span
@@ -601,8 +659,8 @@ const Whychoose = () => {
               />
             </div>
 
-           
-           
+
+
 
             <div
               className="

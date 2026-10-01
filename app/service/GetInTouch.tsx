@@ -8,16 +8,15 @@ const GetInTouch = () => {
         <div
           className="
             relative
-            min-h-[330px]
+            min-h-[310px]
             overflow-hidden
             rounded-xl
             bg-[#edf5ff]
             bg-cover
             bg-center
             sm:min-h-[300px]
-            md:min-h-[270px]
-            lg:h-[190px]
-            lg:min-h-0
+            md:min-h-[280px]
+            lg:min-h-[220px]
           "
           style={{
             backgroundImage: "url('/contact.png')",
@@ -31,71 +30,48 @@ const GetInTouch = () => {
               h-full
               flex-col
               justify-center
-              px-6
+              gap-6
+              px-5
               py-8
               sm:px-8
               md:px-10
+              lg:flex-row
+              lg:items-center
+              lg:justify-between
+              lg:gap-8
               lg:px-12
-              lg:py-0
+              lg:py-8
             "
           >
-            {/* Top Label */}
-            <div className="mb-2 flex items-center gap-3 sm:gap-4">
-              <span
-                className="
-                  text-[10px]
-                  font-semibold
-                  tracking-wide
-                  text-[#607ba5]
-                  sm:text-xs
-                  md:text-sm
-                "
-              >
-                LET&apos;S PLAN A BRIGHTER TOMORROW
-              </span>
+            <div className="min-w-0 lg:max-w-[68%]">
+              {/* Top Label */}
+              <div className="mb-2 flex flex-wrap items-center gap-3 sm:gap-4">
+                <span className="text-[10px] font-semibold tracking-wide text-[#607ba5] sm:text-xs md:text-sm">
+                  LET&apos;S PLAN A BRIGHTER TOMORROW
+                </span>
 
-              <span className="h-[2px] w-10 shrink-0 bg-[#1769e0] sm:w-16" />
+                <span className="h-[2px] w-10 shrink-0 bg-[#1769e0] sm:w-16" />
+              </div>
+
+              {/* Heading */}
+              <h2 className="text-2xl font-bold leading-tight text-[#102e65] sm:text-3xl lg:text-[34px]">
+                Ready to Take the Next Step?
+              </h2>
+
+              {/* Description */}
+              <p className="mt-2 max-w-[580px] text-sm leading-5 text-[#60789e] sm:text-base sm:leading-6">
+                Connect with our experts today and get personalized financial
+                guidance based on your goals.
+              </p>
             </div>
-
-            {/* Heading */}
-            <h2
-              className="
-                text-2xl
-                font-bold
-                leading-tight
-                text-[#102e65]
-                sm:text-3xl
-                lg:text-[34px]
-              "
-            >
-              Ready to Take the Next Step?
-            </h2>
-
-            {/* Description */}
-            <p
-              className="
-                mt-2
-                max-w-[580px]
-                text-sm
-                leading-5
-                text-[#60789e]
-                sm:text-base
-                sm:leading-6
-              "
-            >
-              Connect with our experts today and get personalized financial
-              guidance
-              <br className="hidden sm:block" />
-              based on your goals.
-            </p>
 
             {/* Button */}
             <Link
               href="/contact"
               className="
-                mt-6
+                mt-0
                 flex
-                w-fit
+                w-full
                 items-center
                 gap-3
                 rounded-md
@@ -109,12 +85,11 @@ const GetInTouch = () => {
                 transition
                 hover:bg-[#0f56c5]
 
-                sm:mt-5
-
+                sm:w-fit
                 lg:absolute
                 lg:right-[23%]
                 lg:top-1/2
-                lg:mt-0
+                lg:shrink-0
                 lg:-translate-y-1/2
               "
             >

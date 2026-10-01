@@ -85,7 +85,7 @@ const blogs: Blog[] = [
 const LatestBlog = () => {
     return (
       <section className="w-full bg-white pb-6 pt-10 sm:pt-12 md:pt-14 lg:pt-16">
-        <div className="mx-auto max-w-[1200px] px-5 sm:px-6 lg:px-8">
+        <div className="mx-auto max-w-[1200px] px-5 sm:px-6 lg:px-0">
   
           
           <div className="mb-9 text-center sm:mb-10">
@@ -146,7 +146,7 @@ const LatestBlog = () => {
                 </div>
   
                 {/* Card Content */}
-                <div className="px-4 pb-5 pt-3 sm:px-5 sm:pb-6">
+                <div className="px-4 pb-5 pt-3 sm:px-5 sm:pb-6 lg:px-2">
   
                   {/* Category */}
                   <div className="mb-2">

@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
+import { AnimatePresence, motion } from "framer-motion";
 import { FaStar } from "react-icons/fa";
 import Image from "next/image";
 import {
@@ -85,7 +86,13 @@ const Testimonials = () => {
 
        
 
-        <div className="relative h-[330px] w-full sm:h-[400px] lg:h-[500px]">
+        <motion.div
+          initial={{ opacity: 0, scale: 0.98 }}
+          whileInView={{ opacity: 1, scale: 1 }}
+          viewport={{ once: true, amount: 0.2 }}
+          transition={{ duration: 0.5, ease: "easeOut" }}
+          className="relative h-[300px] w-full sm:h-[380px] lg:h-[500px]"
+        >
           <Image
             src={testimonial.mainImage}
             alt={testimonial.name}
@@ -98,7 +105,7 @@ const Testimonials = () => {
           <div
             className="
               absolute
-              right-[-32px]
+              right-4
               top-1/2
               z-20
               flex
@@ -114,6 +121,7 @@ const Testimonials = () => {
               shadow-[0_5px_20px_rgba(0,0,0,0.12)]
               lg:h-[115px]
               lg:w-[115px]
+              sm:right-[-32px]
             "
           >
             <Quote
@@ -123,7 +131,7 @@ const Testimonials = () => {
               className="text-white"
             />
           </div>
-        </div>
+        </motion.div>
 
        
 
@@ -177,7 +185,15 @@ const Testimonials = () => {
             ))}
           </div>
 
-          <div className="relative z-10 max-w-[600px]">
+          <AnimatePresence mode="wait">
+          <motion.div
+            key={testimonial.id}
+            initial={{ opacity: 0, y: 14 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -10 }}
+            transition={{ duration: 0.25, ease: "easeOut" }}
+            className="relative z-10 w-full max-w-[600px]"
+          >
 
             <div className="flex items-center gap-3">
               <span className="h-[2px] w-[47px] bg-[#438af0]" />
@@ -310,9 +326,11 @@ const Testimonials = () => {
 
             <div className="mt-5 flex items-center gap-5">
 
-              <button
+              <motion.button
                 type="button"
                 onClick={previousSlide}
+                whileHover={{ scale: 1.06 }}
+                whileTap={{ scale: 0.94 }}
                 aria-label="Previous testimonial"
                 className="
                   flex
@@ -331,7 +349,7 @@ const Testimonials = () => {
                 "
               >
                 <ArrowLeft size={18} strokeWidth={1.8} />
-              </button>
+              </motion.button>
 
               <div
                 className="
@@ -347,9 +365,11 @@ const Testimonials = () => {
                 {String(testimonials.length).padStart(2, "0")}
               </div>
 
-              <button
+              <motion.button
                 type="button"
                 onClick={nextSlide}
+                whileHover={{ scale: 1.06 }}
+                whileTap={{ scale: 0.94 }}
                 aria-label="Next testimonial"
                 className="
                   flex
@@ -368,9 +388,10 @@ const Testimonials = () => {
                 "
               >
                 <ArrowRight size={18} strokeWidth={1.8} />
-              </button>
+              </motion.button>
             </div>
-          </div>
+          </motion.div>
+          </AnimatePresence>
 
           
 
@@ -401,10 +422,12 @@ const Testimonials = () => {
             />
 
             {testimonials.map((item, index) => (
-              <button
+              <motion.button
                 key={item.id}
                 type="button"
                 onClick={() => setCurrent(index)}
+                whileHover={{ scale: 1.08 }}
+                whileTap={{ scale: 0.94 }}
                 aria-label={`Show testimonial from ${item.name}`}
                 className={`
                   relative
@@ -427,7 +450,7 @@ const Testimonials = () => {
                   sizes="46px"
                   className="rounded-full object-cover"
                 />
-              </button>
+              </motion.button>
             ))}
 
             <span

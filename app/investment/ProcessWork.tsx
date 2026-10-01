@@ -1,5 +1,39 @@
 
+"use client";
+
+import { useEffect, useState } from "react";
 import Image from "next/image";
+
+type CountUpProps = {
+  target: number;
+  prefix?: string;
+  suffix?: string;
+};
+
+const CountUp = ({ target, prefix = "", suffix = "" }: CountUpProps) => {
+  const [count, setCount] = useState(1);
+
+  useEffect(() => {
+    const duration = 1800;
+    const startTime = performance.now();
+    let frameId: number;
+
+    const updateCount = (now: number) => {
+      const progress = Math.min((now - startTime) / duration, 1);
+      const easedProgress = 1 - (1 - progress) ** 3;
+      setCount(Math.round(1 + (target - 1) * easedProgress));
+
+      if (progress < 1) {
+        frameId = requestAnimationFrame(updateCount);
+      }
+    };
+
+    frameId = requestAnimationFrame(updateCount);
+    return () => cancelAnimationFrame(frameId);
+  }, [target]);
+
+  return `${prefix}${count.toLocaleString("en-IN")}${suffix}`;
+};
 
 const ProcessWork = () => {
   return (
@@ -51,7 +85,7 @@ const ProcessWork = () => {
             <div className="mt-6 space-y-5 sm:mt-7 sm:space-y-6">
 
               <div className="flex items-center gap-4">
-                <div className="flex h-[64px] w-[64px] shrink-0 items-center justify-center rounded-full bg-[#e3f0ff] text-[#1769e0]">
+                <div className="flex h-[64px] w-[64px] shrink-0 items-center justify-center rounded-full bg-[#e3f0ff] text-[#1769e0] transition-colors duration-200 hover:bg-[#1769e0] hover:text-white">
                   <svg
                     width="34"
                     height="34"
@@ -112,7 +146,7 @@ const ProcessWork = () => {
               </div>
 
               <div className="flex items-center gap-4">
-                <div className="flex h-[64px] w-[64px] shrink-0 items-center justify-center rounded-full bg-[#e3f0ff] text-[#1769e0]">
+                <div className="flex h-[64px] w-[64px] shrink-0 items-center justify-center rounded-full bg-[#e3f0ff] text-[#1769e0] transition-colors duration-200 hover:bg-[#1769e0] hover:text-white">
                   <svg
                     width="34"
                     height="34"
@@ -145,7 +179,7 @@ const ProcessWork = () => {
               </div>
 
               <div className="flex items-center gap-4">
-                <div className="flex h-[64px] w-[64px] shrink-0 items-center justify-center rounded-full bg-[#e3f0ff] text-[#1769e0]">
+                <div className="flex h-[64px] w-[64px] shrink-0 items-center justify-center rounded-full bg-[#e3f0ff] text-[#1769e0] transition-colors duration-200 hover:bg-[#1769e0] hover:text-white">
                   <svg
                     width="35"
                     height="35"
@@ -180,7 +214,7 @@ const ProcessWork = () => {
               </div>
 
               <div className="flex items-center gap-4">
-                <div className="flex h-[64px] w-[64px] shrink-0 items-center justify-center rounded-full bg-[#e3f0ff] text-[#1769e0]">
+                <div className="flex h-[64px] w-[64px] shrink-0 items-center justify-center rounded-full bg-[#e3f0ff] text-[#1769e0] transition-colors duration-200 hover:bg-[#1769e0] hover:text-white">
                   <svg
                     width="35"
                     height="35"
@@ -235,7 +269,7 @@ const ProcessWork = () => {
 
           <div className="relative flex flex-col items-center justify-center px-4 py-5 text-center sm:py-6">
             <h3 className="text-3xl font-bold text-[#1769e0] sm:text-4xl">
-              500+
+              <CountUp target={500} suffix="+" />
             </h3>
 
             <p className="mt-1 text-sm font-medium text-[#17376d] sm:text-base">
@@ -247,7 +281,7 @@ const ProcessWork = () => {
 
           <div className="relative flex flex-col items-center justify-center px-4 py-5 text-center sm:py-6">
             <h3 className="text-3xl font-bold text-[#1769e0] sm:text-4xl">
-              15+
+              <CountUp target={15} suffix="+" />
             </h3>
 
             <p className="mt-1 text-sm font-medium text-[#17376d] sm:text-base">
@@ -259,7 +293,7 @@ const ProcessWork = () => {
 
           <div className="relative flex flex-col items-center justify-center px-4 py-5 text-center sm:py-6">
             <h3 className="text-3xl font-bold text-[#1769e0] sm:text-4xl">
-              98%
+              <CountUp target={98} suffix="%" />
             </h3>
 
             <p className="mt-1 text-sm font-medium text-[#17376d] sm:text-base">
@@ -271,7 +305,7 @@ const ProcessWork = () => {
 
           <div className="flex flex-col items-center justify-center px-4 py-5 text-center sm:py-6">
             <h3 className="text-3xl font-bold text-[#1769e0] sm:text-4xl">
-              ₹1,200 Cr+
+              <CountUp target={1200} prefix="₹" suffix=" Cr+" />
             </h3>
 
             <p className="mt-1 text-sm font-medium text-[#17376d] sm:text-base">

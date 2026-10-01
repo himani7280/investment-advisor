@@ -3,7 +3,7 @@ import { Geist, Geist_Mono,Poppins } from "next/font/google";
 import "./globals.css";
 import Header from "./common/Header";
 import Navbar from "./common/Navbar";
-import Footer from "./home/Footer";
+import Footer from "./common/Footer";
 import HeroProvide from "./context/HeroProvide";
 
 const geistSans = Geist({

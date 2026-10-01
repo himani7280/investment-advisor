@@ -316,37 +316,38 @@ const ServiceGoal = () => {
         <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
 
           {services.map((service) => (
-            <div
+            <article
               key={service.title}
-              className="group overflow-hidden rounded-lg border border-[#e2eaf5] bg-white shadow-sm transition duration-300 hover:-translate-y-1 hover:shadow-lg"
+              className="group flex h-full flex-col overflow-hidden rounded-lg border border-[#e2eaf5] bg-white shadow-sm transition duration-300 hover:-translate-y-1 hover:shadow-lg"
             >
 
-              <div className="relative h-[190px] w-full overflow-hidden sm:h-[185px]">
+              <div className="relative aspect-16/10 w-full overflow-hidden">
                 <Image
                   src={service.image}
                   alt={service.title}
                   fill
                   className="object-cover transition duration-500 group-hover:scale-105"
+                  sizes="(max-width: 639px) 100vw, (max-width: 1023px) 50vw, 25vw"
                 />
               </div>
 
-              <div className="relative px-5 pb-5 pt-12">
+              <div className="relative flex flex-1 flex-col px-5 pb-5 pt-12">
 
-                <div className="absolute -top-8 left-5 flex h-[68px] w-[68px] items-center justify-center rounded-full border-[5px] border-white bg-[#e8f2ff] text-[#1769e0] shadow-sm">
+                <div className="absolute -top-8 left-5 flex h-[68px] w-[68px] items-center justify-center rounded-full border-[5px] border-white bg-[#e8f2ff] text-[#1769e0] shadow-sm transition-colors duration-200 hover:bg-[#1769e0] hover:text-white">
                   {service.icon}
                 </div>
 
-                <h3 className="min-h-[28px] text-lg font-bold leading-6 text-[#102e65]">
+                <h3 className="min-h-12 text-lg font-bold leading-6 text-[#102e65]">
                   {service.title}
                 </h3>
 
-                <p className="mt-2 min-h-[68px] text-sm leading-6 text-[#61799e]">
+                <p className="mt-2 min-h-[68px] flex-1 text-sm leading-6 text-[#61799e]">
                   {service.description}
                 </p>
 
                 <Link
                   href={service.href}
-                  className="mt-4 inline-flex items-center gap-3 text-sm font-bold text-[#1769e0] transition hover:gap-4"
+                  className="mt-4 inline-flex w-fit items-center gap-3 text-sm font-bold text-[#1769e0] transition hover:gap-4"
                 >
                   Read More
 
@@ -372,7 +373,7 @@ const ServiceGoal = () => {
                   </svg>
                 </Link>
               </div>
-            </div>
+            </article>
           ))}
 
         </div>

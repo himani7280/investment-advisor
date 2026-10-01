@@ -1,9 +1,9 @@
 
 
 import Aboutus from './Aboutus'
-import Trusted from '../home/Trusted'
-import HowItWorks from '../home/HowItWorks'
-import OurPartners from '../home/OurPartners'
+import Trusted from '../components/home/Trusted'
+import HowItWorks from '../components/home/HowItWorks'
+import OurPartners from '../components/home/OurPartners'
 import Hero from '../components/Hero'
 
 const page = () => {

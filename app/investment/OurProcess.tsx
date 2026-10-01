@@ -199,36 +199,42 @@ const OurProcess = () => {
         </div>
 
         {/* ================= PROCESS STEPS ================= */}
-        <div className="grid grid-cols-1 gap-10 sm:grid-cols-2 lg:grid-cols-5 lg:gap-0">
+        {/* Mobile par 1 row me 2 cards ke liye grid-cols-2 lagaya gaya hai */}
+        <div className="grid grid-cols-1 gap-x-4 gap-y-10 min-[380px]:grid-cols-2 sm:gap-x-6 lg:grid-cols-5 lg:gap-0">
 
           {processSteps.map((step, index) => (
             <div
               key={step.number}
-              className="relative flex flex-col items-center text-center"
+              className="relative flex min-w-0 flex-col items-center px-1 text-center"
             >
 
               {/* ================= ICON ================= */}
-              <div className="relative mb-5">
+              <div className="relative mb-4 sm:mb-5">
 
                 {/* NUMBER */}
                 <div
                   className="
                     absolute
                     -left-1
-                    -top-6
+                    -top-5
                     z-20
                     flex
-                    h-11
-                    w-11
+                    h-9
+                    w-9
                     items-center
                     justify-center
                     rounded-full
                     border-[3px]
-                    border-[#d8e8ff]
-                    bg-white
-                    text-base
+                    border-white
+                    bg-[#1769e0]
+                    text-xs
                     font-bold
-                    text-[#17376d]
+                    text-white
+                    shadow-md
+                    sm:-top-6
+                    sm:h-11
+                    sm:w-11
+                    sm:text-base
                   "
                 >
                   {step.number}
@@ -238,26 +244,34 @@ const OurProcess = () => {
                 <div
                   className="
                     flex
-                    h-[92px]
-                    w-[92px]
+                    h-[76px]
+                    w-[76px]
                     items-center
                     justify-center
                     rounded-full
                     bg-[#eaf3ff]
                     text-[#1769e0]
+                    transition-colors
+                    duration-200
+                    hover:bg-[#1769e0]
+                    hover:text-white
+                    sm:h-[92px]
+                    sm:w-[92px]
                   "
                 >
-                  {step.icon}
+                  <div className="scale-85 sm:scale-100">
+                    {step.icon}
+                  </div>
                 </div>
               </div>
 
               {/* ================= TITLE ================= */}
-              <h3 className="mb-2 text-xl font-bold text-[#102e65]">
+              <h3 className="mb-1 text-lg font-bold text-[#102e65] sm:mb-2 sm:text-xl">
                 {step.title}
               </h3>
 
               {/* ================= DESCRIPTION ================= */}
-              <p className="max-w-[190px] text-sm leading-5 text-[#60789e]">
+              <p className="max-w-[190px] text-xs leading-4 text-[#60789e] sm:text-sm sm:leading-5">
                 {step.description}
               </p>
 

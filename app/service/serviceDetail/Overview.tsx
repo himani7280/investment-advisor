@@ -36,37 +36,37 @@ const otherServices = [
   {
     title: "Retirement Planning",
     image: "/blog1.png",
-    href: "/aboutus",
+    href: "/service",
   },
   {
     title: "Financial Planning",
     image: "/blog2.png",
-    href: "/aboutus",
+    href: "/service",
   },
   {
     title: "Investment Advisory",
     image: "/blog3.png",
-    href: "/aboutus",
+    href: "/service",
   },
   {
     title: "Risk Management",
     image: "/blog4.png",
-    href: "/aboutus",
+    href: "/service",
   },
   {
     title: "Tax Planning",
     image: "/blog5.png",
-    href: "/aboutus",
+    href: "/service",
   },
   {
     title: "Estate Planning",
     image: "/goal1.png",
-    href: "/aboutus",
+    href: "/service",
   },
   {
     title: "Business Financial Advisory",
     image: "/blogdetail.png",
-    href: "/aboutus",
+    href: "/service",
   },
 ];
 
@@ -100,11 +100,11 @@ const process = [
 const Overview = () => {
   return (
     <section className="w-full bg-white">
-      <div className="mx-auto max-w-[1200px] px-5 pt-10 pb-4 lg:px-8 lg:pt-16">
-        <div className="grid grid-cols-1 gap-7 lg:grid-cols-[1fr_315px]">
+      <div className="mx-auto max-w-[1200px] px-3 pt-10 pb-4 lg:px-4 lg:pt-16">
+        <div className="grid grid-cols-1 gap-7 xl:grid-cols-[minmax(0,1fr)_315px]">
           <div>
             <div className="grid grid-cols-1 items-start gap-8 md:grid-cols-[1fr_325px]">
-              <div>
+              <div className="min-w-0">
                 <div className="mb-3 flex items-center gap-4">
                   <span className="text-sm font-semibold uppercase tracking-wide text-[#6883ad]">
                     Overview
@@ -139,11 +139,11 @@ const Overview = () => {
                 </p>
               </div>
 
-              <div className="overflow-hidden rounded-xl">
+              <div className="aspect-4/3 overflow-hidden rounded-xl md:aspect-3/4">
                 <img
                   src="/overview.png"
                   alt="Wealth Management"
-                  className="h-[455px] w-full object-cover"
+                  className="h-full w-full object-cover"
                 />
               </div>
             </div>
@@ -166,11 +166,11 @@ const Overview = () => {
                       key={index}
                       className="flex min-h-[120px] items-center gap-6 rounded-xl border border-[#e3eaf3] bg-white px-5 py-5 shadow-[0_2px_10px_rgba(30,80,150,0.03)]"
                     >
-                      <div className="flex h-[76px] w-[76px] shrink-0 items-center justify-center rounded-full bg-[#edf5ff]">
+                      <div className="group flex h-[68px] w-[68px] shrink-0 items-center justify-center rounded-full bg-[#edf5ff] transition-colors duration-200 hover:bg-[#1474e8] sm:h-[76px] sm:w-[76px]">
                         <Icon
                           size={34}
                           strokeWidth={1.8}
-                          className="text-[#0874ef]"
+                          className="text-[#0874ef] transition-colors duration-200 group-hover:text-white"
                         />
                       </div>
 
@@ -189,6 +189,7 @@ const Overview = () => {
               </div>
             </div>
 
+            {/* OUR PROCESS SECTION UPDATED */}
             <div className="mt-10">
               <div className="mb-6 flex items-center gap-5">
                 <h2 className="text-[26px] font-bold text-[#09295f]">
@@ -198,27 +199,29 @@ const Overview = () => {
                 <span className="h-[2px] w-20 bg-[#4c9cff]" />
               </div>
 
-              <div className="grid grid-cols-1 gap-8 md:grid-cols-4">
+              {/* grid-cols-2 small screens me 1 row me 2 cards show karega */}
+              <div className="grid grid-cols-1 gap-x-4 gap-y-8 min-[420px]:grid-cols-2 sm:gap-8 md:grid-cols-4">
                 {process.map((item, index) => (
                   <div
                     key={index}
                     className="relative text-center"
                   >
                     <div className="relative flex items-center justify-center">
-                      <div className="flex h-[68px] w-[68px] items-center justify-center rounded-full bg-[#edf5ff] text-[20px] font-bold text-[#075ed5]">
+                      <div className="flex h-[68px] w-[68px] items-center justify-center rounded-full bg-[#edf5ff] text-[20px] font-bold text-[#075ed5] transition-colors duration-200 hover:bg-[#1474e8] hover:text-white">
                         {item.number}
                       </div>
 
+                      {/* Connecting Line (Only for large desktop view) */}
                       {index !== process.length - 1 && (
-                        <div className="absolute left-[calc(50%+38px)] top-1/2 hidden h-[2px] w-[calc(100%-30px)] bg-[#9dcaff] md:block" />
+                        <div className="absolute left-[calc(50%+38px)] top-1/2 hidden h-[2px] w-[calc(100%-30px)] bg-[#9dcaff] xl:block" />
                       )}
                     </div>
 
-                    <h3 className="mt-4 text-[18px] font-bold text-[#09295f]">
+                    <h3 className="mt-4 text-[16px] sm:text-[18px] font-bold text-[#09295f]">
                       {item.title}
                     </h3>
 
-                    <p className="mx-auto mt-2 max-w-[190px] text-[14px] leading-5 text-[#7183a1]">
+                    <p className="mx-auto mt-2 max-w-[190px] text-[13px] sm:text-[14px] leading-5 text-[#7183a1]">
                       {item.description}
                     </p>
                   </div>
@@ -227,7 +230,7 @@ const Overview = () => {
             </div>
           </div>
 
-          <aside className="space-y-6 lg:sticky lg:top-6 lg:self-start">
+          <aside className="space-y-6 xl:sticky xl:top-6 xl:self-start">
             <div className="rounded-xl border border-[#e2eaf4] bg-[#f8fbff] p-7">
               <h2 className="text-[23px] font-bold text-[#09295f]">
                 Get Expert Advice

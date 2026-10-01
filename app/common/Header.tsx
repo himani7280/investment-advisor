@@ -35,7 +35,7 @@ const Header = () => {
             items-center
             gap-2
             py-2
-            pl-6
+            pl-2
           "
         >
           <span className="shrink-0 text-[14px] sm:text-[15px] md:text-[16px]">

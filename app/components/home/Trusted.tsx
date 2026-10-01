@@ -66,8 +66,6 @@ const Trusted = () => {
         "
       />
 
-
-
       {/* ================= CONTENT ================= */}
       <div
         className="
@@ -156,9 +154,10 @@ const Trusted = () => {
             mt-5
             grid
             max-w-[1080px]
-            grid-cols-1
-            sm:grid-cols-2
+            grid-cols-2
+            gap-y-6
             lg:grid-cols-4
+            lg:gap-y-0
           "
         >
           {stats.map((stat, index) => {
@@ -172,15 +171,16 @@ const Trusted = () => {
                   flex
                   flex-col
                   items-center
-                  px-4
-                  py-4
+                  px-2
+                  py-2
                   text-center
-                  sm:py-5
+                  sm:px-4
+                  sm:py-4
                   lg:py-1
                 "
               >
 
-                {/* Divider */}
+                {/* Vertical Divider for Large Screens */}
                 {index !== 0 && (
                   <div
                     className="
@@ -200,8 +200,8 @@ const Trusted = () => {
                 <div
                   className="
                     flex
-                    h-[58px]
-                    w-[58px]
+                    h-[50px]
+                    w-[50px]
                     items-center
                     justify-center
                     rounded-full
@@ -212,17 +212,17 @@ const Trusted = () => {
                   "
                 >
                   <Icon
-                    size={27}
+                    size={24}
                     strokeWidth={1.7}
-                    className="text-white"
+                    className="text-white sm:size-[27px]"
                   />
                 </div>
 
                 {/* Number */}
                 <h3
                   className="
-                    mt-1
-                    text-[34px]
+                    mt-2
+                    text-[28px]
                     font-bold
                     leading-none
                     tracking-[-1px]
@@ -249,10 +249,11 @@ const Trusted = () => {
                 {/* Bottom Line */}
                 <div
                   className="
-                    mt-3
+                    mt-2
                     h-[2px]
-                    w-[30px]
+                    w-[25px]
                     bg-[#1197f5]
+                    sm:w-[30px]
                   "
                 />
               </div>

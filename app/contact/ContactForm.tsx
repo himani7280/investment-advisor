@@ -21,11 +21,11 @@ const ContactForm = () => {
   };
 
   return (
-    <section className="w-full bg-white px-4 pt-8 sm:px-6 md:px-8 lg:px-10 xl:px-12">
+    <section className="w-full bg-white px-4 pt-8 sm:px-6 md:px-8 lg:px-10 xl:px-8">
       <div className="mx-auto w-full max-w-[1200px]">
         <div className="grid grid-cols-1 overflow-hidden rounded-xl bg-[#f8fbff] lg:grid-cols-[1.25fr_0.85fr]">
 
-          <div className="p-6 sm:p-8 md:p-10 lg:p-8 xl:p-10">
+          <div className="p-5 sm:p-8 md:p-10 lg:p-8 xl:p-10">
             
             <div className="mb-7">
               <div className="mb-2 flex items-center gap-4">
@@ -36,7 +36,7 @@ const ContactForm = () => {
                 <span className="h-[2px] w-16 bg-[#3478e5]" />
               </div>
 
-              <h2 className="text-3xl font-bold leading-tight text-[#102b66] sm:text-4xl">
+              <h2 className="text-2xl font-bold leading-tight text-[#102b66] sm:text-4xl">
                 Let&apos;s Start a{" "}
                 <span className="text-[#1265e8]">Conversation</span>
               </h2>
@@ -62,7 +62,7 @@ const ContactForm = () => {
                     name="name"
                     placeholder="Full Name *"
                     required
-                    className="h-[52px] w-full rounded-md border border-[#dce7f7] bg-white pl-12 pr-4 text-sm text-[#24385f] outline-none transition placeholder:text-[#71809d] focus:border-[#2671e8] focus:ring-2 focus:ring-[#2671e8]/10"
+                    className="h-[52px] w-full rounded-md border border-[#dce7f7] bg-white pl-12 pr-4 text-sm text-[#24385f] outline-none transition placeholder:text-[#5d6e89] focus:border-[#2671e8] focus:ring-2 focus:ring-[#2671e8]/10"
                   />
                 </div>
 
@@ -78,7 +78,7 @@ const ContactForm = () => {
                     name="email"
                     placeholder="Email Address *"
                     required
-                    className="h-[52px] w-full rounded-md border border-[#dce7f7] bg-white pl-12 pr-4 text-sm text-[#24385f] outline-none transition placeholder:text-[#71809d] focus:border-[#2671e8] focus:ring-2 focus:ring-[#2671e8]/10"
+                    className="h-[52px] w-full rounded-md border border-[#dce7f7] bg-white pl-12 pr-4 text-sm text-[#24385f] outline-none transition placeholder:text-[#5d6e89] focus:border-[#2671e8] focus:ring-2 focus:ring-[#2671e8]/10"
                   />
                 </div>
               </div>
@@ -97,7 +97,7 @@ const ContactForm = () => {
                     name="phone"
                     placeholder="Phone Number *"
                     required
-                    className="h-[52px] w-full rounded-md border border-[#dce7f7] bg-white pl-12 pr-4 text-sm text-[#24385f] outline-none transition placeholder:text-[#71809d] focus:border-[#2671e8] focus:ring-2 focus:ring-[#2671e8]/10"
+                    className="h-[52px] w-full rounded-md border border-[#dce7f7] bg-white pl-12 pr-4 text-sm text-[#24385f] outline-none transition placeholder:text-[#5d6e89] focus:border-[#2671e8] focus:ring-2 focus:ring-[#2671e8]/10"
                   />
                 </div>
 
@@ -111,7 +111,7 @@ const ContactForm = () => {
                   <select
                     name="interest"
                     defaultValue=""
-                    className="h-[52px] w-full appearance-none rounded-md border border-[#dce7f7] bg-white pl-12 pr-11 text-sm text-[#71809d] outline-none transition focus:border-[#2671e8] focus:ring-2 focus:ring-[#2671e8]/10"
+                    className="h-[52px] w-full appearance-none rounded-md border border-[#dce7f7] bg-white pl-12 pr-11 text-sm text-[#5d6e89] outline-none transition focus:border-[#2671e8] focus:ring-2 focus:ring-[#2671e8]/10"
                   >
                     <option value="" disabled>
                       Select Your Interest
@@ -141,7 +141,7 @@ const ContactForm = () => {
                   placeholder="Tell us how we can help you..."
                   required
                   rows={6}
-                  className="min-h-[170px] w-full resize-none rounded-md border border-[#dce7f7] bg-white pl-12 pr-4 pt-4 text-sm text-[#24385f] outline-none transition placeholder:text-[#71809d] focus:border-[#2671e8] focus:ring-2 focus:ring-[#2671e8]/10"
+                  className="min-h-[150px] w-full resize-y rounded-md border border-[#dce7f7] bg-white pl-12 pr-4 pt-4 text-sm text-[#24385f] outline-none transition placeholder:text-[#5d6e89] focus:border-[#2671e8] focus:ring-2 focus:ring-[#2671e8]/10 sm:min-h-[170px]"
                 />
               </div>
 
@@ -159,7 +159,7 @@ const ContactForm = () => {
             </form>
           </div>
 
-          <div className="border-t border-[#dce7f7] bg-white p-6 sm:p-8 md:p-10 lg:border-l lg:border-t-0 lg:p-8 xl:p-10">
+          <div className="border-t border-[#dce7f7] bg-white p-5 sm:p-8 md:p-10 lg:border-l lg:border-t-0 lg:p-8 xl:p-10">
 
             <div className="mb-7">
               <div className="mb-2 flex items-center gap-4">
@@ -170,7 +170,7 @@ const ContactForm = () => {
                 <span className="h-[2px] w-16 bg-[#3478e5]" />
               </div>
 
-              <h2 className="text-3xl font-bold leading-tight text-[#102b66] sm:text-4xl">
+              <h2 className="text-2xl font-bold leading-tight text-[#102b66] sm:text-4xl">
                 Reach Out to{" "}
                 <span className="text-[#1265e8]">Us</span>
               </h2>
@@ -183,16 +183,16 @@ const ContactForm = () => {
 
             <div className="space-y-6">
 
-              <div className="flex gap-5">
-                <div className="flex h-[66px] w-[66px] shrink-0 items-center justify-center rounded-full bg-[#eaf3ff]">
+              <div className="flex gap-3 sm:gap-5">
+                <div className="group flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-[#eaf3ff] transition-colors duration-200 hover:bg-[#1265e8] sm:h-[66px] sm:w-[66px]">
                   <Phone
                     size={29}
                     strokeWidth={2}
-                    className="text-[#1265e8]"
+                    className="text-[#1265e8] transition-colors duration-200 group-hover:text-white"
                   />
                 </div>
 
-                <div>
+                <div className="min-w-0 flex-1">
                   <h3 className="text-lg font-bold text-[#102b66]">
                     Call Us
                   </h3>
@@ -210,16 +210,16 @@ const ContactForm = () => {
                 </div>
               </div>
 
-              <div className="flex gap-5">
-                <div className="flex h-[66px] w-[66px] shrink-0 items-center justify-center rounded-full bg-[#eaf3ff]">
+              <div className="flex gap-3 sm:gap-5">
+                <div className="group flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-[#eaf3ff] transition-colors duration-200 hover:bg-[#1265e8] sm:h-[66px] sm:w-[66px]">
                   <Mail
                     size={29}
                     strokeWidth={2}
-                    className="text-[#1265e8]"
+                    className="text-[#1265e8] transition-colors duration-200 group-hover:text-white"
                   />
                 </div>
 
-                <div>
+                <div className="min-w-0 flex-1">
                   <h3 className="text-lg font-bold text-[#102b66]">
                     Email Us
                   </h3>
@@ -237,16 +237,16 @@ const ContactForm = () => {
                 </div>
               </div>
 
-              <div className="flex gap-5">
-                <div className="flex h-[66px] w-[66px] shrink-0 items-center justify-center rounded-full bg-[#eaf3ff]">
+              <div className="flex gap-3 sm:gap-5">
+                <div className="group flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-[#eaf3ff] transition-colors duration-200 hover:bg-[#1265e8] sm:h-[66px] sm:w-[66px]">
                   <MapPin
                     size={29}
                     strokeWidth={2}
-                    className="text-[#1265e8]"
+                    className="text-[#1265e8] transition-colors duration-200 group-hover:text-white"
                   />
                 </div>
 
-                <div>
+                <div className="min-w-0 flex-1">
                   <h3 className="text-lg font-bold text-[#102b66]">
                     Visit Our Office
                   </h3>
@@ -263,16 +263,16 @@ const ContactForm = () => {
                 </div>
               </div>
 
-              <div className="flex gap-5">
-                <div className="flex h-[66px] w-[66px] shrink-0 items-center justify-center rounded-full bg-[#eaf3ff]">
+              <div className="flex gap-3 sm:gap-5">
+                <div className="group flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-[#eaf3ff] transition-colors duration-200 hover:bg-[#1265e8] sm:h-[66px] sm:w-[66px]">
                   <Headphones
                     size={29}
                     strokeWidth={2}
-                    className="text-[#1265e8]"
+                    className="text-[#1265e8] transition-colors duration-200 group-hover:text-white"
                   />
                 </div>
 
-                <div>
+                <div className="min-w-0 flex-1">
                   <h3 className="text-lg font-bold text-[#102b66]">
                     Live Support
                   </h3>

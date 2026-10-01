@@ -1,6 +1,5 @@
 import Image from "next/image";
 
-import about from "../../public/about.png";
 
 const Aboutus = () => {
   return (
@@ -59,7 +58,7 @@ const Aboutus = () => {
               "
             >
               <Image
-                src={about}
+                src='/about.png'
                 alt="PrimeCore Investment Advisors"
                 fill
                 priority

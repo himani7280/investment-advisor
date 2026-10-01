@@ -14,7 +14,17 @@ export type HeroPage =
   | "service"
   | "investment"
   | "BlogDetail"
-  | "serviceDetail";
+  | "serviceDetail"
+  | "missionVision"
+  | "whyChooseUs"
+  | "ourTeam"
+  | "teamDetails"
+  | "ourPartners"
+  | "testimonials"
+  | "faqs"
+  | "awards"
+  | "privacyPolicy"
+  | "bookConsultation";
 
 export interface HeroContextType {
   about: HeroData;
@@ -24,6 +34,16 @@ export interface HeroContextType {
   investment: HeroData;
   BlogDetail: HeroData;
   serviceDetail: HeroData;
+  missionVision: HeroData;
+  whyChooseUs: HeroData;
+  ourTeam: HeroData;
+  teamDetails: HeroData;
+  ourPartners: HeroData;
+  testimonials: HeroData;
+  faqs: HeroData;
+  awards: HeroData;
+  privacyPolicy: HeroData;
+  bookConsultation: HeroData;
 }
 
 export const HeroContext = createContext<HeroContextType | null>(null);
@@ -32,7 +52,7 @@ interface HeroProviderProps {
   children: ReactNode;
 }
 
-const HeroProvide = ({ children }: HeroProviderProps) => {
+const HeroProvider = ({ children }: HeroProviderProps) => {
   const heroData: HeroContextType = {
     about: {
       title: "About Us",
@@ -68,6 +88,54 @@ const HeroProvide = ({ children }: HeroProviderProps) => {
       title: "Service Detail",
       image: "/banner.png",
     },
+
+    missionVision: {
+      title: "Mission & Vision",
+      image: "/banner.png",
+    },
+
+    whyChooseUs: {
+      title: "Why Choose Us",
+      image: "/banner.png",
+    },
+
+    ourTeam: {
+      title: "Our Team",
+      image: "/banner.png",
+    },
+
+    teamDetails: {
+      title: "Team Detail",
+      image: "/banner.png",
+    },
+
+    ourPartners: {
+      title: "Our Partners",
+      image: "/banner.png",
+    },
+
+    testimonials: {
+      title: "Testimonials",
+      image: "/banner.png",
+    },
+
+    faqs: {
+      title: "FAQ",
+      image: "/banner.png",
+    },
+
+    awards: {
+      title: "Awards & Achievements",
+      image: "/banner.png",
+    },
+    privacyPolicy: {
+      title: "Privacy & Policy",
+      image: "/banner.png",
+    },
+    bookConsultation: {
+      title: "Book Consultation",
+      image: "/banner.png",
+    },
   };
 
   return (
@@ -77,4 +145,4 @@ const HeroProvide = ({ children }: HeroProviderProps) => {
   );
 };
 
-export default HeroProvide;
+export default HeroProvider;

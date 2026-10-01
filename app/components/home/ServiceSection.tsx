@@ -14,7 +14,7 @@ import {
   Handshake,
 } from "lucide-react";
 
-import serviceImage from "../../public/service.png";
+import serviceImage from "../../../public/service.png";
 
 const services = [
   {
@@ -69,7 +69,7 @@ const services = [
 
 const ServiceSection = () => {
   return (
-    <section className="relative w-full overflow-hidden bg-white pt-8 sm:pt-10 lg:pt-16">
+    <section className="relative w-full overflow-hidden bg-white pt-8 sm:pt-10 lg:mb-16 lg:pt-16">
       {/* Top Right Shape */}
       <div
         className="
@@ -91,8 +91,8 @@ const ServiceSection = () => {
           px-5
           sm:px-8
           md:px-10
-          lg:px-12
-          xl:px-[80px]
+          lg:px-14
+          xl:px-16
           2xl:px-[80px]
         "
       >
@@ -101,7 +101,7 @@ const ServiceSection = () => {
             grid
             items-center
             gap-8
-            lg:grid-cols-[34%_66%]
+            lg:grid-cols-[minmax(0,0.75fr)_minmax(0,1.25fr)]
             lg:gap-6
             xl:gap-8
           "
@@ -145,6 +145,7 @@ const ServiceSection = () => {
                   bg-white
                 "
               />
+
             </div>
           </div>
 
@@ -214,12 +215,8 @@ const ServiceSection = () => {
             <div
               className="
                 mt-5 
-                mr-1
-                sm:mr-2
-                md:mr-4
-                lg:mr-6
                 grid
-                grid-cols-1
+                grid-cols-2
                 gap-3
                 sm:grid-cols-2
                 lg:grid-cols-4
@@ -244,7 +241,7 @@ const ServiceSection = () => {
                       border
                       border-[#dfe7f1]
                       bg-white
-                      p-3
+                      px-2 py-3
                       shadow-[0_2px_8px_rgba(25,65,120,0.02)]
                       transition-all
                       duration-300
@@ -252,30 +249,42 @@ const ServiceSection = () => {
                       hover:border-[#bdd3f0]
                       hover:shadow-[0_8px_20px_rgba(30,90,160,0.08)]
                       sm:min-h-[135px]
-                      sm:p-3.5
+                      sm:px-3 sm:py-3.5
+                      lg:px-2
+                      2xl:px-3
                     "
                   >
                     {/* Icon + Title */}
-                    <div className="flex items-center gap-2.5">
+                    <div className="flex items-center gap-2 lg:gap-1 xl:gap-2 2xl:gap-2.5">
                       {/* Icon */}
                       <div
                         className="
                           flex
-                          h-[40px]
-                          w-[40px]
+                          h-9
+                          w-9
                           shrink-0
                           items-center
                           justify-center
                           rounded-full
                           bg-[#e1edfe]
-                          sm:h-[42px]
-                          sm:w-[42px]
+                          transition-all
+                          duration-200
+                          group-hover:scale-105
+                          group-hover:bg-[#1264d4]
+                          sm:h-10
+                          sm:w-10
+                          lg:h-8
+                          lg:w-8
+                          xl:h-9
+                          xl:w-9
+                          2xl:h-[42px]
+                          2xl:w-[42px]
                         "
                       >
                         <Icon
-                          size={21}
+                          size={19}
                           strokeWidth={1.8}
-                          className="text-[#1264d4]"
+                          className="text-[#1264d4] transition-colors duration-200 group-hover:text-white"
                         />
                       </div>
 
@@ -287,7 +296,9 @@ const ServiceSection = () => {
                             font-bold
                             leading-[1.25]
                             text-[#15233b]
-                            sm:text-[13px]
+                            sm:text-[14px]
+                            lg:text-[11px]
+                            2xl:text-[14px]
                           "
                         >
                           {item.title}
@@ -299,7 +310,9 @@ const ServiceSection = () => {
                             font-bold
                             leading-[1.25]
                             text-[#15233b]
-                            sm:text-[13px]
+                            sm:text-[14px]
+                            lg:text-[11px]
+                            2xl:text-[14px]
                           "
                         >
                           {item.subtitle}
@@ -324,7 +337,7 @@ const ServiceSection = () => {
                     {/* Arrow */}
                     <div
                       className="
-                        mt-auto
+                        
                         flex
                         h-[26px]
                         w-[26px]
@@ -334,6 +347,7 @@ const ServiceSection = () => {
                         bg-[#d7e5fa]
                         transition
                         group-hover:bg-[#1264d4]
+                        mt-2
                       "
                     >
                       <ArrowRight
