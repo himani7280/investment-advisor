@@ -15,7 +15,7 @@ const features = content.features.map((feature, index) => ({
 
 const AboutSection = () => {
   return (
-    <section className="about-section relative w-full overflow-hidden bg-white pt-14 pb-6 sm:pt-16 sm:pb-8 lg:mb-8 lg:pt-14 lg:pb-4">
+    <section className="about-section relative w-full overflow-hidden bg-white pt-6 sm:pt-8 lg:pt-10">
       <div
         className="
           absolute right-0 top-0
@@ -33,7 +33,7 @@ const AboutSection = () => {
           px-5
           sm:px-8
           lg:px-12
-          xl:px-[75px]
+          xl:px-[47px]
         "
       >
         <div

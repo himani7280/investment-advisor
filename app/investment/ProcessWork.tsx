@@ -40,8 +40,8 @@ const ProcessWork = () => {
   const content = investmentContent.processWork;
 
   return (
-    <section className="w-full bg-white py-2 sm:pt-4 lg:pt-16">
-      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+    <section className="w-full bg-white pt-10 sm:pt-12 lg:pt-14">
+      <div className="mx-auto max-w-7xl px-8 sm:px-10 lg:px-12">
 
         <div className="grid grid-cols-1 gap-6 lg:grid-cols-2 lg:gap-7">
 

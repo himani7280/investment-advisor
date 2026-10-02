@@ -1,31 +1,55 @@
 @import "tailwindcss";
 
 :root {
-	--site-gutter: 0.75rem;
+  --container-max-w: 1360px;
+  --section-py: 2.5rem; /* 40px mobile */
 }
 
-@media (min-width: 40rem) {
-	:root {
-		--site-gutter: 2.5rem;
-	}
+@media (min-width: 640px) {
+  :root {
+    --section-py: 3rem; /* 48px tablet */
+  }
 }
 
-main section {
-	padding-block: clamp(1rem, 3vw, 2rem) !important;
-	padding-inline: 0 !important;
+@media (min-width: 1024px) {
+  :root {
+    --section-py: 3.75rem; /* 60px desktop */
+  }
 }
 
-main section.home-hero {
-	padding-block: 0 !important;
+/* Equal vertical spacing for all sections (Upar & Neeche) */
+.section-padding {
+  padding-top: var(--section-py);
+  padding-bottom: var(--section-py);
 }
 
-main section.about-section {
-	padding-top: calc(clamp(1rem, 3vw, 2rem) + 0.5rem) !important;
+/* Equal horizontal container for all sections (Left & Right) */
+.section-container {
+  width: 100%;
+  max-width: var(--container-max-w);
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 1rem;
+  padding-right: 1rem;
 }
 
-main section > .mx-auto,
-main section > [class*="absolute"][class*="inset-"][class*="flex"],
-main section.mx-auto {
-	padding-inline: var(--site-gutter) !important;
+@media (min-width: 640px) {
+  .section-container {
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+  }
 }
 
+@media (min-width: 1024px) {
+  .section-container {
+    padding-left: 2.5rem;
+    padding-right: 2.5rem;
+  }
+}
+
+@media (min-width: 1280px) {
+  .section-container {
+    padding-left: 3rem;
+    padding-right: 3rem;
+  }
+}

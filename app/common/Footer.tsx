@@ -27,7 +27,7 @@ const Footer = () => {
     <footer className="w-full bg-white font-sans text-[#52637e]">
       {/* ================= Main Footer ================= */}
       {/* Bottom padding reduced here (pb-4 sm:pb-6 lg:pb-6) */}
-      <div className="mx-auto w-full max-w-[1440px] px-3 pt-8 pb-4 sm:px-10 sm:pt-10 sm:pb-6 lg:py-10">
+      <div className="mx-auto w-full max-w-[1440px] px-3  pt-10 sm:pt-12 lg:pt-14 sm:px-12  pb-10 sm:pb-12 lg:pb-14">
         <div className="grid grid-cols-1 items-stretch gap-8 sm:grid-cols-2 lg:grid-cols-[1.2fr_0.9fr_1fr_1.1fr] lg:gap-8">
           
           {/* ================= Column 1: Logo & Info ================= */}

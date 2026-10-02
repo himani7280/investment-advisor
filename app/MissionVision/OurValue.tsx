@@ -23,7 +23,7 @@ const OurValue: React.FC = () => {
   return (
     <section className="w-full bg-white">
       {/* MAIN CONTAINER */}
-      <div className="mx-auto w-full max-w-[1180px] px-3 py-5 sm:px-5 sm:py-7 lg:px-5 lg:pt-10 lg:pb-8">
+      <div className="mx-auto w-full max-w-[1180px] pt-10 sm:pt-12 lg:pt-14">
         
         {/* ================= HEADER ================= */}
         <div className="mb-[18px] text-center sm:mb-[22px] lg:mb-[16px]">

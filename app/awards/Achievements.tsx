@@ -21,8 +21,8 @@ const Achievements = () => {
   );
 
   return (
-    <section className="w-full bg-white py-8 sm:py-10 lg:py-12">
-      <div className="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
+    <section className="w-full bg-white pt-10 sm:pt-12 lg:pt-8">
+      <div className="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-12">
 
         {/* ================= TOP AREA ================= */}
         <div className="grid grid-cols-1 items-center gap-8 lg:grid-cols-2 lg:gap-10">
@@ -78,7 +78,7 @@ const Achievements = () => {
         </div>
 
         {/* ================= AWARDS HEADING ================= */}
-        <div className="mt-10 flex flex-col gap-4 sm:mt-12 lg:mt-14 lg:flex-row lg:items-center lg:justify-between">
+        <div className="mt-10 flex flex-col gap-4 sm:mt-12 lg:mt-6 lg:flex-row lg:items-center lg:justify-between">
 
           <div className="flex items-center gap-3">
             <h3 className="text-2xl font-bold text-gray-900 sm:text-3xl">

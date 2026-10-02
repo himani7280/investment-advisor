@@ -18,7 +18,7 @@ const teamMembers: TeamMember[] = content.items
 
 const OurTeam: React.FC = () => {
   return (
-    <section className="mx-auto w-full max-w-7xl bg-white px-4 pt-8 pb-8 sm:px-6 sm:pt-12 lg:px-10 lg:pt-14">
+    <section className="mx-auto w-full max-w-7xl bg-white  px-8 sm:px-10 lg:px-12 pt-8 sm:pt-10 lg:pt-12">
       {/* Header Section */}
       <div className="text-center mb-10 md:mb-14">
         <div className="inline-flex items-center gap-2 mb-2">

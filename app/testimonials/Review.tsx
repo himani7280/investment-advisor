@@ -95,13 +95,9 @@ const Review = () => {
         overflow-hidden
         bg-white
         pt-10
-        pb-10
         sm:pt-12
-        sm:pb-12
-        md:pt-14
-        md:pb-14
         lg:pt-14
-        lg:pb-14
+
       "
     >
 

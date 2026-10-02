@@ -152,8 +152,8 @@ const processSteps = investmentContent.investmentProcess.steps.map(
 
 const OurProcess = () => {
   return (
-    <section className="w-full bg-white pt-12 sm:pt-14 lg:pt-16">
-      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+    <section className="w-full bg-white pt-10 sm:pt-12 lg:pt-14">
+      <div className="mx-auto max-w-7xl px-2">
 
         {/* ================= HEADING ================= */}
         <div className="mb-10 text-center sm:mb-12 lg:mb-14">

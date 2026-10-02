@@ -1,5 +1,6 @@
 "use client";
 
+import React from "react";
 import Image from "next/image";
 import Link from "next/link";
 import {
@@ -11,22 +12,25 @@ import {
 import { motion } from "framer-motion";
 import { investmentContent } from "../../data/investmentContent";
 
+interface HeroSectionProps {
+  data?: typeof investmentContent.homeHero;
+}
+
 const featureIcons = [BarChart3, ShieldCheck, Users];
-const content = investmentContent.homeHero;
-const features = content.features.map((feature, index) => ({
-  ...feature,
-  icon: featureIcons[index],
-}));
+
+const defaultFeatureLines = [
+  ["Tailored to your unique goals."],
+  ["Guidance from experienced", "financial advisors."],
+  ["Building sustainable wealth", "for future generations."],
+];
 
 // Animation variants
 const fadeIn = {
-  hidden: { opacity: 0, x: 0, y: 0, rotate: 0 },
+  hidden: { opacity: 0, y: 14 },
   visible: {
     opacity: 1,
-    x: 0,
     y: 0,
-    rotate: 0,
-    transition: { duration: 0.6, ease: [0.22, 1, 0.36, 1] as const }
+    transition: { duration: 0.55, ease: [0.22, 1, 0.36, 1] as const },
   },
 };
 
@@ -35,364 +39,160 @@ const staggerContainer = {
   visible: {
     opacity: 1,
     transition: {
-      staggerChildren: 0.15,
-      delayChildren: 0.1,
+      staggerChildren: 0.12,
+      delayChildren: 0.05,
     },
   },
 };
 
-const featureContainer = {
-  hidden: { opacity: 0, x: 0, y: 0, rotate: 0 },
-  visible: {
-    opacity: 1,
-    x: 0,
-    y: 0,
-    rotate: 0,
-    transition: {
-      duration: 0.5,
-      staggerChildren: 0.1,
-      delayChildren: 0.4,
-    },
-  },
-};
+const HeroSection: React.FC<HeroSectionProps> = ({ data }) => {
+  const content = data || investmentContent.homeHero;
 
-const HeroSection = () => {
+  const features = (content.features || []).map((feature, index) => ({
+    ...feature,
+    icon: featureIcons[index] || BarChart3,
+    lines: defaultFeatureLines[index] ?? [feature.description],
+  }));
+
   return (
     <section className="home-hero relative w-full overflow-hidden bg-white">
-
-      {/* Image wrapper - right side focused */}
-      <motion.div 
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ duration: 1, ease: "easeOut" }}
-        className="absolute top-0 right-0 bottom-0 w-[55%] sm:w-[50%] lg:w-[65%] xl:w-[65%]"
+      {/* Right Artwork: Businessman, Laptop, Cityscape and Diagonal Brand Banner */}
+      <div
+        className="pointer-events-none absolute inset-y-0 right-0 hidden aspect-[792/572] h-full lg:block"
+        style={{
+          WebkitMaskImage: "linear-gradient(to right, transparent 0%, #000 16%)",
+          maskImage: "linear-gradient(to right, transparent 0%, #000 16%)",
+        }}
       >
         <Image
-          src={content.image}
-          alt={content.imageAlt}
+          src="/hero-right.png"
+          alt={content.imageAlt || "Plan, invest, grow, achieve with PrimeCore"}
           fill
           priority
-          className="object-cover object-[80%_center] sm:object-right"
+          sizes="(min-width: 1024px) 800px, 100vw"
+          className="object-cover"
         />
+      </div>
 
-        {/* Gradient overlay for smooth text contrast */}
-        <div
-          className="
-            absolute inset-0
-            bg-gradient-to-r
-            from-white
-            via-white/50
-            via-20%
-            to-transparent
-            lg:from-white
-            lg:via-white/20
-            lg:via-25%
-          "
-        />
-      </motion.div>
-
-      <div
-        className="
-          relative z-10 mx-auto
-          min-h-[400px]
-          sm:min-h-[420px]
-          lg:min-h-[440px]
-          max-w-[1440px]
-          px-3
-          md:px-6
-          sm:px-8
-          lg:px-12
-          xl:px-[75px]
-        "
-      >
-
-        <div
-          className="
-            flex min-h-[400px]
-            sm:min-h-[420px]
-            lg:min-h-[440px]
-            items-center
-          "
+      <div className="section-container relative z-10 flex min-h-[440px] flex-col justify-between pt-4 pb-8 sm:pb-10 lg:min-h-[480px] lg:pt-0 lg:pb-8">
+        <motion.div
+          variants={staggerContainer}
+          initial="hidden"
+          animate="visible"
+          className="max-w-[560px] pt-4 sm:pt-6 lg:pt-[24px] xl:pt-[28px]"
         >
-
-          <motion.div
-            variants={staggerContainer}
-            initial="hidden"
-            animate="visible"
-            className="
-              w-full max-w-[560px]
-              pb-[90px]
-              pt-10
-              sm:pt-12
-              lg:pt-14
-            "
+          {/* Badge */}
+          <motion.p
+            variants={fadeIn}
+            className="text-[10px] font-medium tracking-[2.5px] text-[#33415c] sm:text-[11px] sm:tracking-[3px] uppercase"
           >
-            <motion.p
-              variants={fadeIn}
-              className="
-                mb-3
-                text-[9px]
-                font-semibold
-                tracking-[3px]
-                text-[#5d6c82]
-                sm:text-[10px]
-                sm:tracking-[4px]
-              "
+            {content.badge}
+          </motion.p>
+
+          {/* Accent Blue Underline */}
+          <motion.div
+            variants={fadeIn}
+            className="mb-[16px] mt-[12px] h-[2px] w-[34px] bg-[#2d6fc4] sm:mb-[20px]"
+          />
+
+          {/* Main Title */}
+          <motion.h1
+            variants={fadeIn}
+            className="text-[36px] font-bold leading-[1.05] tracking-[-1.2px] text-[#07122e] sm:text-[46px] lg:text-[54px] xl:text-[58px] lg:leading-[54px] xl:leading-[58px]"
+          >
+            {content.titleStart}
+            <br />
+            {content.titleBeforeHighlight ? `${content.titleBeforeHighlight} ` : "with "}
+            <span className="text-[#2d6fc4]">{content.titleHighlight}</span>
+            <br />
+            {content.titleEnd}
+          </motion.h1>
+
+          {/* Description */}
+          <motion.p
+            variants={fadeIn}
+            className="mt-[14px] max-w-[465px] text-[14px] leading-[22px] text-[#3f4f6b] lg:text-[14.8px]"
+          >
+            {content.description ||
+              "At PrimeCore, we provide expert investment advisory services designed to help you achieve your financial goals and create a more secure tomorrow."}
+          </motion.p>
+
+          {/* Action Buttons */}
+          <motion.div
+            variants={fadeIn}
+            className="mt-[24px] flex flex-col gap-3 min-[420px]:flex-row"
+          >
+            <Link
+              href={content.primaryLink || "/bookConsultation"}
+              className="flex h-[40px] items-center justify-center gap-2.5 rounded-[4px] bg-[#2d6fc4] px-5 text-[13.5px] font-medium text-white transition hover:bg-[#245fa9] min-[420px]:w-[215px] shadow-[0_4px_12px_rgba(45,111,196,0.25)]"
             >
-              {content.badge}
-            </motion.p>
-
-            <motion.div 
-              variants={fadeIn}
-              className="mb-4 h-[2px] w-[34px] bg-[#2d6fc4]" 
-            />
-
-            <motion.h1
-              variants={fadeIn}
-              className="
-                max-w-[530px]
-                text-[37px]
-                font-bold
-                not-italic
-                rotate-0
-                skew-x-0
-                leading-[1.10]
-                tracking-normal
-                text-[#07152f]
-
-                sm:text-[42px]
-                lg:text-[48px]
-                xl:text-[52px]
-              "
+              {content.primaryButton}
+              <ArrowRight size={15} strokeWidth={1.8} />
+            </Link>
+            <Link
+              href={content.secondaryLink || "/service"}
+              className="flex h-[40px] items-center justify-center rounded-[4px] border border-[#7d8798] bg-white/60 px-5 text-[13.5px] font-medium text-[#0b1a33] transition hover:bg-white min-[420px]:w-[195px]"
             >
-              {content.titleStart}
-              <br />
-
-              {content.titleBeforeHighlight}{" "}
-              <span className="text-[#2d6fc4]">
-                {content.titleHighlight}
-              </span>
-
-              <br />
-
-              {content.titleEnd}
-            </motion.h1>
-
-            <motion.p
-              variants={fadeIn}
-              className="
-                mt-4
-                w-[300px]
-                md:w-[500px]
-                max-w-[650px]
-                text-[13px]
-                leading-[1.55]
-                text-[#444e5e]
-                sm:text-[14px]
-                lg:text-[15px]
-              "
-            >
-              {content.description}
-            </motion.p>
-
-            {/* BUTTONS CONTAINER: Vertical on <400px, Horizontal on >=400px */}
-            <motion.div
-              variants={fadeIn}
-              className="
-                mt-5
-                flex
-                flex-col
-                gap-3
-                min-[400px]:flex-row
-              "
-            >
-
-              <Link
-                href={content.primaryLink}
-                className="
-                  flex h-[41px]
-                  w-full
-                  items-center
-                  justify-center
-                  gap-3
-                  rounded-[5px]
-                  bg-[#2d6fc4]
-                  px-5
-                  text-[12px]
-                  font-semibold
-                  text-white
-                  shadow-[0_4px_10px_rgba(45,111,196,0.20)]
-                  transition
-                  hover:bg-[#245fa9]
-
-                  min-[400px]:w-[215px]
-                "
-              >
-                {content.primaryButton}
-
-                <ArrowRight
-                  size={16}
-                  strokeWidth={1.8}
-                />
-              </Link>
-
-              <Link
-                href={content.secondaryLink}
-                className="
-                  flex h-[41px]
-                  w-full
-                  items-center
-                  justify-center
-                  rounded-[5px]
-                  border
-                  border-[#7d91ad]
-                  bg-white/80
-                  px-5
-                  text-[12px]
-                  font-semibold
-                  text-[#16233a]
-                  backdrop-blur-sm
-                  transition
-                  hover:bg-white
-
-                  min-[400px]:w-[195px]
-                "
-              >
-                {content.secondaryButton}
-              </Link>
-
-            </motion.div>
+              {content.secondaryButton}
+            </Link>
           </motion.div>
+        </motion.div>
+
+        {/* Small Screens Artwork Display */}
+        <div
+          className="relative -mx-5 mt-5 aspect-[792/572] sm:-mx-8 lg:hidden"
+          style={{
+            WebkitMaskImage: "linear-gradient(to bottom, transparent 0%, #000 14%)",
+            maskImage: "linear-gradient(to bottom, transparent 0%, #000 14%)",
+          }}
+        >
+          <Image
+            src="/hero-right.png"
+            alt={content.imageAlt || "Plan, invest, grow, achieve with PrimeCore"}
+            fill
+            priority
+            sizes="100vw"
+            className="object-cover"
+          />
         </div>
 
-        {/* BOTTOM FEATURES CONTAINER */}
-        <div className="hidden md:block">
-          <motion.div
-            variants={featureContainer}
-            initial="hidden"
-            animate="visible"
-            className="
-              absolute
-              bottom-0
-              left-1/2
-              -translate-x-1/2
-              w-[calc(100%-48px)]
-
-              sm:left-8
-              sm:translate-x-0
-              sm:w-[650px]
-
-              lg:left-12
-              lg:w-[720px]
-
-              xl:left-[75px]
-              xl:w-[780px]
-            "
-          >
-
-            <div
-              className="
-                grid
-                grid-cols-1
-                border-t
-                border-[#dbe3ee]
-                bg-white/80
-                backdrop-blur-[3px]
-
-                sm:grid-cols-3
-              "
-            >
-
-              {features.map((feature, index) => {
-                const Icon = feature.icon;
-
-                return (
-                  <motion.div
-                    key={feature.title}
-                    variants={fadeIn}
-                    className={`
-                      flex
-                      min-h-[68px]
-                      items-center
-                      justify-center
-                      text-center
-                      gap-3
-                      px-3
-                      py-2.5
-
-                      sm:justify-start
-                      sm:text-left
-                      sm:px-4
-                      lg:px-5
-
-                      ${
-                        index !== 0
-                          ? `
-                            border-t
-                            border-[#dbe3ee]
-
-                            sm:border-l
-                            sm:border-t-0
-                          `
-                          : ""
-                      }
-                      ${index === 1 ? "sm:pt-[14px] lg:pt-[16px]" : ""}
-                    `}
-                  >
-
-                    <div
-                      className="
-                        flex
-                        h-[40px]
-                        w-[40px]
-                        shrink-0
-                        items-center
-                        justify-center
-                        rounded-full
-                        bg-[#e8f1fd]
-                      "
-                    >
-                      <Icon
-                        size={20}
-                        strokeWidth={1.8}
-                        className="text-[#2d6fc4]"
-                      />
-                    </div>
-
-                    <div className="flex flex-col items-center sm:items-start">
-                      <h3
-                        className="
-                          text-[10px]
-                          font-bold
-                          text-[#1a2940]
-                          sm:text-[11px]
-                        "
-                      >
-                        {feature.title}
-                      </h3>
-
-                      <p
-                        className="
-                          mt-1
-                          max-w-[180px]
-                          text-[8px]
-                          leading-[1.4]
-                          text-[#64748b]
-                          sm:text-[9px]
-                        "
-                      >
-                        {feature.description}
-                      </p>
-                    </div>
-
-                  </motion.div>
-                );
-              })}
-
-            </div>
-          </motion.div>
-        </div>
-
+        {/* Features Row */}
+        <motion.div
+          initial={{ opacity: 0, y: 12 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5, delay: 0.2 }}
+          className="grid grid-cols-1 gap-3.5 pb-6 pt-5 sm:grid-cols-3 sm:gap-0 lg:max-w-[680px] lg:grid-cols-[200px_215px_auto] max-xl:lg:rounded-md max-xl:lg:bg-white/70 max-xl:lg:py-2.5 max-xl:lg:backdrop-blur-sm lg:mb-[16px] lg:-ml-[7px] lg:pb-0 lg:pt-5"
+        >
+          {features.map((feature, index) => {
+            const Icon = feature.icon;
+            return (
+              <div
+                key={feature.title}
+                className={`flex items-center gap-2.5 sm:px-2.5 lg:gap-[13px] lg:px-0 ${
+                  index !== 0
+                    ? "sm:border-l sm:border-[#d3deec] lg:pl-[14px]"
+                    : ""
+                }`}
+              >
+                <div className="flex h-[44px] w-[44px] shrink-0 items-center justify-center rounded-full bg-[#dce9f9]">
+                  <Icon size={22} strokeWidth={1.6} className="text-[#2d6fc4]" />
+                </div>
+                <div className="min-h-[44px] flex flex-col justify-center">
+                  <h3 className="whitespace-nowrap text-[11px] font-semibold leading-[15px] text-[#0b1a33]">
+                    {feature.title}
+                  </h3>
+                  <p className="mt-[2px] text-[9.2px] leading-[14px] text-[#5d6c82]">
+                    {feature.lines.map((line: string, i: number) => (
+                      <span key={i} className="block whitespace-nowrap">
+                        {line}
+                      </span>
+                    ))}
+                  </p>
+                </div>
+              </div>
+            );
+          })}
+        </motion.div>
       </div>
     </section>
   );

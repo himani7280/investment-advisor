@@ -35,7 +35,7 @@ const Testimonials = () => {
   };
 
   return (
-    <section className="relative w-full overflow-hidden bg-white pt-2 pb-2 sm:pt-3 sm:pb-3 lg:pt-3 lg:pb-3 ">
+    <section className="relative w-full overflow-hidden bg-white pt-4 sm:pt-6 lg:pt-8">
       <div className="grid min-h-[500px] w-full grid-cols-1 lg:grid-cols-[45%_55%]">
 
        

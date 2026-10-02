@@ -7,8 +7,8 @@ const content = investmentContent.blogDetail;
 
 const BlogHeroDetail = () => {
   return (
-    <section className="w-full bg-white pt-8 sm:pt-10 lg:pt-16 pb-4">
-      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-10">
+    <section className="w-full bg-white pt-10 sm:pt-12 lg:pt-14">
+      <div className="mx-auto max-w-7xl px-8 sm:px-10 lg:px-12">
         <div className="grid grid-cols-1 gap-8 lg:grid-cols-[minmax(0,1fr)_300px] lg:gap-8 xl:grid-cols-[minmax(0,1fr)_340px] xl:gap-10">
           
           

@@ -19,8 +19,8 @@ const content = investmentContent.blogPage;
 const blogs: Blog[] = content.items;
 const LatestBlog = () => {
     return (
-      <section className="w-full bg-white pb-6 pt-10 sm:pt-12 md:pt-14 lg:pt-16">
-        <div className="mx-auto w-full max-w-[1440px] px-3 sm:px-10">
+      <section className="w-full bg-white  pt-10 sm:pt-12 lg:pt-14">
+        <div className="mx-auto w-full max-w-[1440px] px-3 sm:px-12">
   
           
           <div className="mb-9 text-center sm:mb-10">

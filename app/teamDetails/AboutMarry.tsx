@@ -79,7 +79,7 @@ export default function AboutMarry() {
   }
 
   return (
-    <section className="mx-auto w-full max-w-7xl bg-white px-3 pt-8 pb-4 font-sans antialiased text-slate-800 sm:px-5 sm:pt-12 sm:pb-8 lg:px-10 lg:pt-14 lg:pb-10">
+    <section className="mx-auto w-full max-w-7xl bg-white px-3 font-sans antialiased text-slate-800 sm:px-5 lg:px-12 pt-10 sm:pt-12 lg:pt-14 ">
       {/* ==================== SECTION 1: TOP HERO ROW ==================== */}
       <div className="mb-6 grid grid-cols-1 items-start gap-6 sm:gap-8 md:grid-cols-2 lg:grid-cols-12">
         

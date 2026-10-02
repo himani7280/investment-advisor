@@ -27,7 +27,7 @@ const stepIcons = { Calendar, MessageSquare, UserCheck, BarChart2 };
 
 const Consultation = () => {
   return (
-    <section className="w-full bg-[#f8fbff] pt-8 sm:pt-10 lg:pt-16 pb-8">
+    <section className="w-full bg-[#f8fbff] pt-10 sm:pt-12 lg:pt-14">
       <div className="mx-auto max-w-[1240px] px-4 sm:px-6 lg:px-10">
         
         {/* ================= SECTION 1: FORM & RIGHT CARD ================= */}

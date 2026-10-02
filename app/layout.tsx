@@ -36,7 +36,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
         <HeroProvide>
           <Header />
           <Navbar />
-          <main className="pt-[117px]">
+          <main className="pt-[103px] lg:pt-[117px] flex-1">
             {children}
           </main>
           <Footer />

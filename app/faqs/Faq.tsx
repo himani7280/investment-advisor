@@ -18,8 +18,8 @@ const Faq = () => {
   };
 
   return (
-    <section className="relative w-full overflow-hidden bg-white pt-10 pb-6 sm:pt-12 sm:pb-8 lg:pt-14 lg:pb-10">
-      <div className="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
+    <section className="relative w-full overflow-hidden bg-white pt-10 sm:pt-12 lg:pt-14 ">
+      <div className="mx-auto w-full max-w-7xl px-8 sm:px-10 lg:px-12">
 
         {/* ================= HEADER ================= */}
         <div className="mx-auto mb-10 max-w-3xl text-center sm:mb-12">
