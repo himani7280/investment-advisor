@@ -13,22 +13,27 @@ import {
   BarChart2,
   Star,
 } from "lucide-react";
+import { investmentContent } from "../data/investmentContent";
+
+const content = investmentContent.missionVision;
+const missionIcons = { Users, Gem, Shield };
+const visionIcons = { Lightbulb, BarChart2, Star };
 
 const OurValue: React.FC = () => {
   return (
     <section className="w-full bg-white">
       {/* MAIN CONTAINER */}
-      <div className="mx-auto w-full max-w-[1180px] px-1 py-8 sm:px-3 sm:py-10 lg:px-3 lg:pt-16 lg:pb-12">
+      <div className="mx-auto w-full max-w-[1180px] px-3 py-5 sm:px-5 sm:py-7 lg:px-5 lg:pt-10 lg:pb-8">
         
         {/* ================= HEADER ================= */}
-        <div className="mb-[24px] text-center sm:mb-[32px] lg:mb-[20px]">
+        <div className="mb-[18px] text-center sm:mb-[22px] lg:mb-[16px]">
           
           {/* OUR VALUES */}
           <div className="mb-[4px] flex items-center justify-center gap-[12px]">
             <span className="h-[2px] w-[48px] bg-[#1468E8] sm:w-[64px]" />
 
             <span className="text-[10px] font-bold tracking-[0.35em] text-[#173B78] uppercase sm:text-[12px]">
-              OUR VALUES
+              {content.badge}
             </span>
 
             <span className="h-[2px] w-[48px] bg-[#1468E8] sm:w-[64px]" />
@@ -36,19 +41,19 @@ const OurValue: React.FC = () => {
 
           {/* MAIN HEADING */}
           <h2 className="text-[28px] font-extrabold leading-tight tracking-tight text-[#0B1E48] sm:text-[34px] lg:text-[38px]">
-            Our Mission{" "}
-            <span className="text-[#1468E8]">&amp;</span> Vision
+            {content.headingStart}{" "}
+            <span className="text-[#1468E8]">{content.headingHighlight}</span>{" "}
+            {content.headingEnd}
           </h2>
 
           {/* SUB HEADING */}
           <p className="mt-[6px] text-[12px] font-normal text-[#64748B] sm:text-[14px]">
-            Guided by purpose, driven by people, focused on a brighter
-            financial future.
+            {content.description}
           </p>
         </div>
 
         {/* ================= CONTENT ================= */}
-        <div className="space-y-[16px]">
+        <div className="space-y-[12px]">
 
           {/* =====================================================
               MISSION
@@ -64,8 +69,8 @@ const OurValue: React.FC = () => {
               className="relative h-[240px] w-full overflow-hidden rounded-[12px] sm:h-[280px] lg:h-[240px]"
             >
               <Image
-                src="/value1.png"
-                alt="Wooden blocks with financial icon symbols"
+                src={content.mission.image}
+                alt={content.mission.imageAlt}
                 fill
                 priority
                 className="object-cover"
@@ -88,7 +93,7 @@ const OurValue: React.FC = () => {
                     <span className="h-[2px] w-[32px] bg-[#1468E8]" />
 
                     <span className="text-[9px] font-bold tracking-[0.25em] text-[#173B78] uppercase sm:text-[10px]">
-                      OUR MISSION
+                      {content.mission.label}
                     </span>
 
                     <span className="h-[2px] w-[32px] bg-[#1468E8]" />
@@ -97,67 +102,39 @@ const OurValue: React.FC = () => {
 
                 {/* TITLE */}
                 <h3 className="text-[22px] font-extrabold leading-[1.08] tracking-tight text-[#0B1E48] sm:text-[26px] lg:text-[27px]">
-                  To Create Meaningful
+                  {content.mission.titleStart}
                   <br />
                   <span className="text-[#1468E8]">
-                    Financial Impact
+                    {content.mission.titleHighlight}
                   </span>{" "}
-                  Every Day
+                  {content.mission.titleEnd}
                 </h3>
 
                 {/* DESCRIPTION */}
                 <p className="mt-[12px] max-w-[500px] text-[11px] leading-[1.45] text-[#64748B] sm:text-[12px] lg:text-[14px]">
-                  Our mission is to deliver trusted investment advisory
-                  solutions that empower individuals and businesses, build
-                  long-term relationships, and contribute to a stronger, more
-                  secure financial future.
+                  {content.mission.description}
                 </p>
               </div>
 
-              {/* MISSION FEATURES */}
               <div className="mt-[20px] grid grid-cols-3 border-t border-[#D9E2F0] pt-[16px]">
+                {content.mission.features.map((feature, index) => {
+                  const Icon = missionIcons[feature.icon as keyof typeof missionIcons];
+                  const alignment = index === 1 ? "justify-center border-r border-[#D9E2F0] px-[6px] sm:px-[10px]" : index === 2 ? "justify-end pl-[6px] sm:pl-[10px]" : "border-r border-[#D9E2F0] pr-[6px] sm:pr-[10px]";
 
-                {/* CLIENT FIRST */}
-                <div className="flex items-center gap-[8px] border-r border-[#D9E2F0] pr-[6px] sm:gap-[12px] sm:pr-[10px]">
-                  <div className="flex h-[38px] w-[38px] shrink-0 items-center justify-center rounded-full bg-[#E5F0FF] text-[#1468E8] transition-all duration-200 hover:scale-105 hover:bg-[#1468E8] hover:text-white sm:h-[40px] sm:w-[40px]">
-                    <Users className="h-[19px] w-[19px] sm:h-[20px] sm:w-[20px]" />
-                  </div>
-
-                  <span className="text-[9px] font-semibold leading-tight text-[#17233D] sm:text-[12px]">
-                    Client
-                    <br />
-                    First
-                  </span>
-                </div>
-
-                {/* EXCELLENCE */}
-                <div className="flex items-center justify-center gap-[8px] border-r border-[#D9E2F0] px-[6px] sm:gap-[12px] sm:px-[10px]">
-                  <div className="flex h-[38px] w-[38px] shrink-0 items-center justify-center rounded-full bg-[#E5F0FF] text-[#1468E8] transition-all duration-200 hover:scale-105 hover:bg-[#1468E8] hover:text-white sm:h-[40px] sm:w-[40px]">
-                    <Gem className="h-[19px] w-[19px] sm:h-[20px] sm:w-[20px]" />
-                  </div>
-
-                  <span className="text-[9px] font-semibold leading-tight text-[#17233D] sm:text-[12px]">
-                    Excellence
-                    <br />
-                    in Advice
-                  </span>
-                </div>
-
-                {/* POSITIVE IMPACT */}
-                <div className="flex items-center justify-end gap-[8px] pl-[6px] sm:gap-[12px] sm:pl-[10px]">
-                  <div className="flex h-[38px] w-[38px] shrink-0 items-center justify-center rounded-full bg-[#E5F0FF] text-[#1468E8] transition-all duration-200 hover:scale-105 hover:bg-[#1468E8] hover:text-white sm:h-[40px] sm:w-[40px]">
-                    <Shield className="h-[19px] w-[19px] sm:h-[20px] sm:w-[20px]" />
-                  </div>
-
-                  <span className="text-[9px] font-semibold leading-tight text-[#17233D] sm:text-[12px]">
-                    Positive
-                    <br />
-                    Impact
-                  </span>
-                </div>
+                  return (
+                    <div key={feature.label} className={`flex items-center gap-[8px] ${alignment} sm:gap-[12px]`}>
+                      <div className="flex h-[38px] w-[38px] shrink-0 items-center justify-center rounded-full bg-[#E5F0FF] text-[#1468E8] transition-all duration-200 hover:scale-105 hover:bg-[#1468E8] hover:text-white sm:h-[40px] sm:w-[40px]">
+                        <Icon className="h-[19px] w-[19px] sm:h-[20px] sm:w-[20px]" />
+                      </div>
+                      <span className="text-[9px] font-semibold leading-tight text-[#17233D] sm:text-[12px]">
+                        {feature.label}
+                      </span>
+                    </div>
+                  );
+                })}
+              </div>
               </div>
             </div>
-          </div>
 
           {/* =====================================================
               VISION
@@ -179,7 +156,7 @@ const OurValue: React.FC = () => {
                     <span className="h-[2px] w-[32px] bg-[#1468E8]" />
 
                     <span className="text-[9px] font-bold tracking-[0.25em] text-[#173B78] uppercase sm:text-[10px]">
-                      OUR VISION
+                      {content.vision.label}
                     </span>
 
                     <span className="h-[2px] w-[32px] bg-[#1468E8]" />
@@ -188,64 +165,36 @@ const OurValue: React.FC = () => {
 
                 {/* TITLE */}
                 <h3 className="text-[22px] font-extrabold leading-[1.08] tracking-tight text-[#0B1E48] sm:text-[26px] lg:text-[27px]">
-                  To Be a Trusted Partner
-                  <br />
-                  for a{" "}
+                  {content.vision.titleStart}{" "}
                   <span className="text-[#1468E8]">
-                    Brighter Tomorrow
+                    {content.vision.titleHighlight}
                   </span>
                 </h3>
 
                 {/* DESCRIPTION */}
                 <p className="mt-[12px] max-w-[500px] text-[11px] leading-[1.45] text-[#64748B] sm:text-[12px] lg:text-[14px]">
-                  Our vision is to be a leading and most trusted investment
-                  advisory firm, recognized for integrity, innovation, and
-                  excellence, creating opportunities and inspiring financial
-                  growth for generations to come.
+                  {content.vision.description}
                 </p>
               </div>
 
               {/* VISION FEATURES */}
               <div className="mt-[20px] grid grid-cols-3 border-t border-[#D9E2F0] pt-[16px]">
 
-                {/* INNOVATIVE */}
-                <div className="flex items-center gap-[8px] border-r border-[#D9E2F0] pr-[6px] sm:gap-[12px] sm:pr-[10px]">
-                  <div className="flex h-[38px] w-[38px] shrink-0 items-center justify-center rounded-full bg-[#E5F0FF] text-[#1468E8] transition-all duration-200 hover:scale-105 hover:bg-[#1468E8] hover:text-white sm:h-[40px] sm:w-[40px]">
-                    <Lightbulb className="h-[19px] w-[19px] sm:h-[20px] sm:w-[20px]" />
-                  </div>
+                {content.vision.features.map((feature, index) => {
+                  const Icon = visionIcons[feature.icon as keyof typeof visionIcons];
+                  const alignment = index === 1 ? "justify-center border-r border-[#D9E2F0] px-[6px] sm:px-[10px]" : index === 2 ? "justify-end pl-[6px] sm:pl-[10px]" : "border-r border-[#D9E2F0] pr-[6px] sm:pr-[10px]";
 
-                  <span className="text-[9px] font-semibold leading-tight text-[#17233D] sm:text-[12px]">
-                    Innovative
-                    <br />
-                    Solutions
-                  </span>
-                </div>
-
-                {/* SUSTAINABLE */}
-                <div className="flex items-center justify-center gap-[8px] border-r border-[#D9E2F0] px-[6px] sm:gap-[12px] sm:px-[10px]">
-                  <div className="flex h-[38px] w-[38px] shrink-0 items-center justify-center rounded-full bg-[#E5F0FF] text-[#1468E8] transition-all duration-200 hover:scale-105 hover:bg-[#1468E8] hover:text-white sm:h-[40px] sm:w-[40px]">
-                    <BarChart2 className="h-[19px] w-[19px] sm:h-[20px] sm:w-[20px]" />
-                  </div>
-
-                  <span className="text-[9px] font-semibold leading-tight text-[#17233D] sm:text-[12px]">
-                    Sustainable
-                    <br />
-                    Growth
-                  </span>
-                </div>
-
-                {/* BETTER TOMORROW */}
-                <div className="flex items-center justify-end gap-[8px] pl-[6px] sm:gap-[12px] sm:pl-[10px]">
-                  <div className="flex h-[38px] w-[38px] shrink-0 items-center justify-center rounded-full bg-[#E5F0FF] text-[#1468E8] transition-all duration-200 hover:scale-105 hover:bg-[#1468E8] hover:text-white sm:h-[40px] sm:w-[40px]">
-                    <Star className="h-[19px] w-[19px] sm:h-[20px] sm:w-[20px]" />
-                  </div>
-
-                  <span className="text-[9px] font-semibold leading-tight text-[#17233D] sm:text-[12px]">
-                    A Better
-                    <br />
-                    Tomorrow
-                  </span>
-                </div>
+                  return (
+                    <div key={feature.label} className={`flex items-center gap-[8px] ${alignment} sm:gap-[12px]`}>
+                      <div className="flex h-[38px] w-[38px] shrink-0 items-center justify-center rounded-full bg-[#E5F0FF] text-[#1468E8] transition-all duration-200 hover:scale-105 hover:bg-[#1468E8] hover:text-white sm:h-[40px] sm:w-[40px]">
+                        <Icon className="h-[19px] w-[19px] sm:h-[20px] sm:w-[20px]" />
+                      </div>
+                      <span className="text-[9px] font-semibold leading-tight text-[#17233D] sm:text-[12px]">
+                        {feature.label}
+                      </span>
+                    </div>
+                  );
+                })}
               </div>
             </div>
 
@@ -258,8 +207,8 @@ const OurValue: React.FC = () => {
               className="relative order-1 h-[240px] w-full overflow-hidden rounded-[12px] sm:h-[280px] lg:order-2 lg:h-[240px]"
             >
               <Image
-                src="/value2.png"
-                alt="Businessman standing looking over city skyline"
+                src={content.vision.image}
+                alt={content.vision.imageAlt}
                 fill
                 className="object-cover"
                 sizes="(max-width: 1024px) 100vw, 50vw"

@@ -2,33 +2,20 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import about from "../../../public/about.png";
 import { ArrowRight, BarChart3, ShieldCheck, Users } from "lucide-react";
+import { motion } from "framer-motion";
+import { investmentContent } from "../../data/investmentContent";
 
-const features = [
-  {
-    icon: BarChart3,
-    title: "Strategic",
-    subtitle: "Advisory",
-    description: "Data-driven strategies for measurable growth.",
-  },
-  {
-    icon: ShieldCheck,
-    title: "Trusted",
-    subtitle: "Partnership",
-    description: "A relationship built on integrity and trust.",
-  },
-  {
-    icon: Users,
-    title: "Client-Centric",
-    subtitle: "Approach",
-    description: "Your goals, our priority in every decision.",
-  },
-];
+const content = investmentContent.about;
+const featureIcons = [BarChart3, ShieldCheck, Users];
+const features = content.features.map((feature, index) => ({
+  ...feature,
+  icon: featureIcons[index],
+}));
 
 const AboutSection = () => {
   return (
-    <section className="relative w-full overflow-hidden bg-white pt-6 sm:pt-8 lg:mb-8 lg:pt-16">
+    <section className="about-section relative w-full overflow-hidden bg-white pt-14 pb-6 sm:pt-16 sm:pb-8 lg:mb-8 lg:pt-14 lg:pb-4">
       <div
         className="
           absolute right-0 top-0
@@ -57,7 +44,13 @@ const AboutSection = () => {
             lg:gap-0
           "
         >
-          <div className="relative mx-auto w-full max-w-[570px]">
+          <motion.div
+            initial={{ opacity: 0, x: -28 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true, amount: 0.2 }}
+            transition={{ duration: 0.6, ease: "easeOut" }}
+            className="relative mx-auto w-full max-w-[570px]"
+          >
             <div
               className="
                 relative
@@ -72,17 +65,20 @@ const AboutSection = () => {
               "
             >
               <Image
-                src={about}
-                alt="PrimeCore Investment Advisors"
+                src={content.image}
+                alt={content.imageAlt}
                 fill
-                priority
                 sizes="(max-width: 768px) 100vw, 50vw"
                 className="object-cover object-center"
               />
             </div>
-          </div>
+          </motion.div>
 
-          <div
+          <motion.div
+            initial={{ opacity: 0, x: 28 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true, amount: 0.2 }}
+            transition={{ duration: 0.6, delay: 0.1, ease: "easeOut" }}
             className="
               relative z-20
               w-full
@@ -108,7 +104,7 @@ const AboutSection = () => {
                 sm:text-[11px]
               "
             >
-              ABOUT US
+              {content.badge}
             </div>
 
             {/* Main Heading - Left Aligned */}
@@ -126,9 +122,9 @@ const AboutSection = () => {
                 xl:text-[44px]
               "
             >
-              Empowering Businesses
+              {content.titleStart}
               <br />
-              To Grow <span className="text-[#2d6fc4]">Smarter</span>
+              {content.titleMiddle}{" "}<span className="text-[#2d6fc4]">{content.titleHighlight}</span>
             </h2>
 
             {/* Blue Line Divider - Left Aligned */}
@@ -146,15 +142,18 @@ const AboutSection = () => {
                 lg:text-[15px]
               "
             >
-              At PrimeCore, we are committed to helping businesses and
-              individuals make informed financial decisions. With deep market
-              knowledge and a client-first approach, we provide tailored
-              investment advisory solutions designed to create long-term value
-              and sustainable growth.
+              {content.description}
             </p>
 
             {/* Features List: Small screens par 2 in line 1, 3rd in line 2; Large screens par 3 in line 1 */}
-            <div
+            <motion.div
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true, amount: 0.2 }}
+              variants={{
+                hidden: {},
+                visible: { transition: { staggerChildren: 0.1 } },
+              }}
               className="
                 mt-7
                 grid
@@ -169,9 +168,11 @@ const AboutSection = () => {
                 const Icon = feature.icon;
 
                 return (
-                  <div
+                  <motion.div
+                    variants={{ hidden: { opacity: 0, y: 12 }, visible: { opacity: 1, y: 0 } }}
                     key={feature.title}
                     className={`
+                      group
                       flex
                       min-w-0
                       items-start
@@ -203,8 +204,8 @@ const AboutSection = () => {
                         bg-[#dfeafc]
                         transition-all
                         duration-200
-                        hover:scale-105
-                        hover:bg-[#2d6fc4]
+                        group-hover:scale-105
+                        group-hover:bg-[#2d6fc4]
                         sm:h-[47px]
                         sm:w-[47px]
                       "
@@ -225,6 +226,9 @@ const AboutSection = () => {
                           font-bold
                           leading-[1.35]
                           text-[#17243a]
+                          transition-colors
+                          duration-200
+                          group-hover:text-[#2d6fc4]
                           sm:text-[14px]
                         "
                       >
@@ -238,6 +242,9 @@ const AboutSection = () => {
                           font-bold
                           leading-[1.35]
                           text-[#17243a]
+                          transition-colors
+                          duration-200
+                          group-hover:text-[#2d6fc4]
                           sm:text-[14px]
                         "
                       >
@@ -252,6 +259,9 @@ const AboutSection = () => {
                           text-[9px]
                           leading-[1.5]
                           text-[#69788e]
+                          transition-colors
+                          duration-200
+                          group-hover:text-[#2d6fc4]
                           sm:max-w-[155px]
                           sm:text-[10px]
                         "
@@ -259,10 +269,10 @@ const AboutSection = () => {
                         {feature.description}
                       </p>
                     </div>
-                  </div>
+                  </motion.div>
                 );
               })}
-            </div>
+            </motion.div>
 
             {/* CTA Section - Left Aligned */}
             <div
@@ -276,7 +286,7 @@ const AboutSection = () => {
               "
             >
               <Link
-                href="/about"
+                href={content.buttonLink}
                 className="
                   flex
                   h-[47px]
@@ -296,7 +306,7 @@ const AboutSection = () => {
                   hover:bg-[#245fa9]
                 "
               >
-                Know More
+                {content.buttonText}
                 <ArrowRight size={18} strokeWidth={1.8} />
               </Link>
 
@@ -313,12 +323,10 @@ const AboutSection = () => {
                   md:block
                 "
               >
-                Turn Your Financial Goals
-                <br />
-                Into Real Opportunities.
+                <span className="whitespace-pre-line">{content.callout}</span>
               </p>
             </div>
-          </div>
+          </motion.div>
         </div>
       </div>
     </section>

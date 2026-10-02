@@ -2,6 +2,7 @@ import React from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
 import { Share2, ArrowRight } from 'lucide-react'
+import { investmentContent } from '../data/investmentContent'
 
 interface TeamMember {
   id: string
@@ -12,80 +13,8 @@ interface TeamMember {
   profileUrl: string
 }
 
-const teamMembers: TeamMember[] = [
-  {
-    id: '1',
-    name: 'Amelia Margaret',
-    role: 'Director',
-    description:
-      'Leads our strategic vision with deep industry expertise and a client-first approach.',
-    image: '/team1.png',
-    profileUrl: '#',
-  },
-  {
-    id: '2',
-    name: 'Mary Merrill',
-    role: 'Operations Director',
-    description:
-      'Ensures seamless operations and delivers excellence across every client interaction.',
-    image: '/team2.png',
-    profileUrl: '#',
-  },
-  {
-    id: '3',
-    name: 'Andrew Cameron',
-    role: 'Team Leader',
-    description:
-      'Guides and motivates the team to deliver the best financial solutions for our clients.',
-    image: '/team3.png',
-    profileUrl: '#',
-  },
-  {
-    id: '4',
-    name: 'Sofia Charlotte',
-    role: 'Manager',
-    description:
-      'Brings expertise and dedication to help clients make confident financial decisions.',
-    image: '/team4.png',
-    profileUrl: '#',
-  },
-    {
-    id: '5',
-    name: 'Amelia Margaret',
-    role: 'Director',
-    description:
-      'Leads our strategic vision with deep industry expertise and a client-first approach.',
-    image: '/team1.png',
-    profileUrl: '#',
-  },
-  {
-    id: '6',
-    name: 'Mary Merrill',
-    role: 'Operations Director',
-    description:
-      'Ensures seamless operations and delivers excellence across every client interaction.',
-    image: '/team2.png',
-    profileUrl: '#',
-  },
-  {
-    id: '7',
-    name: 'Andrew Cameron',
-    role: 'Team Leader',
-    description:
-      'Guides and motivates the team to deliver the best financial solutions for our clients.',
-    image: '/team3.png',
-    profileUrl: '#',
-  },
-  {
-    id: '8',
-    name: 'Sofia Charlotte',
-    role: 'Manager',
-    description:
-      'Brings expertise and dedication to help clients make confident financial decisions.',
-    image: '/team4.png',
-    profileUrl: '#',
-  },
-]
+const content = investmentContent.team
+const teamMembers: TeamMember[] = content.items
 
 const OurTeam: React.FC = () => {
   return (
@@ -95,16 +24,15 @@ const OurTeam: React.FC = () => {
         <div className="inline-flex items-center gap-2 mb-2">
           <span className="w-8 h-[2px] bg-[#2563eb]"></span>
           <span className="text-xs sm:text-sm font-semibold tracking-wider text-[#1e3a8a] uppercase">
-            OUR TEAM
+            {content.badge}
           </span>
           <span className="w-8 h-[2px] bg-[#2563eb]"></span>
         </div>
         <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-[#0B1E48] tracking-tight mb-3">
-          Meet Our <span className="text-[#2563eb]">Experts</span>
+          {content.titleStart} <span className="text-[#2563eb]">{content.titleHighlight}</span>
         </h2>
         <p className="text-[#64748b] text-sm sm:text-base max-w-xl mx-auto font-normal">
-          A team of experienced professionals, committed to helping you achieve
-          your financial goals.
+          {content.description}
         </p>
       </div>
 
@@ -156,7 +84,7 @@ const OurTeam: React.FC = () => {
                 href={member.profileUrl}
                 className="inline-flex items-center gap-2 text-xs font-bold text-[#2563eb] hover:gap-3 transition-all duration-200"
               >
-                View Profile
+                {content.profileButton}
                 <ArrowRight className="w-4 h-4" />
               </Link>
             </div>

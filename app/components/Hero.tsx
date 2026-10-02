@@ -6,6 +6,7 @@ import {
   HeroContext,
   type HeroPage,
 } from "../context/HeroProvide";
+import { investmentContent } from "../data/investmentContent";
 
 interface HeroProps {
   page: HeroPage;
@@ -21,7 +22,7 @@ const Hero = ({ page }: HeroProps) => {
   const data = heroData[page];
 
   if (!data) {
-    return <div>Hero data not found</div>;
+    return <div>{investmentContent.siteChrome.heroDataMissingText}</div>;
   }
 
   const { title, image } = data;

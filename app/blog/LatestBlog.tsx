@@ -2,6 +2,7 @@
 import Image from "next/image";
 import { ArrowRight } from "lucide-react";
 import Link from 'next/link';
+import { investmentContent } from '../data/investmentContent';
 
 interface Blog {
   id: number;
@@ -14,78 +15,12 @@ interface Blog {
   image: string;
 }
 
-const blogs: Blog[] = [
-  {
-    id: 1,
-    date: "15",
-    month: "AUG",
-    year: "2026",
-    category: "INVESTMENT STRATEGY",
-    title: "5 Smart Investment Strategies for Long-Term Wealth",
-    description:
-      "Discover practical investment strategies that can help you build a stronger financial future and achieve your goals with confidence.",
-    image: "/blog1.png",
-  },
-  {
-    id: 2,
-    date: "10",
-    month: "AUG",
-    year: "2026",
-    category: "FINANCIAL PLANNING",
-    title: "How to Plan Your Finances in a Changing Economy",
-    description:
-      "Learn how to adapt your financial plan to economic changes and stay on track toward your life goals.",
-    image: "/blog2.png",
-  },
-  {
-    id: 3,
-    date: "05",
-    month: "AUG",
-    year: "2026",
-    category: "WEALTH MANAGEMENT",
-    title: "Key Benefits of Working with a Financial Advisor",
-    description:
-      "Explore how a professional advisor can help you make informed decisions and create a more secure tomorrow.",
-    image: "/blog3.png",
-  },
-    {
-    id: 4,
-    date: "20",
-    month: "AUG",
-    year: "2026",
-    category: "INVESTMENT STRATEGY",
-    title: "5 Smart Investment Strategies for Long-Term Wealth",
-    description:
-      "Discover practical investment strategies that can help you build a stronger financial future and achieve your goals with confidence.",
-    image: "/blog4.png",
-  },
-    {
-    id: 5,
-    date: "25",
-    month: "AUG",
-    year: "2026",
-    category: "FINANCIAL PLANNING",
-    title: "How to Plan Your Finances in a Changing Economy",
-    description:
-      "Learn how to adapt your financial plan to economic changes and stay on track toward your life goals.",
-    image: "/blog5.png",
-  },
-    {
-    id: 6,
-    date: "13",
-    month: "AUG",
-    year: "2026",
-    category: "WEALTH MANAGEMENT",
-    title: "Key Benefits of Working with a Financial Advisor",
-    description:
-      "Explore how a professional advisor can help you make informed decisions and create a more secure tomorrow.",
-    image: "/blog.png",
-  },
-];
+const content = investmentContent.blogPage;
+const blogs: Blog[] = content.items;
 const LatestBlog = () => {
     return (
       <section className="w-full bg-white pb-6 pt-10 sm:pt-12 md:pt-14 lg:pt-16">
-        <div className="mx-auto max-w-[1200px] px-5 sm:px-6 lg:px-0">
+        <div className="mx-auto w-full max-w-[1440px] px-3 sm:px-10">
   
           
           <div className="mb-9 text-center sm:mb-10">
@@ -94,7 +29,7 @@ const LatestBlog = () => {
               <span className="h-[2px] w-10 bg-blue-600 sm:w-11"></span>
   
               <span className="text-[11px] font-bold tracking-[1.5px] text-blue-600 sm:text-xs">
-                OUR LATEST BLOGS
+                {content.badge}
               </span>
   
               <span className="h-[2px] w-10 bg-blue-600 sm:w-11"></span>
@@ -102,22 +37,20 @@ const LatestBlog = () => {
   
            
             <h2 className="mx-auto max-w-[900px] text-[28px] font-bold leading-[1.2] text-[#0b2454] sm:text-[34px] md:text-[38px] lg:text-[40px]">
-              Insights That Drive{" "}
+              {content.titleStart}{" "}
               <span className="text-blue-600">
-                Your Financial Growth
+                {content.titleHighlight}
               </span>
             </h2>
   
             
             <p className="mx-auto mt-3 max-w-[650px] text-[14px] leading-5 text-slate-600 sm:text-[15px] sm:leading-6">
-              Explore our latest articles, market trends, and expert advice to
-              help you make smarter investment decisions.
+              {content.description}
             </p>
           </div>
   
         
-          <Link href="/blog/BlogDetail">
-          <div className="grid grid-cols-1 gap-5 md:grid-cols-2 lg:grid-cols-3">
+          <div className="grid grid-cols-1 gap-1 md:grid-cols-2 lg:grid-cols-3">
             {blogs.map((blog) => (
               <article
                 key={blog.id}
@@ -166,22 +99,21 @@ const LatestBlog = () => {
                   </p>
   
                   {/* Read More */}
-                  <button
-                    type="button"
-                    className="mt-4 flex items-center gap-3 text-[13px] font-bold text-blue-600 transition-all duration-300 hover:gap-4"
+                  <Link
+                    href={content.detailLink}
+                    className="mt-4 inline-flex items-center gap-3 text-[13px] font-bold text-blue-600 transition-all duration-300 hover:gap-4"
                   >
-                    Read More
+                    {content.readMoreText}
                     <ArrowRight
                       size={20}
                       strokeWidth={2}
                       className="transition-transform duration-300 group-hover:translate-x-1"
                     />
-                  </button>
+                  </Link>
                 </div>
               </article>
             ))}
           </div>
-          </Link>
         </div>
       </section>
     );

@@ -3,57 +3,28 @@
 import React, { Fragment } from "react";
 import Image from "next/image";
 import { ArrowRight } from "lucide-react";
+import { investmentContent } from "../../data/investmentContent";
 
-const steps = [
-  {
-    number: "01",
-    image: "/goal1.png",
-    title: "Understand Your Goals",
-    description:
-      "We start by learning about your business, objectives, and challenges to understand what truly matters to you.",
-  },
-  {
-    number: "02",
-    image: "/goal2.png",
-    title: "Plan & Strategize",
-    description:
-      "Our experts analyze insights and develop a customized strategy tailored to your goals.",
-  },
-  {
-    number: "03",
-    image: "/goal3.png",
-    title: "Collaborate & Execute",
-    description:
-      "We work closely with your team to implement the plan, ensuring seamless execution at every step.",
-  },
-  {
-    number: "04",
-    image: "/team1.png",
-    title: "Achieve Greater Results",
-    description:
-      "We track progress, optimize performance, and help you unlock new opportunities for long-term growth.",
-  },
-];
+const content = investmentContent.howItWorks;
+const steps = content.steps;
 
 const HowItWorks = () => {
   return (
-    <section className="relative w-full overflow-hidden bg-white py-6 pb-5 sm:py-8 sm:pb-6 lg:py-14 lg:pb-10">
+    <section className="relative mb-6 w-full overflow-hidden bg-white py-6 sm:py-8 lg:py-8">
       <div className="mx-auto w-full max-w-[1280px] px-3 sm:px-6 lg:px-4">
         <div className="mx-auto max-w-[800px] text-center">
           <div className="inline-flex rounded-full border border-[#d8e7fa] bg-[#f7fbff] px-3 py-1.5 text-[9px] font-semibold tracking-[0.3em] text-[#2d6fc4] sm:px-4 sm:text-[10px]">
-            HOW IT WORKS
+            {content.badge}
           </div>
 
           <h2 className="mt-4 text-[24px] font-bold leading-[1.12] tracking-[-0.06em] text-[#071b43] sm:text-[32px] md:text-[38px] lg:text-[44px]">
-            Connect, Collaborate, &amp; Create
+            {content.titleStart}
             <br className="hidden sm:block" />
-            <span className="text-[#2474dc]">Limitless Opportunities.</span>
+            <span className="text-[#2474dc]">{content.titleHighlight}</span>
           </h2>
 
           <p className="mx-auto mt-3 max-w-[650px] text-[10px] leading-[1.6] text-[#65758c] sm:text-[12px] lg:text-[13px]">
-            Our simple and streamlined process helps you turn your goals into real results —
-            <br className="hidden sm:block" />
-            with the right strategy, the right people, and the right support.
+            {content.description}
           </p>
         </div>
 
@@ -80,13 +51,13 @@ const HowItWorks = () => {
                 <div className="relative mx-auto h-[120px] w-[140px] sm:h-[140px] sm:w-[170px] lg:h-[150px] lg:w-[190px]">
                   <div className="absolute inset-[2px] rounded-full bg-[#edf5ff] shadow-[0_2px_10px_rgba(50,100,160,0.04)] sm:inset-[3px]" />
 
-                  <div className="absolute left-[12px] top-[6px] h-[100px] w-[100px] overflow-hidden rounded-full sm:left-[18px] sm:top-[8px] sm:h-[120px] sm:w-[120px] lg:left-[20px] lg:h-[130px] lg:w-[130px]">
+                  <div className="absolute left-[12px] top-[6px] h-[100px] w-[100px] overflow-hidden rounded-full transition-transform duration-300 ease-out hover:scale-105 sm:left-[18px] sm:top-[8px] sm:h-[120px] sm:w-[120px] lg:left-[20px] lg:h-[130px] lg:w-[130px]">
                     <Image
                       src={step.image}
                       alt={step.title}
                       fill
                       sizes="(max-width: 640px) 100px, (max-width: 1024px) 120px, 130px"
-                      className="object-cover"
+                      className="object-cover transition-transform duration-300 ease-out group-hover:scale-105"
                     />
                   </div>
 

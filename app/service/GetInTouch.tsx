@@ -1,5 +1,8 @@
 import React from "react";
 import Link from "next/link";
+import { investmentContent } from "../data/investmentContent";
+
+const content = investmentContent.services.getInTouch;
 
 const GetInTouch = () => {
   return (
@@ -19,7 +22,7 @@ const GetInTouch = () => {
             lg:min-h-[220px]
           "
           style={{
-            backgroundImage: "url('/contact.png')",
+            backgroundImage: `url('${content.image}')`,
           }}
         >
           <div
@@ -47,7 +50,7 @@ const GetInTouch = () => {
               {/* Top Label */}
               <div className="mb-2 flex flex-wrap items-center gap-3 sm:gap-4">
                 <span className="text-[10px] font-semibold tracking-wide text-[#607ba5] sm:text-xs md:text-sm">
-                  LET&apos;S PLAN A BRIGHTER TOMORROW
+                  {content.badge}
                 </span>
 
                 <span className="h-[2px] w-10 shrink-0 bg-[#1769e0] sm:w-16" />
@@ -55,19 +58,18 @@ const GetInTouch = () => {
 
               {/* Heading */}
               <h2 className="text-2xl font-bold leading-tight text-[#102e65] sm:text-3xl lg:text-[34px]">
-                Ready to Take the Next Step?
+                {content.title}
               </h2>
 
               {/* Description */}
               <p className="mt-2 max-w-[580px] text-sm leading-5 text-[#60789e] sm:text-base sm:leading-6">
-                Connect with our experts today and get personalized financial
-                guidance based on your goals.
+                {content.description}
               </p>
             </div>
 
             {/* Button */}
             <Link
-              href="/contact"
+              href={content.href}
               className="
                 mt-0
                 flex
@@ -93,7 +95,7 @@ const GetInTouch = () => {
                 lg:-translate-y-1/2
               "
             >
-              Get in Touch
+              {content.buttonText}
 
               <svg
                 width="19"

@@ -1,7 +1,9 @@
 import Image from "next/image";
 import Link from "next/link";
 import { ArrowRight, CalendarDays, Clock3, FolderOpen, UserRound } from "lucide-react";
+import { investmentContent } from "../../data/investmentContent";
 
+const content = investmentContent.blogDetail;
 
 const BlogHeroDetail = () => {
   return (
@@ -16,36 +18,36 @@ const BlogHeroDetail = () => {
             <div className="mb-5 flex flex-wrap items-center gap-x-4 gap-y-3 text-xs text-[#31558f] sm:gap-x-5 sm:text-sm">
               <div className="group flex items-center gap-2">
                 <CalendarDays size={20} className="rounded-full bg-[#eaf3ff] p-1 text-[#1769e0] transition-colors group-hover:bg-[#1769e0] group-hover:text-white" />
-                <span>August 22, 2026</span>
+                <span>{content.date}</span>
               </div>
 
               <span className="hidden h-5 w-px bg-[#dce6f3] sm:block" />
 
               <div className="group flex items-center gap-2">
                 <UserRound size={20} className="rounded-full bg-[#eaf3ff] p-1 text-[#1769e0] transition-colors group-hover:bg-[#1769e0] group-hover:text-white" />
-                <span>By Rahul Mehta</span>
+                <span>{content.authorPrefix} {content.author}</span>
               </div>
 
               <span className="hidden h-5 w-px bg-[#dce6f3] sm:block" />
 
               <div className="group flex items-center gap-2">
                 <FolderOpen size={20} className="rounded-full bg-[#eaf3ff] p-1 text-[#1769e0] transition-colors group-hover:bg-[#1769e0] group-hover:text-white" />
-                <span>Investment Planning</span>
+                <span>{content.category}</span>
               </div>
 
               <span className="hidden h-5 w-px bg-[#dce6f3] sm:block" />
 
               <div className="group flex items-center gap-2">
                 <Clock3 size={20} className="rounded-full bg-[#eaf3ff] p-1 text-[#1769e0] transition-colors group-hover:bg-[#1769e0] group-hover:text-white" />
-                <span>5 Min Read</span>
+                <span>{content.readTime}</span>
               </div>
             </div>
 
             
             <div className="relative mb-5 h-[230px] overflow-hidden rounded-lg sm:h-[320px] md:h-[390px] lg:h-[410px]">
               <Image
-                src="/blogdetail.png"
-                alt="Smart Investment Strategies"
+                src={content.image}
+                alt={content.imageAlt}
                 fill
                 priority
                 className="object-cover"
@@ -53,26 +55,24 @@ const BlogHeroDetail = () => {
             </div>
 
             
-            <p className="mb-4 text-[15px] leading-6 text-[#536b91] sm:text-base sm:leading-7">
-              Investing is one of the most effective ways to build wealth and
-              secure your financial future. However, with so many options
-              available, it can be challenging to know where to start. In this
-              article, we&apos;ll explore practical investment strategies that
-              can help you make informed decisions and stay on track toward
-              your goals.
-            </p>
+            {content.introduction.map((paragraph) => (
+              <p key={paragraph} className="mb-4 text-[15px] leading-6 text-[#536b91] sm:text-base sm:leading-7">
+                {paragraph}
+              </p>
+            ))}
 
-           
-            <h2 className="mb-1 text-xl font-bold text-[#102d63] sm:text-2xl">
-              1. Understand Your Financial Goals
-            </h2>
-
-            <p className="mb-5 text-[15px] leading-6 text-[#536b91] sm:text-base sm:leading-7">
-              Before making any investment, it&apos;s important to define what
-              you want to achieve. Are you saving for retirement, a home, or
-              your children&apos;s education? Clear goals help you choose the
-              right investment options and set a realistic timeline.
-            </p>
+            {content.sections.slice(0, 1).map((section) => (
+              <div key={section.heading}>
+                <h2 className="mb-1 text-xl font-bold text-[#102d63] sm:text-2xl">
+                  {section.heading}
+                </h2>
+                {section.paragraphs.map((paragraph) => (
+                  <p key={paragraph} className="mb-5 text-[15px] leading-6 text-[#536b91] sm:text-base sm:leading-7">
+                    {paragraph}
+                  </p>
+                ))}
+              </div>
+            ))}
 
            
             <div className="mb-6 rounded-lg bg-[#edf6ff] px-5 py-5 sm:px-8 sm:py-6">
@@ -82,52 +82,28 @@ const BlogHeroDetail = () => {
                 </div>
 
                 <p className="pt-1 text-sm font-semibold leading-6 text-[#17417e] sm:text-base">
-                  A goal without a plan is just a wish. Define your goals,
-                  create a strategy, and take consistent action.
+                  {content.quote}
                 </p>
               </div>
             </div>
 
             
-            <h2 className="mb-1 text-xl font-bold text-[#102d63] sm:text-2xl">
-              2. Diversify Your Portfolio
-            </h2>
-
-            <p className="mb-5 text-[15px] leading-6 text-[#536b91] sm:text-base sm:leading-7">
-              Diversification helps reduce risk by spreading your investments
-              across different asset classes such as equities, bonds, mutual
-              funds, and real estate. A well-diversified portfolio can provide
-              more stable returns over the long term.
-            </p>
-
-            
-            <h2 className="mb-1 text-xl font-bold text-[#102d63] sm:text-2xl">
-              3. Focus on Long-Term Growth
-            </h2>
-
-            <p className="mb-5 text-[15px] leading-6 text-[#536b91] sm:text-base sm:leading-7">
-              While short-term gains can be tempting, long-term investing
-              typically offers greater rewards. Staying invested through market
-              fluctuations allows you to benefit from the power of compounding.
-            </p>
-
-            
-            <h2 className="mb-1 text-xl font-bold text-[#102d63] sm:text-2xl">
-              4. Review and Adjust Regularly
-            </h2>
-
-            <p className="mb-5 text-[15px] leading-6 text-[#536b91] sm:text-base sm:leading-7">
-              Your financial situation and market conditions can change over
-              time. Regularly reviewing your portfolio ensures that your
-              investments remain aligned with your goals and risk tolerance.
-            </p>
+            {content.sections.slice(1).map((section) => (
+              <div key={section.heading}>
+                <h2 className="mb-1 text-xl font-bold text-[#102d63] sm:text-2xl">
+                  {section.heading}
+                </h2>
+                {section.paragraphs.map((paragraph) => (
+                  <p key={paragraph} className="mb-5 text-[15px] leading-6 text-[#536b91] sm:text-base sm:leading-7">
+                    {paragraph}
+                  </p>
+                ))}
+              </div>
+            ))}
 
             
             <p className="border-b border-[#dce6f3] pb-5 text-[15px] leading-6 text-[#536b91] sm:text-base sm:leading-7">
-              At PrimeCore, we help individuals and businesses create
-              personalized investment strategies designed for long-term
-              success. If you&apos;re ready to take control of your financial
-              future, get in touch with our experts today.
+              {content.closing}
             </p>
           </article>
 
@@ -136,107 +112,31 @@ const BlogHeroDetail = () => {
 
             <div className="rounded-lg bg-[#f4f8fd] p-5 sm:p-6">
               <h3 className="mb-5 text-xl font-bold text-[#102d63]">
-                Recent Posts
+                {content.recentPostsTitle}
               </h3>
 
               <div className="space-y-5">
+                {content.recentPosts.map((post) => (
+                  <Link key={post.title} href={post.href} className="group flex gap-3">
+                    <div className="relative h-[72px] w-24 shrink-0 overflow-hidden rounded-md sm:h-[82px] sm:w-[120px] xl:w-[135px]">
+                      <Image
+                        src={post.image}
+                        alt={post.title}
+                        fill
+                        className="object-cover transition duration-300 group-hover:scale-105"
+                      />
+                    </div>
 
-                <Link
-                  href="/contact"
-                  className="group flex gap-3"
-                >
-                  <div className="relative h-[72px] w-24 shrink-0 overflow-hidden rounded-md sm:h-[82px] sm:w-[120px] xl:w-[135px]">
-                    <Image
-                      src="/blog1.png"
-                      alt="Smart Investment Strategies"
-                      fill
-                      className="object-cover transition duration-300 group-hover:scale-105"
-                    />
-                  </div>
-
-                  <div>
-                    <h4 className="text-sm font-bold leading-5 text-[#102d63]">
-                      Smart Investment Strategies for a Brighter Future
-                    </h4>
-
-                    <p className="mt-1 text-xs text-[#3982e8]">
-                      August 22, 2026
-                    </p>
-                  </div>
-                </Link>
-
-                <Link
-                  href="/contact"
-                  className="group flex gap-3"
-                >
-                  <div className="relative h-[72px] w-24 shrink-0 overflow-hidden rounded-md sm:h-[82px] sm:w-[120px] xl:w-[135px]">
-                    <Image
-                      src="/blog2.png"
-                      alt="Secure Retirement"
-                      fill
-                      className="object-cover transition duration-300 group-hover:scale-105"
-                    />
-                  </div>
-
-                  <div>
-                    <h4 className="text-sm font-bold leading-5 text-[#102d63]">
-                      How to Plan for a Secure Retirement
-                    </h4>
-
-                    <p className="mt-1 text-xs text-[#3982e8]">
-                      August 15, 2026
-                    </p>
-                  </div>
-                </Link>
-
-                <Link
-                  href="/contact"
-                  className="group flex gap-3"
-                >
-                  <div className="relative h-[72px] w-24 shrink-0 overflow-hidden rounded-md sm:h-[82px] sm:w-[120px] xl:w-[135px]">
-                    <Image
-                      src="/blog3.png"
-                      alt="Build Wealth"
-                      fill
-                      className="object-cover transition duration-300 group-hover:scale-105"
-                    />
-                  </div>
-
-                  <div>
-                    <h4 className="text-sm font-bold leading-5 text-[#102d63]">
-                      Top 5 Ways to Build Wealth in 2026
-                    </h4>
-
-                    <p className="mt-1 text-xs text-[#3982e8]">
-                      August 10, 2026
-                    </p>
-                  </div>
-                </Link>
-
-                <Link
-                  href="/contact"
-                  className="group flex gap-3"
-                >
-                  <div className="relative h-[72px] w-24 shrink-0 overflow-hidden rounded-md sm:h-[82px] sm:w-[120px] xl:w-[135px]">
-                    <Image
-                      src="/service.png"
-                      alt="Smart Tax Planning"
-                      fill
-                      className="object-cover transition duration-300 group-hover:scale-105"
-                    />
-                  </div>
-
-                  <div>
-                    <h4 className="text-sm font-bold leading-5 text-[#102d63]">
-                      A Guide to Smart Tax Planning
-                    </h4>
-
-                    <p className="mt-1 text-xs text-[#3982e8]">
-                      August 05, 2026
-                    </p>
-                  </div>
-                </Link>
-
+                    <div>
+                      <h4 className="text-sm font-bold leading-5 text-[#102d63]">
+                        {post.title}
+                      </h4>
+                      <p className="mt-1 text-xs text-[#3982e8]">
+                        {post.date}
+                      </p>
+                    </div>
+                  </Link>
+                ))}
               </div>
             </div>
 
@@ -249,27 +149,24 @@ const BlogHeroDetail = () => {
                 <div className="mb-3 h-[2px] w-12 bg-[#9ccfff]" />
 
                 <p className="mb-1 text-sm font-medium text-[#dcecff]">
-                  Need Expert Advice?
+                  {content.advice.eyebrow}
                 </p>
 
                 <h3 className="mb-3 text-2xl font-bold leading-8">
-                  Let&apos;s Plan Your
-                  <br />
-                  Financial Future
-                  <br />
-                  Together
+                  {content.advice.titleLines.map((line) => (
+                    <span key={line} className="block">{line}</span>
+                  ))}
                 </h3>
 
                 <p className="mb-5 text-sm leading-5 text-[#dcecff]">
-                  Get in touch with our advisors for personalized investment
-                  guidance.
+                  {content.advice.description}
                 </p>
 
                 <Link
-                  href="/contact"
+                  href={content.advice.href}
                   className="inline-flex w-full items-center justify-center gap-3 rounded-md bg-white px-5 py-3 text-sm font-semibold text-[#1769e0] transition hover:bg-[#f0f6ff] sm:w-auto sm:px-7"
                 >
-                  Get in Touch
+                  {content.advice.buttonText}
                   <ArrowRight size={18} />
                 </Link>
               </div>
@@ -277,24 +174,17 @@ const BlogHeroDetail = () => {
 
             <div className="rounded-lg bg-[#f4f8fd] p-5 sm:p-6">
               <h3 className="mb-4 text-xl font-bold text-[#102d63]">
-                Categories
+                {content.categoriesTitle}
               </h3>
 
               <div className="divide-y divide-[#dce6f3]">
-                {[
-                  "Investment Planning",
-                  "Retirement Planning",
-                  "Wealth Management",
-                  "Tax Planning",
-                  "Financial Tips",
-                  "Market Insights",
-                ].map((category) => (
+                {content.categories.map((category) => (
                   <Link
-                    key={category}
-                    href="/investment"
+                    key={category.name}
+                    href={category.href}
                     className="group -mx-2 flex items-center justify-between rounded-md px-2 py-3 text-sm text-[#31558f] transition-colors hover:bg-[#1769e0] hover:text-white"
                   >
-                    <span>{category}</span>
+                    <span>{category.name}</span>
                     <ArrowRight size={18} className="rounded-full bg-[#eaf3ff] p-1 text-[#1769e0] transition-colors group-hover:bg-white group-hover:text-[#1769e0]" />
                   </Link>
                 ))}

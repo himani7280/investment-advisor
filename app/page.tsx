@@ -8,19 +8,20 @@ import Trusted from './components/home/Trusted'
 import Testimonials from './components/home/Testimonials'
 import BlogsSection from './components/home/BlogsSection'
 import OurPartners from './components/home/OurPartners'
+import MotionReveal from './common/components/MotionReveal'
 
 const page = () => {
   return (
-    <div>
-      <HeroSection/>
-      <AboutSection/>
-      <ServiceSection/>
-      <Whychoose/>
-      <HowItWorks/>
-      <Trusted/>
-      <OurPartners/>
-      <Testimonials/>
-      <BlogsSection/>
+    <div className="overflow-x-clip">
+      <MotionReveal distance={0}><HeroSection/></MotionReveal>
+      <MotionReveal direction="left"><AboutSection/></MotionReveal>
+      <MotionReveal direction="right"><ServiceSection/></MotionReveal>
+      <MotionReveal><Whychoose/></MotionReveal>
+      <MotionReveal direction="left"><HowItWorks/></MotionReveal>
+      <MotionReveal direction="right"><Trusted/></MotionReveal>
+      <MotionReveal><OurPartners/></MotionReveal>
+      <MotionReveal direction="left"><Testimonials/></MotionReveal>
+      <MotionReveal direction="right"><BlogsSection/></MotionReveal>
     </div>
   )
 }

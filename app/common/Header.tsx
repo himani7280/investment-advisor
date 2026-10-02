@@ -6,24 +6,30 @@ import { IoCall } from "react-icons/io5";
 import { FaLinkedinIn, FaFacebookF } from "react-icons/fa";
 import { FaInstagram } from "react-icons/fa6";
 import { BiLogoYoutube } from "react-icons/bi";
+import { investmentContent } from "../data/investmentContent";
+
+const content = investmentContent.siteChrome.header;
+const socialIcons = {
+  LinkedIn: FaLinkedinIn,
+  Facebook: FaFacebookF,
+  Instagram: FaInstagram,
+  YouTube: BiLogoYoutube,
+};
 
 const Header = () => {
   return (
-    <header className="w-full bg-gradient-to-r from-[#477fbd] to-[#3f75b2] text-white">
+    <header className="fixed top-0 z-[60] w-full bg-gradient-to-r from-[#477fbd] to-[#3f75b2] text-white shadow-sm">
       <div
         className="
           mx-auto
           flex
           min-h-[37px]
           w-full
-          max-w-[1400px]
+          max-w-[1440px]
           items-center
           justify-between
           px-3
-          sm:px-5
-          md:px-6
-          lg:px-8
-          xl:px-10
+          sm:px-10
           
         "
       >
@@ -35,7 +41,6 @@ const Header = () => {
             items-center
             gap-2
             py-2
-            pl-2
           "
         >
           <span className="shrink-0 text-[14px] sm:text-[15px] md:text-[16px]">
@@ -53,7 +58,7 @@ const Header = () => {
               lg:text-[14px]
             "
           >
-            Invest Today. A Stronger Tomorrow.
+            {content.tagline}
           </span>
         </div>
 
@@ -64,7 +69,7 @@ const Header = () => {
             <MdMailOutline className="shrink-0 text-[16px]" />
 
             <a
-              href="mailto:info@primecore.com"
+              href={content.emailHref}
               className="
                 whitespace-nowrap
                 text-[12px]
@@ -73,7 +78,7 @@ const Header = () => {
                 lg:text-[13px]
               "
             >
-              info@primecore.com
+              {content.email}
             </a>
           </div>
 
@@ -85,7 +90,7 @@ const Header = () => {
             <IoCall className="shrink-0 text-[15px]" />
 
             <a
-              href="tel:+919876543210"
+              href={content.phoneHref}
               className="
                 whitespace-nowrap
                 text-[12px]
@@ -94,7 +99,7 @@ const Header = () => {
                 lg:text-[13px]
               "
             >
-              +91 98765 43210
+              {content.phone}
             </a>
           </div>
 
@@ -103,9 +108,14 @@ const Header = () => {
 
           {/* Social Icons */}
           <div className="flex items-center gap-3 px-3 lg:gap-4 lg:px-1">
-            <a
-              href="#"
-              aria-label="LinkedIn"
+            {content.socials.map((social) => {
+              const Icon = socialIcons[social.platform as keyof typeof socialIcons];
+
+              return (
+              <a
+              key={social.platform}
+              href={social.href}
+              aria-label={social.platform}
               className="
                 text-[15px]
                 transition-transform
@@ -114,50 +124,10 @@ const Header = () => {
                 lg:text-[16px]
               "
             >
-              <FaLinkedinIn />
+              <Icon />
             </a>
-
-            <a
-              href="#"
-              aria-label="Facebook"
-              className="
-                text-[15px]
-                transition-transform
-                duration-200
-                hover:scale-110
-                lg:text-[16px]
-              "
-            >
-              <FaFacebookF />
-            </a>
-
-            <a
-              href="#"
-              aria-label="Instagram"
-              className="
-                text-[15px]
-                transition-transform
-                duration-200
-                hover:scale-110
-                lg:text-[16px]
-              "
-            >
-              <FaInstagram />
-            </a>
-
-            <a
-              href="#"
-              aria-label="YouTube"
-              className="
-                text-[17px]
-                transition-transform
-                duration-200
-                hover:scale-110
-                lg:text-[18px]
-              "
-            >
-              <BiLogoYoutube />
-            </a>
+              );
+            })}
           </div>
         </div>
       </div>

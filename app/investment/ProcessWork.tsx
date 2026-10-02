@@ -3,6 +3,7 @@
 
 import { useEffect, useState } from "react";
 import Image from "next/image";
+import { investmentContent } from "../data/investmentContent";
 
 type CountUpProps = {
   target: number;
@@ -36,6 +37,8 @@ const CountUp = ({ target, prefix = "", suffix = "" }: CountUpProps) => {
 };
 
 const ProcessWork = () => {
+  const content = investmentContent.processWork;
+
   return (
     <section className="w-full bg-white py-2 sm:pt-4 lg:pt-16">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
@@ -44,8 +47,8 @@ const ProcessWork = () => {
 
           <div className="relative h-[400px] overflow-hidden rounded-lg sm:h-[470px] lg:h-[490px]">
             <Image
-              src="/experience.png"
-              alt="Investment planning discussion"
+              src={content.image}
+              alt={content.imageAlt}
               fill
               priority
               className="object-cover"
@@ -55,15 +58,11 @@ const ProcessWork = () => {
               <div className="mb-2 h-7 w-[3px] bg-[#1769e0]" />
 
               <h3 className="text-xl font-bold leading-6 text-[#102e65]">
-                Your Goals
-                <br />
-                Our Commitment
+                <span className="whitespace-pre-line">{content.imageTitle}</span>
               </h3>
 
               <p className="mt-2 text-sm leading-5 text-[#5c7397]">
-                A disciplined approach for
-                <br />
-                a brighter financial future.
+                <span className="whitespace-pre-line">{content.imageDescription}</span>
               </p>
             </div>
           </div>
@@ -71,15 +70,14 @@ const ProcessWork = () => {
           <div className="rounded-lg bg-[#f3f8ff] px-6 py-7 sm:px-8 sm:py-8 lg:px-7 lg:py-7">
 
             <h2 className="text-3xl font-bold leading-tight text-[#102e65] sm:text-4xl">
-              Why Our{" "}
+              {content.titleStart}{" "}
               <span className="text-[#1769e0]">
-                Process Works
+                {content.titleHighlight}
               </span>
             </h2>
 
             <p className="mt-2 max-w-xl text-sm leading-6 text-[#61799e] sm:text-base sm:leading-7">
-              Our structured approach ensures clarity, confidence, and
-              consistency at every step of your investment journey.
+              {content.description}
             </p>
 
             <div className="mt-6 space-y-5 sm:mt-7 sm:space-y-6">
@@ -136,11 +134,11 @@ const ProcessWork = () => {
 
                 <div>
                   <h3 className="text-base font-bold text-[#102e65] sm:text-lg">
-                    Client-Centric Approach
+                    {content.features[0].title}
                   </h3>
 
                   <p className="mt-1 text-sm leading-5 text-[#61799e]">
-                    Your goals and needs are always our top priority.
+                    {content.features[0].description}
                   </p>
                 </div>
               </div>
@@ -169,11 +167,11 @@ const ProcessWork = () => {
 
                 <div>
                   <h3 className="text-base font-bold text-[#102e65] sm:text-lg">
-                    Data-Driven Strategies
+                    {content.features[1].title}
                   </h3>
 
                   <p className="mt-1 text-sm leading-5 text-[#61799e]">
-                    We use insights and analysis to make informed decisions.
+                    {content.features[1].description}
                   </p>
                 </div>
               </div>
@@ -204,11 +202,11 @@ const ProcessWork = () => {
 
                 <div>
                   <h3 className="text-base font-bold text-[#102e65] sm:text-lg">
-                    Transparent Communication
+                    {content.features[2].title}
                   </h3>
 
                   <p className="mt-1 text-sm leading-5 text-[#61799e]">
-                    You stay informed at every step.
+                    {content.features[2].description}
                   </p>
                 </div>
               </div>
@@ -251,12 +249,11 @@ const ProcessWork = () => {
 
                 <div>
                   <h3 className="text-base font-bold text-[#102e65] sm:text-lg">
-                    Long-Term Partnership
+                    {content.features[3].title}
                   </h3>
 
                   <p className="mt-1 text-sm leading-5 text-[#61799e]">
-                    We are committed to your financial well-being, today and
-                    tomorrow.
+                    {content.features[3].description}
                   </p>
                 </div>
               </div>
@@ -269,11 +266,11 @@ const ProcessWork = () => {
 
           <div className="relative flex flex-col items-center justify-center px-4 py-5 text-center sm:py-6">
             <h3 className="text-3xl font-bold text-[#1769e0] sm:text-4xl">
-              <CountUp target={500} suffix="+" />
+              <CountUp target={content.stats[0].target} suffix={content.stats[0].suffix} />
             </h3>
 
             <p className="mt-1 text-sm font-medium text-[#17376d] sm:text-base">
-              Happy Clients
+              {content.stats[0].label}
             </p>
 
             <span className="absolute right-0 top-1/2 hidden h-16 w-[2px] -translate-y-1/2 bg-[#b9d8ff] sm:block" />
@@ -281,11 +278,11 @@ const ProcessWork = () => {
 
           <div className="relative flex flex-col items-center justify-center px-4 py-5 text-center sm:py-6">
             <h3 className="text-3xl font-bold text-[#1769e0] sm:text-4xl">
-              <CountUp target={15} suffix="+" />
+              <CountUp target={content.stats[1].target} suffix={content.stats[1].suffix} />
             </h3>
 
             <p className="mt-1 text-sm font-medium text-[#17376d] sm:text-base">
-              Years of Experience
+              {content.stats[1].label}
             </p>
 
             <span className="absolute right-0 top-1/2 hidden h-16 w-[2px] -translate-y-1/2 bg-[#b9d8ff] sm:block" />
@@ -293,11 +290,11 @@ const ProcessWork = () => {
 
           <div className="relative flex flex-col items-center justify-center px-4 py-5 text-center sm:py-6">
             <h3 className="text-3xl font-bold text-[#1769e0] sm:text-4xl">
-              <CountUp target={98} suffix="%" />
+              <CountUp target={content.stats[2].target} suffix={content.stats[2].suffix} />
             </h3>
 
             <p className="mt-1 text-sm font-medium text-[#17376d] sm:text-base">
-              Client Satisfaction
+              {content.stats[2].label}
             </p>
 
             <span className="absolute right-0 top-1/2 hidden h-16 w-[2px] -translate-y-1/2 bg-[#b9d8ff] sm:block" />
@@ -305,11 +302,11 @@ const ProcessWork = () => {
 
           <div className="flex flex-col items-center justify-center px-4 py-5 text-center sm:py-6">
             <h3 className="text-3xl font-bold text-[#1769e0] sm:text-4xl">
-              <CountUp target={1200} prefix="₹" suffix=" Cr+" />
+              <CountUp target={content.stats[3].target} prefix={content.stats[3].prefix} suffix={content.stats[3].suffix} />
             </h3>
 
             <p className="mt-1 text-sm font-medium text-[#17376d] sm:text-base">
-              Assets Under Guidance
+              {content.stats[3].label}
             </p>
           </div>
 

@@ -4,80 +4,10 @@
 import React, { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
+import { investmentContent } from "../data/investmentContent";
 
-// ================= FAQ DATA =================
-const faqsData = [
-  {
-    id: 1,
-    number: "01",
-    question: "What services does PrimeCore offer?",
-    answer:
-      "We offer a comprehensive range of investment advisory services including wealth management, retirement planning, financial planning, tax planning, estate planning, and risk management. Our solutions are tailored to meet the unique goals and needs of each client.",
-  },
-  {
-    id: 2,
-    number: "02",
-    question: "How do I get started with PrimeCore?",
-    answer:
-      "Getting started is easy. Simply reach out to us through our contact form or give us a call. We will schedule an initial consultation to understand your financial goals and recommend a tailored strategy.",
-  },
-  {
-    id: 3,
-    number: "03",
-    question: "Are your investment strategies suitable for long-term goals?",
-    answer:
-      "Absolutely. Our investment strategies are designed with a long-term perspective in mind, focusing on sustainable growth and wealth preservation aligned with your future objectives.",
-  },
-  {
-    id: 4,
-    number: "04",
-    question: "What makes PrimeCore different from other advisory firms?",
-    answer:
-      "We pride ourselves on transparency, personalized service, and a client-first approach. Unlike many firms, we take the time to deeply understand your unique situation before recommending any financial products.",
-  },
-  {
-    id: 5,
-    number: "05",
-    question: "Do you offer personalized financial plans?",
-    answer:
-      "Yes, every financial plan we create is 100% personalized. We analyze your income, expenses, risk tolerance, and future goals to build a strategy that works specifically for you.",
-  },
-  {
-    id: 6,
-    number: "06",
-    question: "How do you manage risk in investments?",
-    answer:
-      "We use a diversified approach to risk management, spreading investments across various asset classes based on your risk profile. We also conduct regular portfolio reviews to ensure alignment with market conditions and your goals.",
-  },
-  {
-    id: 7,
-    number: "07",
-    question: "Can you help with retirement planning?",
-    answer:
-      "Yes, retirement planning is one of our core services. We help you estimate future expenses, optimize your savings, and choose the right retirement accounts to ensure a comfortable post-retirement life.",
-  },
-  {
-    id: 8,
-    number: "08",
-    question: "What is the minimum investment amount?",
-    answer:
-      "Our minimum investment requirements vary depending on the specific services and strategies. Please contact us directly to discuss your situation and find a plan that fits your budget.",
-  },
-  {
-    id: 9,
-    number: "09",
-    question: "How often will I receive updates on my investments?",
-    answer:
-      "You will receive regular quarterly reports, as well as annual comprehensive reviews. Additionally, we provide timely updates whenever there are significant market shifts or changes to your portfolio.",
-  },
-  {
-    id: 10,
-    number: "10",
-    question: "Do you provide support for tax planning?",
-    answer:
-      "Yes, we offer integrated tax planning services to help minimize your tax liability and maximize your returns, ensuring your investment strategy is tax-efficient.",
-  },
-];
+const content = investmentContent.faq;
+const faqsData = content.faqs;
 
 // ================= FAQ COMPONENT =================
 const Faq = () => {
@@ -97,21 +27,19 @@ const Faq = () => {
             <div className="h-[2px] w-10 bg-blue-600 sm:w-12" />
 
             <span className="text-xs font-semibold uppercase tracking-wider text-gray-500 sm:text-sm">
-              FAQs
+              {content.badge}
             </span>
 
             <div className="h-[2px] w-10 bg-blue-600 sm:w-12" />
           </div>
 
           <h2 className="mb-3 text-3xl font-extrabold tracking-tight text-gray-900 sm:text-4xl lg:text-5xl">
-            Your Questions,{" "}
-            <span className="text-blue-600">Our Answers</span>
+            {content.titleStart}{" "}
+            <span className="text-blue-600">{content.titleHighlight}</span>
           </h2>
 
           <p className="text-sm leading-6 text-gray-500 sm:text-base">
-            We&apos;ve answered some of the most common questions to help you
-            better understand our services and how we can support your
-            financial goals.
+            {content.description}
           </p>
         </div>
 
@@ -221,13 +149,12 @@ const Faq = () => {
             {/* ================= CONTACT CARD ================= */}
             <div className="rounded-2xl bg-blue-50/50 p-5 sm:p-7">
               <h3 className="mb-2 text-xl font-extrabold text-gray-900 sm:text-2xl">
-                Still Have{" "}
-                <span className="text-blue-600">Questions?</span>
+                {content.contact.titleStart}{" "}
+                <span className="text-blue-600">{content.contact.titleHighlight}</span>
               </h3>
 
               <p className="mb-6 text-sm leading-6 text-gray-500">
-                Our team is here to help you. Get in touch and we&apos;ll be
-                happy to assist you.
+                {content.contact.description}
               </p>
 
               {/* CONTACT METHODS */}
@@ -253,10 +180,10 @@ const Faq = () => {
 
                   <div className="flex flex-col">
                     <span className="text-sm font-bold text-gray-900">
-                      Call Us
+                      {content.contact.phoneLabel}
                     </span>
                     <span className="text-sm text-gray-500">
-                      +91 98765 43210
+                      {content.contact.phone}
                     </span>
                   </div>
                 </div>
@@ -281,10 +208,10 @@ const Faq = () => {
 
                   <div className="flex min-w-0 flex-col">
                     <span className="text-sm font-bold text-gray-900">
-                      Email Us
+                      {content.contact.emailLabel}
                     </span>
                     <span className="break-all text-sm text-gray-500">
-                      info@primecoreadvisors.com
+                      {content.contact.email}
                     </span>
                   </div>
                 </div>
@@ -309,10 +236,10 @@ const Faq = () => {
 
                   <div className="flex flex-col">
                     <span className="text-sm font-bold text-gray-900">
-                      Live Chat
+                      {content.contact.chatLabel}
                     </span>
                     <span className="text-sm text-gray-500">
-                      Chat with our support team
+                      {content.contact.chatDescription}
                     </span>
                   </div>
                 </div>
@@ -320,10 +247,10 @@ const Faq = () => {
 
               {/* CTA */}
               <Link
-                href="/contact"
+                href={content.contact.buttonLink}
                 className="flex w-full items-center justify-center gap-2 rounded-lg bg-blue-600 px-5 py-3.5 text-sm font-semibold text-white transition-colors hover:bg-blue-700 sm:px-6"
               >
-                Get in Touch
+                {content.contact.buttonText}
 
                 <svg
                   className="h-4 w-4"
@@ -345,8 +272,8 @@ const Faq = () => {
             <div className="relative min-h-[280px] overflow-hidden rounded-2xl bg-gray-900 sm:min-h-[340px] lg:min-h-[400px]">
 
               <Image
-                src="/faq.png"
-                alt="Financial Advisor"
+                src={content.promo.image}
+                alt={content.promo.imageAlt}
                 fill
                 priority
                 className="object-cover object-center opacity-80"
@@ -359,13 +286,13 @@ const Faq = () => {
               {/* TEXT */}
               <div className="absolute inset-0 flex flex-col justify-end p-6 sm:p-8">
                 <h3 className="mb-4 text-2xl font-bold leading-tight text-white sm:text-[28px]">
-                  Let&apos;s Build a Brighter Financial Future
+                  {content.promo.title}
                 </h3>
 
                 <div className="mb-4 h-[2px] w-8 bg-blue-500" />
 
                 <p className="text-sm leading-6 text-gray-300">
-                  Expert guidance for every step of your journey.
+                  {content.promo.description}
                 </p>
               </div>
             </div>

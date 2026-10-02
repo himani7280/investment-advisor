@@ -1,6 +1,7 @@
 "use client";
 
 import React, { createContext, ReactNode } from "react";
+import { investmentContent } from "../data/investmentContent";
 
 interface HeroData {
   title: string;
@@ -53,90 +54,7 @@ interface HeroProviderProps {
 }
 
 const HeroProvider = ({ children }: HeroProviderProps) => {
-  const heroData: HeroContextType = {
-    about: {
-      title: "About Us",
-      image: "/banner.png",
-    },
-
-    contact: {
-      title: "Contact Us",
-      image: "/banner.png",
-    },
-
-    blog: {
-      title: "Blogs",
-      image: "/banner.png",
-    },
-
-    service: {
-      title: "Our Services",
-      image: "/banner.png",
-    },
-
-    investment: {
-      title: "Investment Process",
-      image: "/banner.png",
-    },
-
-    BlogDetail: {
-      title: "Blog Detail",
-      image: "/banner.png",
-    },
-
-    serviceDetail: {
-      title: "Service Detail",
-      image: "/banner.png",
-    },
-
-    missionVision: {
-      title: "Mission & Vision",
-      image: "/banner.png",
-    },
-
-    whyChooseUs: {
-      title: "Why Choose Us",
-      image: "/banner.png",
-    },
-
-    ourTeam: {
-      title: "Our Team",
-      image: "/banner.png",
-    },
-
-    teamDetails: {
-      title: "Team Detail",
-      image: "/banner.png",
-    },
-
-    ourPartners: {
-      title: "Our Partners",
-      image: "/banner.png",
-    },
-
-    testimonials: {
-      title: "Testimonials",
-      image: "/banner.png",
-    },
-
-    faqs: {
-      title: "FAQ",
-      image: "/banner.png",
-    },
-
-    awards: {
-      title: "Awards & Achievements",
-      image: "/banner.png",
-    },
-    privacyPolicy: {
-      title: "Privacy & Policy",
-      image: "/banner.png",
-    },
-    bookConsultation: {
-      title: "Book Consultation",
-      image: "/banner.png",
-    },
-  };
+  const heroData: HeroContextType = investmentContent.heroes;
 
   return (
     <HeroContext.Provider value={heroData}>

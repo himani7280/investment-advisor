@@ -1,7 +1,6 @@
 "use client";
 
 import Image from "next/image";
-import image from "../../../public/hero.png";
 import Link from "next/link";
 import {
   ArrowRight,
@@ -10,32 +9,24 @@ import {
   Users,
 } from "lucide-react";
 import { motion } from "framer-motion";
+import { investmentContent } from "../../data/investmentContent";
 
-const features = [
-  {
-    icon: BarChart3,
-    title: "Personalized Strategies",
-    description: "Tailored to your unique goals.",
-  },
-  {
-    icon: ShieldCheck,
-    title: "Trusted Expertise",
-    description: "Guidance from experienced financial advisors.",
-  },
-  {
-    icon: Users,
-    title: "Long-Term Focus",
-    description: "Building sustainable wealth for future generations.",
-  },
-];
+const featureIcons = [BarChart3, ShieldCheck, Users];
+const content = investmentContent.homeHero;
+const features = content.features.map((feature, index) => ({
+  ...feature,
+  icon: featureIcons[index],
+}));
 
 // Animation variants
-const fadeInUp = {
-  hidden: { opacity: 0, y: 20 },
-  visible: { 
-    opacity: 1, 
+const fadeIn = {
+  hidden: { opacity: 0, x: 0, y: 0, rotate: 0 },
+  visible: {
+    opacity: 1,
+    x: 0,
     y: 0,
-    transition: { duration: 0.6, ease: [0.22, 1, 0.36, 1] }
+    rotate: 0,
+    transition: { duration: 0.6, ease: [0.22, 1, 0.36, 1] as const }
   },
 };
 
@@ -51,10 +42,12 @@ const staggerContainer = {
 };
 
 const featureContainer = {
-  hidden: { opacity: 0, y: 20 },
+  hidden: { opacity: 0, x: 0, y: 0, rotate: 0 },
   visible: {
     opacity: 1,
+    x: 0,
     y: 0,
+    rotate: 0,
     transition: {
       duration: 0.5,
       staggerChildren: 0.1,
@@ -65,18 +58,18 @@ const featureContainer = {
 
 const HeroSection = () => {
   return (
-    <section className="relative w-full overflow-hidden bg-white">
+    <section className="home-hero relative w-full overflow-hidden bg-white">
 
       {/* Image wrapper - right side focused */}
       <motion.div 
-        initial={{ opacity: 0, scale: 1.05 }}
-        animate={{ opacity: 1, scale: 1 }}
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
         transition={{ duration: 1, ease: "easeOut" }}
-        className="absolute inset-y-0 right-0 w-[55%] sm:w-[50%] lg:w-[65%] xl:w-[50%]"
+        className="absolute top-0 right-0 bottom-0 w-[55%] sm:w-[50%] lg:w-[65%] xl:w-[65%]"
       >
         <Image
-          src={image}
-          alt="PrimeCore Investment Advisor"
+          src={content.image}
+          alt={content.imageAlt}
           fill
           priority
           className="object-cover object-[80%_center] sm:object-right"
@@ -135,7 +128,7 @@ const HeroSection = () => {
             "
           >
             <motion.p
-              variants={fadeInUp}
+              variants={fadeIn}
               className="
                 mb-3
                 text-[9px]
@@ -146,22 +139,25 @@ const HeroSection = () => {
                 sm:tracking-[4px]
               "
             >
-              SMART INVESTMENTS. BRIGHTER POSSIBILITIES.
+              {content.badge}
             </motion.p>
 
             <motion.div 
-              variants={fadeInUp}
+              variants={fadeIn}
               className="mb-4 h-[2px] w-[34px] bg-[#2d6fc4]" 
             />
 
             <motion.h1
-              variants={fadeInUp}
+              variants={fadeIn}
               className="
                 max-w-[530px]
                 text-[37px]
                 font-bold
+                not-italic
+                rotate-0
+                skew-x-0
                 leading-[1.10]
-                tracking-[-1.5px]
+                tracking-normal
                 text-[#07152f]
 
                 sm:text-[42px]
@@ -169,21 +165,21 @@ const HeroSection = () => {
                 xl:text-[52px]
               "
             >
-              Build Wealth
+              {content.titleStart}
               <br />
 
-              with{" "}
+              {content.titleBeforeHighlight}{" "}
               <span className="text-[#2d6fc4]">
-                Clarity
+                {content.titleHighlight}
               </span>
 
               <br />
 
-              and Confidence.
+              {content.titleEnd}
             </motion.h1>
 
             <motion.p
-              variants={fadeInUp}
+              variants={fadeIn}
               className="
                 mt-4
                 w-[300px]
@@ -196,13 +192,12 @@ const HeroSection = () => {
                 lg:text-[15px]
               "
             >
-              At PrimeCore, we provide expert investment advisory
-              services designed to help you achieve your financial goals.
+              {content.description}
             </motion.p>
 
             {/* BUTTONS CONTAINER: Vertical on <400px, Horizontal on >=400px */}
             <motion.div
-              variants={fadeInUp}
+              variants={fadeIn}
               className="
                 mt-5
                 flex
@@ -213,7 +208,7 @@ const HeroSection = () => {
             >
 
               <Link
-                href="/consultation"
+                href={content.primaryLink}
                 className="
                   flex h-[41px]
                   w-full
@@ -233,7 +228,7 @@ const HeroSection = () => {
                   min-[400px]:w-[215px]
                 "
               >
-                Book a Consultation
+                {content.primaryButton}
 
                 <ArrowRight
                   size={16}
@@ -242,7 +237,7 @@ const HeroSection = () => {
               </Link>
 
               <Link
-                href="/services"
+                href={content.secondaryLink}
                 className="
                   flex h-[41px]
                   w-full
@@ -263,7 +258,7 @@ const HeroSection = () => {
                   min-[400px]:w-[195px]
                 "
               >
-                Explore Our Services
+                {content.secondaryButton}
               </Link>
 
             </motion.div>
@@ -314,7 +309,7 @@ const HeroSection = () => {
                 return (
                   <motion.div
                     key={feature.title}
-                    variants={fadeInUp}
+                    variants={fadeIn}
                     className={`
                       flex
                       min-h-[68px]
@@ -341,6 +336,7 @@ const HeroSection = () => {
                           `
                           : ""
                       }
+                      ${index === 1 ? "sm:pt-[14px] lg:pt-[16px]" : ""}
                     `}
                   >
 

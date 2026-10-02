@@ -1,43 +1,63 @@
 "use client";
 
+import { useEffect, useState } from "react";
 import {
   Users,
   FileText,
   Trophy,
   Handshake,
 } from "lucide-react";
+import { investmentContent } from "../../data/investmentContent";
 
-const stats = [
-  {
-    icon: Users,
-    number: "500+",
-    label: "Happy Clients",
-  },
-  {
-    icon: FileText,
-    number: "1,200+",
-    label: "Projects Completed",
-  },
-  {
-    icon: Trophy,
-    number: "30+",
-    label: "Years of Experience",
-  },
-  {
-    icon: Handshake,
-    number: "98%",
-    label: "Client Satisfaction",
-  },
-];
+const content = investmentContent.trusted;
+const statIcons = { Users, FileText, Trophy, Handshake };
+const stats = content.stats.map((stat) => ({
+  ...stat,
+  icon: statIcons[stat.icon as keyof typeof statIcons],
+}));
+
+const formatDisplayValue = (value: number, raw: string) => {
+  const suffix = raw.includes("%") ? "%" : raw.includes("+") ? "+" : "";
+  const formatted = new Intl.NumberFormat("en-US").format(value);
+  return `${formatted}${suffix}`;
+};
+
+const AnimatedCounter = ({ value }: { value: string }) => {
+  const [count, setCount] = useState(1);
+
+  useEffect(() => {
+    const target = Number(value.replace(/[^\d]/g, "")) || 1;
+    let animationFrame = 0;
+    const duration = 1200;
+    const start = performance.now();
+
+    const updateValue = (timestamp: number) => {
+      const progress = Math.min((timestamp - start) / duration, 1);
+      const eased = 1 - Math.pow(1 - progress, 3);
+      const current = Math.max(1, Math.round(target * eased));
+      setCount(current);
+
+      if (progress < 1) {
+        animationFrame = requestAnimationFrame(updateValue);
+      }
+    };
+
+    animationFrame = requestAnimationFrame(updateValue);
+
+    return () => cancelAnimationFrame(animationFrame);
+  }, [value]);
+
+  return <span>{formatDisplayValue(count, value)}</span>;
+};
 
 const Trusted = () => {
   return (
-    <section className="relative w-full overflow-hidden pt-6 sm:pt-8 lg:pt-8 top-16 pb-16 ">
+    <section className="relative w-full overflow-hidden py-8">
 
       {/* ================= BACKGROUND IMAGE ================= */}
       <div className="absolute inset-0">
         <img
-          src="/building.png"
+          src={content.image}
           alt=""
           className="
             h-full
@@ -101,7 +121,7 @@ const Trusted = () => {
                 sm:tracking-[4px]
               "
             >
-              OUR IMPACT IN NUMBERS
+              {content.badge}
             </span>
 
             <span className="h-[1px] w-[40px] bg-white/75" />
@@ -121,9 +141,9 @@ const Trusted = () => {
               xl:text-[38px]
             "
           >
-            Trusted Today,{" "}
+            {content.titleStart}{" "}
             <span className="text-[#4c9df5]">
-              Building A Brighter Tomorrow
+              {content.titleHighlight}
             </span>
           </h2>
 
@@ -139,10 +159,7 @@ const Trusted = () => {
               lg:text-[12px]
             "
           >
-            Our numbers reflect the trust of our clients, the strength
-            of our partnerships,
-            <br className="hidden sm:block" />
-            and our commitment to creating real growth.
+            {content.description}
           </p>
         </div>
 
@@ -230,7 +247,7 @@ const Trusted = () => {
                     sm:text-[36px]
                   "
                 >
-                  {stat.number}
+                  <AnimatedCounter value={stat.number} />
                 </h3>
 
                 {/* Label */}

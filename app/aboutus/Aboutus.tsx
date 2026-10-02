@@ -1,7 +1,10 @@
 import Image from "next/image";
+import { investmentContent } from "../data/investmentContent";
 
 
 const Aboutus = () => {
+  const content = investmentContent.aboutPage;
+
   return (
     <section
       className="
@@ -19,9 +22,9 @@ const Aboutus = () => {
           mx-auto
           w-full
           max-w-7xl
-          px-5
-          sm:px-8
-          lg:px-10
+          px-4
+          sm:px-6
+          lg:px-5
         "
       >
         <div
@@ -41,11 +44,11 @@ const Aboutus = () => {
               mx-auto
               h-full
               w-full
-             p-4
+              p-2
             "
           >
             {/* Main Image */}
-           <div className="relative mx-auto w-full max-w-[570px]">
+           <div className="relative mx-auto w-full max-w-[570px] -translate-y-2.5 sm:-translate-y-4">
             <div
               className="
                 relative
@@ -58,13 +61,24 @@ const Aboutus = () => {
               "
             >
               <Image
-                src='/about.png'
-                alt="PrimeCore Investment Advisors"
+                src={content.image}
+                alt={content.imageAlt}
                 fill
                 priority
                 sizes="(max-width: 768px) 100vw, 50vw"
-                className="object-cover object-center"
+                className="scale-[1.08] object-cover object-top"
               />
+
+              <div className="absolute bottom-4 right-4 z-10 flex h-[110px] w-[150px] items-center justify-center rounded-[18px] bg-[#0d5bd7] shadow-xl sm:bottom-6 sm:right-6 sm:h-[130px] sm:w-[180px]">
+                <div className="text-center text-white">
+                  <div className="text-[28px] font-bold leading-none sm:text-[42px]">30+</div>
+                  <div className="mt-1 text-[12px] font-medium leading-tight sm:text-[16px]">
+                    Years of
+                    <br />
+                    Experience
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
           </div>
@@ -99,7 +113,7 @@ const Aboutus = () => {
                   text-blue-600
                 "
               >
-                ABOUT US
+                {content.badge}
               </span>
             </div>
 
@@ -118,11 +132,11 @@ const Aboutus = () => {
                 xl:text-[42px]
               "
             >
-              Empowering Businesses
+              {content.titleStart}
               <br />
-              To Grow{" "}
+              {content.titleMiddle}{" "}
               <span className="text-blue-600">
-                Smarter
+                {content.titleHighlight}
               </span>
             </h2>
 
@@ -143,30 +157,15 @@ const Aboutus = () => {
               "
             >
               <p>
-                At PrimeCore, we are committed to helping businesses
-                and individuals make informed financial decisions.
-                With deep market knowledge and a client-first
-                approach, we provide tailored investment advisory
-                solutions designed to create long-term value and
-                sustainable growth.
+                {content.description}
               </p>
 
               <p>
-                At PrimeCore, we are committed to helping businesses
-                and individuals make informed financial decisions.
-                With deep market knowledge and a client-first
-                approach, we provide tailored investment advisory
-                solutions designed to create long-term value and
-                sustainable growth.
+                {content.description}
               </p>
 
               <p>
-                At PrimeCore, we are committed to helping businesses
-                and individuals make informed financial decisions.
-                With deep market knowledge and a client-first
-                approach, we provide tailored investment advisory
-                solutions designed to create long-term value and
-                sustainable growth.
+                {content.description}
               </p>
             </div>
           </div>

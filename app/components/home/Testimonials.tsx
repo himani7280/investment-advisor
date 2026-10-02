@@ -9,59 +9,13 @@ import {
   ArrowRight,
   Quote 
 } from "lucide-react";
+import { investmentContent } from "../../data/investmentContent";
 
-const testimonials = [
-  {
-    id: 1,
-    name: "Rahul Mehta",
-    role: "BUSINESS OWNER",
-    image: "/profile1.png",
-    mainImage: "/testimonials.png",
-    rating: 4,
-    quote:
-      "The team provided exceptional support and guidance throughout the entire process. Their expertise and professionalism made everything simple and hassle-free. Highly recommended!",
-  },
-  {
-    id: 2,
-    name: "Priya Sharma",
-    role: "ENTREPRENEUR",
-    image: "/profile2.png",
-    mainImage: "/testimonials.png",
-    rating: 5,
-    quote:
-      "Their personalized approach and attention to detail made a real difference. The entire experience was smooth, transparent, and focused on achieving our goals.",
-  },
-  {
-    id: 3,
-    name: "Ananya Kapoor",
-    role: "COMPANY DIRECTOR",
-    image: "/profile3.png",
-    mainImage: "/testimonials.png",
-    rating: 5,
-    quote:
-      "I truly appreciated the team's professionalism and commitment. They understood our requirements and provided practical solutions at every step.",
-  },
-  {
-    id: 4,
-    name: "Arjun Malhotra",
-    role: "INVESTOR",
-    image: "/profile4.png",
-    mainImage: "/testimonials.png",
-    rating: 4,
-    quote:
-      "The guidance we received was clear, reliable, and easy to understand. Their team made the entire process comfortable and straightforward.",
-  },
-  {
-    id: 5,
-    name: "Neha Verma",
-    role: "BUSINESS CONSULTANT",
-    image: "/profile.png",
-    mainImage: "/testimonials.png",
-    rating: 5,
-    quote:
-      "Excellent communication and strong expertise. They stayed involved throughout the process and delivered exactly what we needed.",
-  },
-];
+const content = investmentContent.testimonials;
+const testimonials = content.items.map((item) => ({
+  ...item,
+  mainImage: content.mainImage,
+}));
 
 const Testimonials = () => {
   const [current, setCurrent] = useState(0);
@@ -81,8 +35,8 @@ const Testimonials = () => {
   };
 
   return (
-    <section className="relative w-full overflow-hidden bg-white pt-6 sm:pt-8 lg:pt-16 ">
-      <div className="mx-auto grid min-h-[500px] max-w-[1400px] grid-cols-1 lg:grid-cols-[45%_55%]">
+    <section className="relative w-full overflow-hidden bg-white pt-2 pb-2 sm:pt-3 sm:pb-3 lg:pt-3 lg:pb-3 ">
+      <div className="grid min-h-[500px] w-full grid-cols-1 lg:grid-cols-[45%_55%]">
 
        
 
@@ -97,7 +51,6 @@ const Testimonials = () => {
             src={testimonial.mainImage}
             alt={testimonial.name}
             fill
-            priority
             sizes="(max-width: 1024px) 100vw, 45vw"
             className="object-cover object-center transition-all duration-500"
           />
@@ -207,7 +160,7 @@ const Testimonials = () => {
                   sm:text-[10px]
                 "
               >
-                TESTIMONIALS
+                {content.badge}
               </span>
             </div>
 
@@ -223,10 +176,10 @@ const Testimonials = () => {
                 lg:text-[52px]
               "
             >
-              What Our
+              {content.titleStart}
               <br />
               <span className="text-[#126ce4]">
-                Clients Say
+                {content.titleHighlight}
               </span>
             </h2>
 
@@ -331,7 +284,7 @@ const Testimonials = () => {
                 onClick={previousSlide}
                 whileHover={{ scale: 1.06 }}
                 whileTap={{ scale: 0.94 }}
-                aria-label="Previous testimonial"
+                aria-label={content.previousLabel}
                 className="
                   flex
                   h-[43px]
@@ -344,11 +297,13 @@ const Testimonials = () => {
                   bg-white
                   text-[#2776df]
                   shadow-[0_3px_10px_rgba(30,100,180,0.05)]
-                  transition
-                  hover:bg-[#eef6ff]
+                  transition-all
+                  duration-200
+                  hover:bg-[#1471df]
+                  hover:text-white
                 "
               >
-                <ArrowLeft size={18} strokeWidth={1.8} />
+                <ArrowLeft size={18} strokeWidth={1.8} className="transition-colors duration-200" />
               </motion.button>
 
               <div
@@ -370,7 +325,7 @@ const Testimonials = () => {
                 onClick={nextSlide}
                 whileHover={{ scale: 1.06 }}
                 whileTap={{ scale: 0.94 }}
-                aria-label="Next testimonial"
+                aria-label={content.nextLabel}
                 className="
                   flex
                   h-[43px]
@@ -383,11 +338,13 @@ const Testimonials = () => {
                   bg-white
                   text-[#2776df]
                   shadow-[0_3px_10px_rgba(30,100,180,0.05)]
-                  transition
-                  hover:bg-[#eef6ff]
+                  transition-all
+                  duration-200
+                  hover:bg-[#1471df]
+                  hover:text-white
                 "
               >
-                <ArrowRight size={18} strokeWidth={1.8} />
+                <ArrowRight size={18} strokeWidth={1.8} className="transition-colors duration-200" />
               </motion.button>
             </div>
           </motion.div>
@@ -490,7 +447,7 @@ const Testimonials = () => {
                   text-[#a2aec0]
                 "
               >
-                REAL STORIES
+                {content.sideLabels[0]}
               </p>
 
               <p
@@ -501,7 +458,7 @@ const Testimonials = () => {
                   text-[#a2aec0]
                 "
               >
-                REAL IMPACT
+                {content.sideLabels[1]}
               </p>
             </div>
 

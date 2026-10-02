@@ -1,9 +1,7 @@
-const processSteps = [
+import { investmentContent } from "../data/investmentContent";
+
+const processStepIcons = [
   {
-    number: "01",
-    title: "Understand",
-    description:
-      "We learn about your financial goals, current situation, and future aspirations.",
     icon: (
       <svg
         width="42"
@@ -26,10 +24,6 @@ const processSteps = [
     ),
   },
   {
-    number: "02",
-    title: "Plan",
-    description:
-      "We analyze your needs and create a personalized investment strategy.",
     icon: (
       <svg
         width="42"
@@ -60,10 +54,6 @@ const processSteps = [
     ),
   },
   {
-    number: "03",
-    title: "Implement",
-    description:
-      "We put your plan into action with the right investment solutions.",
     icon: (
       <svg
         width="44"
@@ -81,10 +71,6 @@ const processSteps = [
     ),
   },
   {
-    number: "04",
-    title: "Monitor",
-    description:
-      "We continuously track performance and make adjustments as needed.",
     icon: (
       <svg
         width="44"
@@ -114,10 +100,6 @@ const processSteps = [
     ),
   },
   {
-    number: "05",
-    title: "Grow",
-    description:
-      "We help you stay on track to achieve long-term financial success.",
     icon: (
       <svg
         width="44"
@@ -164,6 +146,10 @@ const processSteps = [
   },
 ];
 
+const processSteps = investmentContent.investmentProcess.steps.map(
+  (step, index) => ({ ...step, icon: processStepIcons[index].icon }),
+);
+
 const OurProcess = () => {
   return (
     <section className="w-full bg-white pt-12 sm:pt-14 lg:pt-16">
@@ -176,25 +162,21 @@ const OurProcess = () => {
             <span className="h-[2px] w-14 bg-[#5b9df9] sm:w-18" />
 
             <span className="text-sm font-semibold tracking-wide text-[#6382ae]">
-              OUR PROCESS
+              {investmentContent.investmentProcess.badge}
             </span>
 
             <span className="h-[2px] w-14 bg-[#5b9df9] sm:w-18" />
           </div>
 
           <h2 className="text-3xl font-bold leading-tight text-[#102e65] sm:text-4xl lg:text-[42px]">
-            A Clear Path to{" "}
+            {investmentContent.investmentProcess.titleStart}{" "}
             <span className="text-[#1769e0]">
-              Financial Success
+              {investmentContent.investmentProcess.titleHighlight}
             </span>
           </h2>
 
           <p className="mx-auto mt-2 max-w-3xl text-sm leading-6 text-[#61799e] sm:text-base sm:leading-7">
-            We follow a simple, transparent, and client-focused process to
-            understand your needs,
-            <br className="hidden sm:block" />
-            create the right strategy, and help you achieve your financial
-            goals.
+            {investmentContent.investmentProcess.description}
           </p>
         </div>
 

@@ -3,6 +3,7 @@
 
 import React from "react";
 import Image from "next/image";
+import { investmentContent } from "../data/investmentContent";
 
 interface ReviewType {
   id: number;
@@ -13,56 +14,8 @@ interface ReviewType {
   text: string;
 }
 
-const reviewsData: ReviewType[] = [
-  {
-    id: 1,
-    name: "Rahul Mehta",
-    location: "New Delhi, India",
-    image: "/profile1.png",
-    rating: 5,
-    text: "PrimeCore helped me create a clear investment plan tailored to my goals. Their advice is practical, transparent, and truly client-focused. I now feel more confident about my financial future.",
-  },
-  {
-    id: 2,
-    name: "Priya Sharma",
-    location: "Gurgaon, India",
-    image: "/profile2.png",
-    rating: 5,
-    text: "The team at PrimeCore made the entire process simple and easy to understand. They explained every option clearly and helped me choose the right investment strategy for my needs.",
-  },
-  {
-    id: 3,
-    name: "Amit Verma",
-    location: "Mumbai, India",
-    image: "/profile3.png",
-    rating: 5,
-    text: "Excellent service and genuine guidance. PrimeCore takes time to understand your goals and provides solutions that actually work. I highly recommend them to anyone looking for trustworthy financial advisors.",
-  },
-  {
-    id: 4,
-    name: "Neha Kapoor",
-    location: "Bangalore, India",
-    image: "/profile3.png",
-    rating: 5,
-    text: "I've been investing with PrimeCore for over 3 years now, and the experience has been great. Their insights and regular updates help me stay on track with my financial goals.",
-  },
-  {
-    id: 5,
-    name: "Vikram Soni",
-    location: "Pune, India",
-    image: "/profile4.png",
-    rating: 5,
-    text: "Professional, knowledgeable, and always available to answer questions. PrimeCore has been a valuable partner in my wealth creation journey.",
-  },
-  {
-    id: 6,
-    name: "Anjali Desai",
-    location: "Ahmedabad, India",
-    image: "/profile.png",
-    rating: 5,
-    text: "PrimeCore's personalized approach made all the difference. They genuinely care about their clients and provide solutions that align with long-term financial growth.",
-  },
-];
+const content = investmentContent.reviews;
+const reviewsData: ReviewType[] = content.items;
 
 interface ReviewCardProps {
   review: ReviewType;
@@ -165,7 +118,7 @@ const Review = () => {
             <div className="h-[2px] w-10 bg-blue-600 sm:w-12" />
 
             <span className="text-xs font-semibold uppercase tracking-wider text-gray-500 sm:text-sm">
-              Testimonials
+              {content.badge}
             </span>
 
             <div className="h-[2px] w-10 bg-blue-600 sm:w-12" />
@@ -173,17 +126,15 @@ const Review = () => {
 
           {/* Main Heading */}
           <h2 className="mb-3 text-3xl font-extrabold tracking-tight text-gray-900 sm:mb-4 sm:text-4xl lg:text-5xl">
-            What Our{" "}
+            {content.titleStart}{" "}
             <span className="text-blue-600">
-              Clients Say
+              {content.titleHighlight}
             </span>
           </h2>
 
           {/* Description */}
           <p className="text-sm leading-6 text-gray-500 sm:text-base lg:text-lg">
-            Trusted by individuals and businesses to achieve their financial
-            goals. Here&apos;s what our clients have to say about their
-            experience with PrimeCore.
+            {content.description}
           </p>
         </div>
 

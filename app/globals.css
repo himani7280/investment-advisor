@@ -1,2 +1,31 @@
 @import "tailwindcss";
 
+:root {
+	--site-gutter: 0.75rem;
+}
+
+@media (min-width: 40rem) {
+	:root {
+		--site-gutter: 2.5rem;
+	}
+}
+
+main section {
+	padding-block: clamp(1rem, 3vw, 2rem) !important;
+	padding-inline: 0 !important;
+}
+
+main section.home-hero {
+	padding-block: 0 !important;
+}
+
+main section.about-section {
+	padding-top: calc(clamp(1rem, 3vw, 2rem) + 0.5rem) !important;
+}
+
+main section > .mx-auto,
+main section > [class*="absolute"][class*="inset-"][class*="flex"],
+main section.mx-auto {
+	padding-inline: var(--site-gutter) !important;
+}
+

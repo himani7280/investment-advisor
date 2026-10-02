@@ -12,6 +12,9 @@ import {
   MapPin,
   Headphones,
 } from "lucide-react";
+import { investmentContent } from "../data/investmentContent";
+
+const content = investmentContent.contactForm;
 
 const ContactForm = () => {
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
@@ -30,19 +33,19 @@ const ContactForm = () => {
             <div className="mb-7">
               <div className="mb-2 flex items-center gap-4">
                 <span className="text-[13px] font-semibold tracking-wide text-[#2455a4]">
-                  SEND US A MESSAGE
+                  {content.formBadge}
                 </span>
 
                 <span className="h-[2px] w-16 bg-[#3478e5]" />
               </div>
 
               <h2 className="text-2xl font-bold leading-tight text-[#102b66] sm:text-4xl">
-                Let&apos;s Start a{" "}
-                <span className="text-[#1265e8]">Conversation</span>
+                {content.formTitleStart}{" "}
+                <span className="text-[#1265e8]">{content.formTitleHighlight}</span>
               </h2>
 
               <p className="mt-2 text-sm leading-6 text-[#71809d] sm:text-base">
-                Fill out the form below and our team will get back to you shortly.
+                {content.formDescription}
               </p>
             </div>
 
@@ -60,7 +63,7 @@ const ContactForm = () => {
                   <input
                     type="text"
                     name="name"
-                    placeholder="Full Name *"
+                    placeholder={content.namePlaceholder}
                     required
                     className="h-[52px] w-full rounded-md border border-[#dce7f7] bg-white pl-12 pr-4 text-sm text-[#24385f] outline-none transition placeholder:text-[#5d6e89] focus:border-[#2671e8] focus:ring-2 focus:ring-[#2671e8]/10"
                   />
@@ -76,7 +79,7 @@ const ContactForm = () => {
                   <input
                     type="email"
                     name="email"
-                    placeholder="Email Address *"
+                    placeholder={content.emailPlaceholder}
                     required
                     className="h-[52px] w-full rounded-md border border-[#dce7f7] bg-white pl-12 pr-4 text-sm text-[#24385f] outline-none transition placeholder:text-[#5d6e89] focus:border-[#2671e8] focus:ring-2 focus:ring-[#2671e8]/10"
                   />
@@ -95,7 +98,7 @@ const ContactForm = () => {
                   <input
                     type="tel"
                     name="phone"
-                    placeholder="Phone Number *"
+                    placeholder={content.phonePlaceholder}
                     required
                     className="h-[52px] w-full rounded-md border border-[#dce7f7] bg-white pl-12 pr-4 text-sm text-[#24385f] outline-none transition placeholder:text-[#5d6e89] focus:border-[#2671e8] focus:ring-2 focus:ring-[#2671e8]/10"
                   />
@@ -114,12 +117,11 @@ const ContactForm = () => {
                     className="h-[52px] w-full appearance-none rounded-md border border-[#dce7f7] bg-white pl-12 pr-11 text-sm text-[#5d6e89] outline-none transition focus:border-[#2671e8] focus:ring-2 focus:ring-[#2671e8]/10"
                   >
                     <option value="" disabled>
-                      Select Your Interest
+                      {content.interestPlaceholder}
                     </option>
-                    <option value="general">General Inquiry</option>
-                    <option value="business">Business Consultation</option>
-                    <option value="support">Support</option>
-                    <option value="other">Other</option>
+                    {content.interestOptions.map((option) => (
+                      <option key={option.value} value={option.value}>{option.label}</option>
+                    ))}
                   </select>
 
                   <ChevronDown
@@ -138,7 +140,7 @@ const ContactForm = () => {
 
                 <textarea
                   name="message"
-                  placeholder="Tell us how we can help you..."
+                  placeholder={content.messagePlaceholder}
                   required
                   rows={6}
                   className="min-h-[150px] w-full resize-y rounded-md border border-[#dce7f7] bg-white pl-12 pr-4 pt-4 text-sm text-[#24385f] outline-none transition placeholder:text-[#5d6e89] focus:border-[#2671e8] focus:ring-2 focus:ring-[#2671e8]/10 sm:min-h-[170px]"
@@ -149,7 +151,7 @@ const ContactForm = () => {
                 type="submit"
                 className="group flex h-[54px] w-full items-center justify-center gap-3 rounded-md bg-[#1168ed] px-7 text-sm font-semibold text-white transition hover:bg-[#095bd5] sm:w-[250px]"
               >
-                Send Message
+                {content.submitText}
 
                 <ArrowRight
                   size={20}
@@ -164,20 +166,19 @@ const ContactForm = () => {
             <div className="mb-7">
               <div className="mb-2 flex items-center gap-4">
                 <span className="text-[13px] font-semibold tracking-wide text-[#2455a4]">
-                  CONTACT INFORMATION
+                  {content.contactBadge}
                 </span>
 
                 <span className="h-[2px] w-16 bg-[#3478e5]" />
               </div>
 
               <h2 className="text-2xl font-bold leading-tight text-[#102b66] sm:text-4xl">
-                Reach Out to{" "}
-                <span className="text-[#1265e8]">Us</span>
+                {content.contactTitleStart}{" "}
+                <span className="text-[#1265e8]">{content.contactTitleHighlight}</span>
               </h2>
 
               <p className="mt-2 max-w-[430px] text-sm leading-6 text-[#71809d] sm:text-base">
-                Feel free to contact us through any of the following channels.
-                We&apos;re always happy to assist you.
+                {content.contactDescription}
               </p>
             </div>
 
@@ -194,18 +195,18 @@ const ContactForm = () => {
 
                 <div className="min-w-0 flex-1">
                   <h3 className="text-lg font-bold text-[#102b66]">
-                    Call Us
+                    {content.callTitle}
                   </h3>
 
                   <a
-                    href="tel:+919876543210"
+                    href={content.phoneHref}
                     className="mt-1 block text-[15px] font-medium text-[#314b7b] hover:text-[#1265e8]"
                   >
-                    +91 98765 43210
+                    {content.phone}
                   </a>
 
                   <p className="mt-1 text-sm text-[#71809d]">
-                    Mon - Sat, 9:00 AM - 6:00 PM
+                    {content.callHours}
                   </p>
                 </div>
               </div>
@@ -221,18 +222,18 @@ const ContactForm = () => {
 
                 <div className="min-w-0 flex-1">
                   <h3 className="text-lg font-bold text-[#102b66]">
-                    Email Us
+                    {content.emailTitle}
                   </h3>
 
                   <a
-                    href="mailto:info@primecoreadvisors.com"
+                    href={content.emailHref}
                     className="mt-1 block break-all text-[15px] font-medium text-[#314b7b] hover:text-[#1265e8]"
                   >
-                    info@primecoreadvisors.com
+                    {content.email}
                   </a>
 
                   <p className="mt-1 text-sm text-[#71809d]">
-                    We typically respond within 24 hours.
+                    {content.emailResponse}
                   </p>
                 </div>
               </div>
@@ -248,17 +249,17 @@ const ContactForm = () => {
 
                 <div className="min-w-0 flex-1">
                   <h3 className="text-lg font-bold text-[#102b66]">
-                    Visit Our Office
+                    {content.officeTitle}
                   </h3>
 
                   <p className="mt-1 text-[15px] leading-6 text-[#314b7b]">
-                    123 Business Avenue, New Delhi,
-                    <br />
-                    110001, India
+                    {content.addressLines.map((line) => (
+                      <React.Fragment key={line}>{line}<br /></React.Fragment>
+                    ))}
                   </p>
 
                   <p className="mt-1 text-sm text-[#71809d]">
-                    Mon - Sat, 9:00 AM - 6:00 PM
+                    {content.officeHours}
                   </p>
                 </div>
               </div>
@@ -274,18 +275,18 @@ const ContactForm = () => {
 
                 <div className="min-w-0 flex-1">
                   <h3 className="text-lg font-bold text-[#102b66]">
-                    Live Support
+                    {content.supportTitle}
                   </h3>
 
                   <p className="mt-1 text-[15px] text-[#314b7b]">
-                    Chat with our team for quick assistance.
+                    {content.supportDescription}
                   </p>
 
                   <button
                     type="button"
                     className="group mt-2 flex items-center gap-2 text-[15px] font-semibold text-[#1265e8]"
                   >
-                    Start a Live Chat
+                    {content.supportButtonText}
 
                     <ArrowRight
                       size={18}

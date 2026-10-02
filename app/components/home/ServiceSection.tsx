@@ -14,62 +14,27 @@ import {
   Handshake,
 } from "lucide-react";
 
-import serviceImage from "../../../public/service.png";
+import { investmentContent } from "../../data/investmentContent";
 
-const services = [
-  {
-    icon: BarChart3,
-    title: "Investment",
-    subtitle: "Advisory",
-    description: "Data-driven strategies to grow your wealth.",
-  },
-  {
-    icon: Shield,
-    title: "Wealth",
-    subtitle: "Management",
-    description: "Preserve, grow, and transfer your wealth.",
-  },
-  {
-    icon: FileText,
-    title: "Financial",
-    subtitle: "Planning",
-    description: "Personalized plans for every life stage.",
-  },
-  {
-    icon: Globe2,
-    title: "Global",
-    subtitle: "Opportunities",
-    description: "Access international markets with confidence.",
-  },
-  {
-    icon: Users,
-    title: "Retirement",
-    subtitle: "Planning",
-    description: "Build a secure and independent future.",
-  },
-  {
-    icon: PieChart,
-    title: "Risk",
-    subtitle: "Management",
-    description: "Identify, assess, and minimize financial risks.",
-  },
-  {
-    icon: Sprout,
-    title: "Tax",
-    subtitle: "Consulting",
-    description: "Smarter tax solutions for higher savings.",
-  },
-  {
-    icon: Handshake,
-    title: "Business",
-    subtitle: "Advisory",
-    description: "Strategic support to accelerate growth.",
-  },
-];
+const content = investmentContent.services;
+const serviceIcons = {
+  BarChart3,
+  Shield,
+  FileText,
+  Globe2,
+  Users,
+  PieChart,
+  Sprout,
+  Handshake,
+};
+const services = content.items.map((item) => ({
+  ...item,
+  icon: serviceIcons[item.icon as keyof typeof serviceIcons],
+}));
 
 const ServiceSection = () => {
   return (
-    <section className="relative w-full overflow-hidden bg-white pt-8 sm:pt-10 lg:mb-16 lg:pt-16">
+    <section className="relative w-full overflow-hidden bg-white pt-2 pb-2 sm:pt-3 sm:pb-3 lg:mb-8 lg:pt-4 lg:pb-4">
       {/* Top Right Shape */}
       <div
         className="
@@ -91,8 +56,8 @@ const ServiceSection = () => {
           px-5
           sm:px-8
           md:px-10
-          lg:px-14
-          xl:px-16
+          lg:px-10
+          xl:px-20
           2xl:px-[80px]
         "
       >
@@ -122,10 +87,9 @@ const ServiceSection = () => {
               "
             >
               <Image
-                src={serviceImage}
-                alt="PrimeCore Financial Services"
+                src={content.image}
+                alt={content.imageAlt}
                 fill
-                priority
                 sizes="(max-width: 1024px) 100vw, 40vw"
                 className="object-cover object-center"
               />
@@ -133,18 +97,6 @@ const ServiceSection = () => {
               {/* Light Overlay */}
               <div className="absolute inset-0 bg-white/5" />
 
-              {/* Decorative White Line */}
-              <div
-                className="
-                  absolute
-                  bottom-[-45px]
-                  left-[52%]
-                  h-[160px]
-                  w-[14px]
-                  rotate-[43deg]
-                  bg-white
-                "
-              />
 
             </div>
           </div>
@@ -167,7 +119,7 @@ const ServiceSection = () => {
                 sm:text-[11px]
               "
             >
-              OUR SERVICES
+              {content.badge}
             </div>
 
             {/* Heading */}
@@ -185,11 +137,9 @@ const ServiceSection = () => {
                 xl:text-[42px]
               "
             >
-              Tailored Financial Solutions
-              <br />
-              For Your{" "}
+              <span className="whitespace-pre-line">{content.titleStart}</span>{" "}
               <span className="text-[#1264d4]">
-                Greater Tomorrow
+                {content.titleHighlight}
               </span>
             </h2>
 
@@ -205,10 +155,7 @@ const ServiceSection = () => {
                 lg:text-[14px]
               "
             >
-              At PrimeCore, we deliver expert-driven financial services
-              to help you plan, grow, and secure what matters most. Our
-              solutions are designed around your goals, with clarity and
-              confidence.
+              {content.description}
             </p>
 
             {/* SERVICES GRID */}
@@ -229,7 +176,7 @@ const ServiceSection = () => {
 
                 return (
                   <Link
-                    href="/services"
+                    href={content.serviceLink}
                     key={`${item.title}-${item.subtitle}`}
                     className="
                       group
@@ -247,6 +194,7 @@ const ServiceSection = () => {
                       duration-300
                       hover:-translate-y-1
                       hover:border-[#bdd3f0]
+                      hover:bg-[#edf5ff]
                       hover:shadow-[0_8px_20px_rgba(30,90,160,0.08)]
                       sm:min-h-[135px]
                       sm:px-3 sm:py-3.5
@@ -296,6 +244,9 @@ const ServiceSection = () => {
                             font-bold
                             leading-[1.25]
                             text-[#15233b]
+                            transition-colors
+                            duration-200
+                            group-hover:text-[#1264d4]
                             sm:text-[14px]
                             lg:text-[11px]
                             2xl:text-[14px]
@@ -310,6 +261,9 @@ const ServiceSection = () => {
                             font-bold
                             leading-[1.25]
                             text-[#15233b]
+                            transition-colors
+                            duration-200
+                            group-hover:text-[#1264d4]
                             sm:text-[14px]
                             lg:text-[11px]
                             2xl:text-[14px]
@@ -328,6 +282,9 @@ const ServiceSection = () => {
                         text-[9px]
                         leading-[1.45]
                         text-[#65758c]
+                        transition-colors
+                        duration-200
+                        group-hover:text-[#1264d4]
                         sm:text-[10px]
                       "
                     >

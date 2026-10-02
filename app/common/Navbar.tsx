@@ -5,9 +5,13 @@ import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { ChevronDown, ArrowRight, Menu, X } from "lucide-react";
+import { investmentContent } from "../data/investmentContent";
 
 const Navbar = () => {
   const pathname = usePathname();
+  const content = investmentContent.siteChrome;
+  const navigation = content.header.navigation;
+  const [homeItem, aboutItem, servicesItem, investmentItem, blogItem, contactItem] = navigation.items;
 
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [mobileDropdown, setMobileDropdown] = useState<string | null>(null);
@@ -30,15 +34,15 @@ const Navbar = () => {
   };
 
   return (
-    <header className="relative w-full max-w-full overflow-x-clip border-t border-[#2d6fc4] bg-white">
-      <nav className="mx-auto w-full max-w-[1440px] px-3 sm:px-6">
+    <header className="fixed top-[37px] z-50 w-full max-w-full overflow-x-clip border-t border-[#2d6fc4] bg-white shadow-sm">
+      <nav className="mx-auto w-full max-w-[1440px] px-3 sm:px-10">
         {/* ================= DESKTOP NAVBAR ================= */}
         <div className="hidden h-[80px] w-full items-center justify-between lg:flex">
           {/* LOGO */}
-          <Link href="/" className="shrink-0">
+          <Link href={homeItem.href} className="shrink-0">
             <Image
-              src="/logo.png"
-              alt="PrimeCore Investment Advisors"
+              src={content.logo}
+              alt={content.brandName}
               width={285}
               height={55}
               className="h-auto w-[160px] lg:w-[200px] xl:w-[260px]"
@@ -53,14 +57,14 @@ const Navbar = () => {
           <div className="flex h-full min-w-0 flex-1 items-center justify-center gap-4 xl:gap-5">
             {/* HOME */}
             <Link
-              href="/"
+              href={homeItem.href}
               className={`relative flex h-full items-center whitespace-nowrap text-[13px] xl:text-[14px] ${
                 isActive("/")
                   ? "font-semibold text-[#1763b5]"
                   : "font-medium text-[#111827] hover:text-[#1763b5]"
               }`}
             >
-              Home
+              {homeItem.label}
               {isActive("/") && (
                 <span className="absolute bottom-[13px] left-0 h-[3px] w-full rounded-full bg-[#1763b5]" />
               )}
@@ -69,217 +73,152 @@ const Navbar = () => {
             {/* ABOUT DROPDOWN */}
             <div className="group relative h-full">
               <Link
-                href="/aboutus"
+                href={aboutItem.href}
                 className={`relative flex h-full items-center gap-1 whitespace-nowrap text-[13px] xl:text-[14px] ${
-                  isParentActive([
-                    "/aboutus",
-                    "/whyChooseUs",
-                    "/MissionVision",
-                    "/ourTeam",
-                    "/teamDetails",
-                  ])
+                  isParentActive(aboutItem.activePaths)
                     ? "font-semibold text-[#1763b5]"
                     : "font-medium text-[#111827] hover:text-[#1763b5]"
                 }`}
               >
-                About Us
+                {aboutItem.label}
                 <ChevronDown
                   size={14}
                   strokeWidth={1.8}
                   className="transition-transform duration-200 group-hover:rotate-180"
                 />
-                {isParentActive([
-                  "/aboutus",
-                  "/whyChooseUs",
-                  "/MissionVision",
-                  "/ourTeam",
-                  "/teamDetails",
-                ]) && (
+                {isParentActive(aboutItem.activePaths) && (
                   <span className="absolute bottom-[13px] left-0 h-[3px] w-full rounded-full bg-[#1763b5]" />
                 )}
               </Link>
 
               {/* DROPDOWN MENU */}
               <div className="invisible absolute left-1/2 top-[80px] z-50 w-[200px] -translate-x-1/2 rounded-md border border-[#e5e7eb] bg-white py-2 opacity-0 shadow-lg transition-all duration-200 group-hover:visible group-hover:opacity-100">
-                <Link
-                  href="/whyChooseUs"
-                  className="block px-4 py-2 text-sm font-medium text-[#111827] hover:bg-[#f5f9fe] hover:text-[#1763b5]"
-                >
-                  Why Choose Us
-                </Link>
-                <Link
-                  href="/MissionVision"
-                  className="block px-4 py-2 text-sm font-medium text-[#111827] hover:bg-[#f5f9fe] hover:text-[#1763b5]"
-                >
-                  Mission & Vision
-                </Link>
-                <Link
-                  href="/ourTeam"
-                  className="block px-4 py-2 text-sm font-medium text-[#111827] hover:bg-[#f5f9fe] hover:text-[#1763b5]"
-                >
-                  Our Team
-                </Link>
-                <Link
-                  href="/teamDetails"
-                  className="block px-4 py-2 text-sm font-medium text-[#111827] hover:bg-[#f5f9fe] hover:text-[#1763b5]"
-                >
-                  Team Details
-                </Link>
+                {aboutItem.children.map((item) => (
+                  <Link key={item.href} href={item.href} className="block px-4 py-2 text-sm font-medium text-[#111827] hover:bg-[#f5f9fe] hover:text-[#1763b5]">
+                    {item.label}
+                  </Link>
+                ))}
               </div>
             </div>
 
             {/* SERVICES DROPDOWN */}
             <div className="group relative h-full">
               <Link
-                href="/service"
+                href={servicesItem.href}
                 className={`relative flex h-full items-center gap-1 whitespace-nowrap text-[13px] xl:text-[14px] ${
-                  isParentActive(["/service", "/service/serviceDetail"])
+                  isParentActive(servicesItem.activePaths)
                     ? "font-semibold text-[#1763b5]"
                     : "font-medium text-[#111827] hover:text-[#1763b5]"
                 }`}
               >
-                Services
+                {servicesItem.label}
                 <ChevronDown
                   size={14}
                   strokeWidth={1.8}
                   className="transition-transform duration-200 group-hover:rotate-180"
                 />
-                {isParentActive(["/service", "/service/serviceDetail"]) && (
+                {isParentActive(servicesItem.activePaths) && (
                   <span className="absolute bottom-[13px] left-0 h-[3px] w-full rounded-full bg-[#1763b5]" />
                 )}
               </Link>
 
               <div className="invisible absolute left-1/2 top-[80px] z-50 w-[200px] -translate-x-1/2 rounded-md border border-[#e5e7eb] bg-white py-2 opacity-0 shadow-lg transition-all duration-200 group-hover:visible group-hover:opacity-100">
-                <Link
-                  href="/service/serviceDetail"
-                  className="block px-4 py-2 text-sm font-medium text-[#111827] hover:bg-[#f5f9fe] hover:text-[#1763b5]"
-                >
-                  Services Details
-                </Link>
+                {servicesItem.children.map((item) => (
+                  <Link key={item.href} href={item.href} className="block px-4 py-2 text-sm font-medium text-[#111827] hover:bg-[#f5f9fe] hover:text-[#1763b5]">
+                    {item.label}
+                  </Link>
+                ))}
               </div>
             </div>
 
             {/* INVESTMENT PROCESS */}
             <div className="group relative h-full">
               <Link
-                href="/investment"
+                href={investmentItem.href}
                 className={`relative flex h-full items-center gap-1 whitespace-nowrap text-[13px] xl:text-[14px] ${
-                  isParentActive([
-                    "/investment",
-                    "/ourPartners",
-                    "/testimonials",
-                    "/awards",
-                    "/faqs",
-                  ])
+                  isParentActive(investmentItem.activePaths)
                     ? "font-semibold text-[#1763b5]"
                     : "font-medium text-[#111827] hover:text-[#1763b5]"
                 }`}
               >
-                Investment Process
+                {investmentItem.label}
                 <ChevronDown
                   size={14}
                   strokeWidth={1.8}
                   className="transition-transform duration-200 group-hover:rotate-180"
                 />
-                {isParentActive([
-                  "/investment",
-                  "/ourPartners",
-                  "/testimonials",
-                  "/awards",
-                  "/faqs",
-                ]) && (
+                {isParentActive(investmentItem.activePaths) && (
                   <span className="absolute bottom-[13px] left-0 h-[3px] w-full rounded-full bg-[#1763b5]" />
                 )}
               </Link>
 
               <div className="invisible absolute left-1/2 top-[80px] z-50 w-[200px] -translate-x-1/2 rounded-md border border-[#e5e7eb] bg-white py-2 opacity-0 shadow-lg transition-all duration-200 group-hover:visible group-hover:opacity-100">
-                <Link
-                  href="/ourPartners"
-                  className="block px-4 py-2 text-sm font-medium text-[#111827] hover:bg-[#f5f9fe] hover:text-[#1763b5]"
-                >
-                  Our Partners
-                </Link>
-                <Link
-                  href="/testimonials"
-                  className="block px-4 py-2 text-sm font-medium text-[#111827] hover:bg-[#f5f9fe] hover:text-[#1763b5]"
-                >
-                  Testimonials
-                </Link>
-                <Link
-                  href="/awards"
-                  className="block px-4 py-2 text-sm font-medium text-[#111827] hover:bg-[#f5f9fe] hover:text-[#1763b5]"
-                >
-                  Awards
-                </Link>
-                <Link
-                  href="/faqs"
-                  className="block px-4 py-2 text-sm font-medium text-[#111827] hover:bg-[#f5f9fe] hover:text-[#1763b5]"
-                >
-                  FAQ
-                </Link>
+                {investmentItem.children.map((item) => (
+                  <Link key={item.href} href={item.href} className="block px-4 py-2 text-sm font-medium text-[#111827] hover:bg-[#f5f9fe] hover:text-[#1763b5]">
+                    {item.label}
+                  </Link>
+                ))}
               </div>
             </div>
 
             {/* BLOG */}
             <div className="group relative h-full">
               <Link
-                href="/blog"
+                href={blogItem.href}
                 className={`relative flex h-full items-center gap-1 whitespace-nowrap text-[13px] xl:text-[14px] ${
-                  isParentActive(["/blog", "/blog/BlogDetail"])
+                  isParentActive(blogItem.activePaths)
                     ? "font-semibold text-[#1763b5]"
                     : "font-medium text-[#111827] hover:text-[#1763b5]"
                 }`}
               >
-                Blog
+                {blogItem.label}
                 <ChevronDown
                   size={14}
                   strokeWidth={1.8}
                   className="transition-transform duration-200 group-hover:rotate-180"
                 />
-                {isParentActive(["/blog", "/blog/BlogDetail"]) && (
+                {isParentActive(blogItem.activePaths) && (
                   <span className="absolute bottom-[13px] left-0 h-[3px] w-full rounded-full bg-[#1763b5]" />
                 )}
               </Link>
 
               <div className="invisible absolute left-1/2 top-[80px] z-50 w-[180px] -translate-x-1/2 rounded-md border border-[#e5e7eb] bg-white py-2 opacity-0 shadow-lg transition-all duration-200 group-hover:visible group-hover:opacity-100">
-                <Link
-                  href="/blog/BlogDetail"
-                  className="block px-4 py-2 text-sm font-medium text-[#111827] hover:bg-[#f5f9fe] hover:text-[#1763b5]"
-                >
-                  Blog Details
-                </Link>
+                {blogItem.children.map((item) => (
+                  <Link key={item.href} href={item.href} className="block px-4 py-2 text-sm font-medium text-[#111827] hover:bg-[#f5f9fe] hover:text-[#1763b5]">
+                    {item.label}
+                  </Link>
+                ))}
               </div>
             </div>
 
             {/* CONTACT DROPDOWN (UPDATED) */}
             <div className="group relative h-full">
               <Link
-                href="/contact"
+                href={contactItem.href}
                 className={`relative flex h-full items-center gap-1 whitespace-nowrap text-[13px] xl:text-[14px] ${
-                  isParentActive(["/contact", "/consultation"])
+                  isParentActive(contactItem.activePaths)
                     ? "font-semibold text-[#1763b5]"
                     : "font-medium text-[#111827] hover:text-[#1763b5]"
                 }`}
               >
-                Contact Us
+                {contactItem.label}
                 <ChevronDown
                   size={14}
                   strokeWidth={1.8}
                   className="transition-transform duration-200 group-hover:rotate-180"
                 />
-                {isParentActive(["/contact", "/consultation"]) && (
+                {isParentActive(contactItem.activePaths) && (
                   <span className="absolute bottom-[13px] left-0 h-[3px] w-full rounded-full bg-[#1763b5]" />
                 )}
               </Link>
 
               {/* CONTACT DROPDOWN MENU */}
               <div className="invisible absolute left-1/2 top-[80px] z-50 w-[200px] -translate-x-1/2 rounded-md border border-[#e5e7eb] bg-white py-2 opacity-0 shadow-lg transition-all duration-200 group-hover:visible group-hover:opacity-100">
-                <Link
-                  href="/bookConsultation"
-                  className="block px-4 py-2 text-sm font-medium text-[#111827] hover:bg-[#f5f9fe] hover:text-[#1763b5]"
-                >
-                  Book Consultation
-                </Link>
+                {contactItem.children.map((item) => (
+                  <Link key={item.href} href={item.href} className="block px-4 py-2 text-sm font-medium text-[#111827] hover:bg-[#f5f9fe] hover:text-[#1763b5]">
+                    {item.label}
+                  </Link>
+                ))}
               </div>
             </div>
           </div>
@@ -289,20 +228,20 @@ const Navbar = () => {
 
           {/* BUTTON */}
           <Link
-            href="/consultation"
-            className="flex h-[42px] shrink-0 items-center justify-center gap-2 rounded-[6px] bg-[#2d6fc4] px-3.5 text-[13px] font-semibold text-white shadow-sm transition hover:bg-[#245fa9] xl:h-[46px] xl:px-5 xl:text-[14px]"
+            href={navigation.consultationButton.href}
+            className="flex h-[42px] shrink-0 items-center justify-center gap-2 rounded-[6px] bg-[#2d6fc4] px-3.5 text-[13px] font-semibold text-white shadow-sm transition hover:bg-[#245fa9] lg:px-3 xl:h-[46px] xl:px-4 xl:text-[14px]"
           >
-            <span className="whitespace-nowrap">Book a Consultation</span>
+            <span className="whitespace-nowrap">{navigation.consultationButton.label}</span>
             <ArrowRight size={16} strokeWidth={1.8} className="shrink-0" />
           </Link>
         </div>
 
         {/* ================= MOBILE HEADER ================= */}
         <div className="flex h-[66px] w-full items-center justify-between lg:hidden">
-          <Link href="/" onClick={closeMobileMenu} className="shrink-0">
+          <Link href={homeItem.href} onClick={closeMobileMenu} className="shrink-0">
             <Image
-              src="/logo.png"
-              alt="PrimeCore Investment Advisors"
+              src={content.logo}
+              alt={content.brandName}
               width={285}
               height={55}
               className="h-auto w-[160px] sm:w-[190px]"
@@ -312,7 +251,7 @@ const Navbar = () => {
 
           <button
             type="button"
-            aria-label={mobileMenuOpen ? "Close menu" : "Open menu"}
+            aria-label={mobileMenuOpen ? navigation.closeMenuLabel : navigation.openMenuLabel}
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
             className="flex h-10 w-10 shrink-0 items-center justify-center rounded-md border border-[#e5e7eb] text-[#111827]"
           >
@@ -324,53 +263,46 @@ const Navbar = () => {
         {mobileMenuOpen && (
           <div className="w-full max-w-full overflow-hidden border-t border-[#e5e7eb] bg-white pb-6 pt-2 lg:hidden">
             <Link
-              href="/"
+              href={homeItem.href}
               onClick={closeMobileMenu}
               className={`block border-b border-[#f0f0f0] py-3 text-[15px] ${
                 isActive("/") ? "font-semibold text-[#1763b5]" : "font-medium text-[#111827]"
               }`}
             >
-              Home
+              {homeItem.label}
             </Link>
 
             {/* ABOUT */}
             <div className="border-b border-[#f0f0f0]">
               <div className="flex items-center justify-between py-3">
                 <Link
-                  href="/aboutus"
+                  href={aboutItem.href}
                   onClick={closeMobileMenu}
                   className="text-[15px] font-medium text-[#111827]"
                 >
-                  About Us
+                  {aboutItem.label}
                 </Link>
                 <button
                   type="button"
-                  onClick={(e) => toggleMobileDropdown(e, "about")}
+                  onClick={(e) => toggleMobileDropdown(e, aboutItem.key)}
                   className="p-1"
                 >
                   <ChevronDown
                     size={18}
                     className={`transition-transform ${
-                      mobileDropdown === "about" ? "rotate-180" : ""
+                      mobileDropdown === aboutItem.key ? "rotate-180" : ""
                     }`}
                   />
                 </button>
               </div>
 
-              {mobileDropdown === "about" && (
+              {mobileDropdown === aboutItem.key && (
                 <div className="mb-2 ml-3 border-l-2 border-[#e8f1fb] pl-3">
-                  <Link href="/whyChooseUs" onClick={closeMobileMenu} className="block py-2 text-sm text-[#555]">
-                    Why Choose Us
-                  </Link>
-                  <Link href="/MissionVision" onClick={closeMobileMenu} className="block py-2 text-sm text-[#555]">
-                    Mission & Vision
-                  </Link>
-                  <Link href="/ourTeam" onClick={closeMobileMenu} className="block py-2 text-sm text-[#555]">
-                    Our Team
-                  </Link>
-                  <Link href="/teamDetails" onClick={closeMobileMenu} className="block py-2 text-sm text-[#555]">
-                    Team Details
-                  </Link>
+                  {aboutItem.children.map((item) => (
+                    <Link key={item.href} href={item.href} onClick={closeMobileMenu} className="block py-2 text-sm text-[#555]">
+                      {item.label}
+                    </Link>
+                  ))}
                 </div>
               )}
             </div>
@@ -379,31 +311,33 @@ const Navbar = () => {
             <div className="border-b border-[#f0f0f0]">
               <div className="flex items-center justify-between py-3">
                 <Link
-                  href="/service"
+                  href={servicesItem.href}
                   onClick={closeMobileMenu}
                   className="text-[15px] font-medium text-[#111827]"
                 >
-                  Services
+                  {servicesItem.label}
                 </Link>
                 <button
                   type="button"
-                  onClick={(e) => toggleMobileDropdown(e, "services")}
+                  onClick={(e) => toggleMobileDropdown(e, servicesItem.key)}
                   className="p-1"
                 >
                   <ChevronDown
                     size={18}
                     className={`transition-transform ${
-                      mobileDropdown === "services" ? "rotate-180" : ""
+                      mobileDropdown === servicesItem.key ? "rotate-180" : ""
                     }`}
                   />
                 </button>
               </div>
 
-              {mobileDropdown === "services" && (
+              {mobileDropdown === servicesItem.key && (
                 <div className="mb-2 ml-3 border-l-2 border-[#e8f1fb] pl-3">
-                  <Link href="/service/serviceDetail" onClick={closeMobileMenu} className="block py-2 text-sm text-[#555]">
-                    Services Details
-                  </Link>
+                  {servicesItem.children.map((item) => (
+                    <Link key={item.href} href={item.href} onClick={closeMobileMenu} className="block py-2 text-sm text-[#555]">
+                      {item.label}
+                    </Link>
+                  ))}
                 </div>
               )}
             </div>
@@ -412,40 +346,33 @@ const Navbar = () => {
             <div className="border-b border-[#f0f0f0]">
               <div className="flex items-center justify-between py-3">
                 <Link
-                  href="/investment"
+                  href={investmentItem.href}
                   onClick={closeMobileMenu}
                   className="text-[15px] font-medium text-[#111827]"
                 >
-                  Investment Process
+                  {investmentItem.label}
                 </Link>
                 <button
                   type="button"
-                  onClick={(e) => toggleMobileDropdown(e, "investment")}
+                  onClick={(e) => toggleMobileDropdown(e, investmentItem.key)}
                   className="p-1"
                 >
                   <ChevronDown
                     size={18}
                     className={`transition-transform ${
-                      mobileDropdown === "investment" ? "rotate-180" : ""
+                      mobileDropdown === investmentItem.key ? "rotate-180" : ""
                     }`}
                   />
                 </button>
               </div>
 
-              {mobileDropdown === "investment" && (
+              {mobileDropdown === investmentItem.key && (
                 <div className="mb-2 ml-3 border-l-2 border-[#e8f1fb] pl-3">
-                  <Link href="/ourPartners" onClick={closeMobileMenu} className="block py-2 text-sm text-[#555]">
-                    Our Partners
-                  </Link>
-                  <Link href="/testimonials" onClick={closeMobileMenu} className="block py-2 text-sm text-[#555]">
-                    Testimonials
-                  </Link>
-                  <Link href="/awards" onClick={closeMobileMenu} className="block py-2 text-sm text-[#555]">
-                    Awards
-                  </Link>
-                  <Link href="/faqs" onClick={closeMobileMenu} className="block py-2 text-sm text-[#555]">
-                    FAQ
-                  </Link>
+                  {investmentItem.children.map((item) => (
+                    <Link key={item.href} href={item.href} onClick={closeMobileMenu} className="block py-2 text-sm text-[#555]">
+                      {item.label}
+                    </Link>
+                  ))}
                 </div>
               )}
             </div>
@@ -454,31 +381,33 @@ const Navbar = () => {
             <div className="border-b border-[#f0f0f0]">
               <div className="flex items-center justify-between py-3">
                 <Link
-                  href="/blog"
+                  href={blogItem.href}
                   onClick={closeMobileMenu}
                   className="text-[15px] font-medium text-[#111827]"
                 >
-                  Blog
+                  {blogItem.label}
                 </Link>
                 <button
                   type="button"
-                  onClick={(e) => toggleMobileDropdown(e, "blog")}
+                  onClick={(e) => toggleMobileDropdown(e, blogItem.key)}
                   className="p-1"
                 >
                   <ChevronDown
                     size={18}
                     className={`transition-transform ${
-                      mobileDropdown === "blog" ? "rotate-180" : ""
+                      mobileDropdown === blogItem.key ? "rotate-180" : ""
                     }`}
                   />
                 </button>
               </div>
 
-              {mobileDropdown === "blog" && (
+              {mobileDropdown === blogItem.key && (
                 <div className="mb-2 ml-3 border-l-2 border-[#e8f1fb] pl-3">
-                  <Link href="/blog/BlogDetail" onClick={closeMobileMenu} className="block py-2 text-sm text-[#555]">
-                    Blog Details
-                  </Link>
+                  {blogItem.children.map((item) => (
+                    <Link key={item.href} href={item.href} onClick={closeMobileMenu} className="block py-2 text-sm text-[#555]">
+                      {item.label}
+                    </Link>
+                  ))}
                 </div>
               )}
             </div>
@@ -487,42 +416,44 @@ const Navbar = () => {
             <div className="border-b border-[#f0f0f0]">
               <div className="flex items-center justify-between py-3">
                 <Link
-                  href="/contact"
+                  href={contactItem.href}
                   onClick={closeMobileMenu}
                   className="text-[15px] font-medium text-[#111827]"
                 >
-                  Contact Us
+                  {contactItem.label}
                 </Link>
                 <button
                   type="button"
-                  onClick={(e) => toggleMobileDropdown(e, "contact")}
+                  onClick={(e) => toggleMobileDropdown(e, contactItem.key)}
                   className="p-1"
                 >
                   <ChevronDown
                     size={18}
                     className={`transition-transform ${
-                      mobileDropdown === "contact" ? "rotate-180" : ""
+                      mobileDropdown === contactItem.key ? "rotate-180" : ""
                     }`}
                   />
                 </button>
               </div>
 
-              {mobileDropdown === "contact" && (
+              {mobileDropdown === contactItem.key && (
                 <div className="mb-2 ml-3 border-l-2 border-[#e8f1fb] pl-3">
-                  <Link href="/consultation" onClick={closeMobileMenu} className="block py-2 text-sm text-[#555]">
-                    Book Consultation
-                  </Link>
+                  {contactItem.children.map((item) => (
+                    <Link key={item.href} href={item.href} onClick={closeMobileMenu} className="block py-2 text-sm text-[#555]">
+                      {item.label}
+                    </Link>
+                  ))}
                 </div>
               )}
             </div>
 
             {/* CONSULTATION BUTTON */}
             <Link
-              href="/bookConsultation"
+              href={navigation.consultationButton.href}
               onClick={closeMobileMenu}
               className="mt-4 flex h-[46px] w-full items-center justify-center gap-2 rounded-[6px] bg-[#2d6fc4] text-[14px] font-semibold text-white"
             >
-              Book a Consultation
+              {navigation.consultationButton.label}
               <ArrowRight size={18} strokeWidth={1.8} />
             </Link>
           </div>

@@ -7,10 +7,13 @@ import {
   ShieldCheck,
   TrendingUp,
 } from "lucide-react";
+import { investmentContent } from "../../data/investmentContent";
+
+const content = investmentContent.whyChooseUs;
 
 const Whychoose = () => {
   return (
-    <section className="relative w-full overflow-hidden bg-[#031d46] pt-4 pb-12 sm:pb-14 lg:pb-16">
+    <section className="relative w-full overflow-hidden bg-[#031d46] pt-4 pb-12 sm:pb-14 lg:pb-8">
 
       <div
         className="
@@ -140,7 +143,7 @@ const Whychoose = () => {
                   sm:text-[10px]
                 "
               >
-                WHY CHOOSE US
+                {content.badge}
               </span>
 
               <span className="ml-1 h-[2px] w-[52px] bg-white/70" />
@@ -160,13 +163,13 @@ const Whychoose = () => {
                 lg:text-[49px]
               "
             >
-              Why You Should
+              {content.titleLines[0]}
               <br />
               <span className="text-[#55baff]">
-                Choose Our
+                {content.titleLines[1]}
               </span>
               <br />
-              Company?
+              {content.titleLines[2]}
             </h2>
 
             {/* Description */}
@@ -182,17 +185,14 @@ const Whychoose = () => {
                 lg:text-[14px]
               "
             >
-              We are committed to delivering exceptional solutions
-              that help your business grow. Our customer-focused
-              approach, industry expertise, and innovative strategies
-              set us apart from the rest.
+              {content.description}
             </p>
 
             {/* =================================================
                 TRUSTED CLIENTS
             ================================================== */}
 
-            <div className="mt-5 flex items-center">
+            <div className="mt-6 flex items-center lg:mt-7">
               {/* Icon */}
               <div
                 className="
@@ -227,9 +227,7 @@ const Whychoose = () => {
                     lg:text-[14px]
                   "
                 >
-                  Trusted by 500+
-                  <br />
-                  Happy Clients
+                  <span className="whitespace-pre-line">{content.trustedTitle}</span>
                 </h3>
               </div>
 
@@ -247,11 +245,7 @@ const Whychoose = () => {
                   lg:text-[12px]
                 "
               >
-                Your success is our priority,
-                <br />
-                and we&apos;re with you every
-                <br />
-                step of the way.
+                {content.trustedDescription}
               </p>
             </div>
 
@@ -260,7 +254,7 @@ const Whychoose = () => {
             ================================================== */}
 
             <Link
-              href="/contact"
+              href={content.buttonLink}
               className="
                 mt-5
                 flex
@@ -285,7 +279,7 @@ const Whychoose = () => {
                 lg:text-[12px]
               "
             >
-              <span>Get In Touch</span>
+              <span>{content.buttonText}</span>
 
               <span
                 className="
@@ -314,9 +308,11 @@ const Whychoose = () => {
             className="
               relative
               mx-auto
-              aspect-[1/1.12]
+              flex
+              h-full
               w-full
               max-w-[620px]
+              items-center
               sm:aspect-auto
               sm:h-[390px]
               lg:h-[445px]
@@ -351,8 +347,8 @@ const Whychoose = () => {
               "
             >
               <Image
-                src="/team1.png"
-                alt="Financial consultation"
+                src={content.decorativeImages[0].image}
+                alt={content.decorativeImages[0].alt}
                 fill
                 sizes="(min-width: 1024px) 215px, (min-width: 640px) 195px, 54vw"
                 className="object-cover object-center"
@@ -423,9 +419,7 @@ const Whychoose = () => {
                   lg:text-[20px]
                 "
               >
-                Insurance
-                <br />
-                Managements
+                <span className="whitespace-pre-line">{content.services[1].title}</span>
               </h3>
 
               <p
@@ -434,6 +428,7 @@ const Whychoose = () => {
                   max-w-[112px]
                   text-[8px]
                   leading-[1.25]
+                  whitespace-pre-line
                   text-white/90
                   sm:max-w-[145px]
                   sm:text-[9px]
@@ -442,11 +437,7 @@ const Whychoose = () => {
                   lg:text-[11px]
                 "
               >
-                Secure your future with
-                <br />
-                reliable coverage
-                <br />
-                solutions.
+                {content.services[1].description}
               </p>
             </div>
 
@@ -478,8 +469,8 @@ const Whychoose = () => {
               "
             >
               <Image
-                src="/hero.png"
-                alt="Business meeting"
+                src={content.decorativeImages[1].image}
+                alt={content.decorativeImages[1].alt}
                 fill
                 sizes="(min-width: 1024px) 215px, (min-width: 640px) 195px, 54vw"
                 className="object-cover object-right"
@@ -549,9 +540,7 @@ const Whychoose = () => {
                   lg:text-[20px]
                 "
               >
-                Strategic
-                <br />
-                Investments
+                <span className="whitespace-pre-line">{content.services[2].title}</span>
               </h3>
 
               <p
@@ -560,6 +549,7 @@ const Whychoose = () => {
                   max-w-[112px]
                   text-[8px]
                   leading-[1.25]
+                  whitespace-pre-line
                   text-white/90
                   sm:max-w-[150px]
                   sm:text-[9px]
@@ -568,11 +558,7 @@ const Whychoose = () => {
                   lg:text-[11px]
                 "
               >
-                Build wealth with
-                <br />
-                smart and sustainable
-                <br />
-                strategies.
+                {content.services[2].description}
               </p>
             </div>
 
