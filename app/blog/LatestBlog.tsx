@@ -109,8 +109,8 @@ const LatestBlog = () => {
                   sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
                 />
 
-                {/* Date Badge */}
-                <div className="absolute left-4 top-4 flex h-[56px] w-[66px] flex-col items-center justify-center rounded-lg bg-blue-600 text-white shadow-md transition-transform duration-300 group-hover:scale-105">
+                {/* 2D Flat 360 Rotation Date Badge */}
+                <div className="absolute left-4 top-4 flex h-[56px] w-[66px] flex-col items-center justify-center rounded-lg bg-blue-600 text-white shadow-md transition-transform duration-700 ease-in-out group-hover:rotate-[360deg]">
                   <span className="text-[22px] font-bold leading-5">
                     {blog.date}
                   </span>

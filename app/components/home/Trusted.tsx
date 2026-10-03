@@ -26,18 +26,17 @@ const formatDisplayValue = (value: number, raw: string) => {
 
 const AnimatedCounter = ({ value }: { value: string }) => {
   const ref = useRef<HTMLSpanElement>(null);
-  // once: false & amount: 0.1 taaki screen se thoda sa bahar jaate hi detect kar sake
-  const isInView = useInView(ref, { once: false, amount: 0.1 });
+  // once: true ka matlab hai animation sirf EK BAAR hi chalega
+  const isInView = useInView(ref, { once: true, amount: 0.1 });
   const [count, setCount] = useState(1);
+  const hasAnimated = useRef(false);
 
   useEffect(() => {
-    // Jab tak view me nahi hai, tab tak har baar count ko 1 par reset rakho
-    if (!isInView) {
-      setCount(1);
-      return;
-    }
+    // Agar viewport me nahi aya ya animation pehle ho chuka hai toh execution rok dein
+    if (!isInView || hasAnimated.current) return;
 
-    // View me aate hi 1 se target tak animate hoga
+    hasAnimated.current = true; // Mark as animated
+
     const target = Number(value.replace(/[^\d]/g, "")) || 1;
     let animationFrame = 0;
     const duration = 1200; // 1.2 seconds
@@ -109,7 +108,7 @@ const Trusted = () => {
         <motion.div
           initial={{ opacity: 0, y: 16 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: false, amount: 0.2 }}
+          viewport={{ once: true, amount: 0.2 }}
           transition={{ duration: 0.55 }}
           className="mx-auto max-w-[850px] text-center"
         >
@@ -136,7 +135,7 @@ const Trusted = () => {
           variants={staggerContainer}
           initial="hidden"
           whileInView="visible"
-          viewport={{ once: false, amount: 0.1 }}
+          viewport={{ once: true, amount: 0.1 }}
           className="relative mx-auto mt-8 grid max-w-[1080px] grid-cols-2 gap-y-6 lg:mt-10 lg:grid-cols-4 lg:gap-y-0"
         >
           {stats.map((stat, index) => {
@@ -159,7 +158,7 @@ const Trusted = () => {
                   <Icon size={24} strokeWidth={1.8} className="text-white" />
                 </div>
 
-                {/* Number (Scroll karne par hamesha 1 se start hoga) */}
+                {/* Number (Pehli baar scroll karne par animate hoga, baad me same rahega) */}
                 <h3 className="mt-3 text-[26px] font-bold leading-none tracking-[-0.8px] text-white sm:text-[32px] lg:text-[36px]">
                   <AnimatedCounter value={stat.number} />
                 </h3>

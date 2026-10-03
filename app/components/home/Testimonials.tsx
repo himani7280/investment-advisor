@@ -4,11 +4,7 @@ import React, { useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { FaStar } from "react-icons/fa";
 import Image from "next/image";
-import {
-  ArrowLeft,
-  ArrowRight,
-  Quote 
-} from "lucide-react";
+import { ArrowLeft, ArrowRight, Quote } from "lucide-react";
 import { investmentContent } from "../../data/investmentContent";
 
 const content = investmentContent.testimonials;
@@ -37,9 +33,8 @@ const Testimonials = () => {
   return (
     <section className="relative w-full overflow-hidden bg-white pt-4 sm:pt-6 lg:pt-8">
       <div className="grid min-h-[500px] w-full grid-cols-1 lg:grid-cols-[45%_55%]">
-
-       
-
+        
+        {/* Left Side: Main Image & Floating Quote Badge */}
         <motion.div
           initial={{ opacity: 0, scale: 0.98 }}
           whileInView={{ opacity: 1, scale: 1 }}
@@ -86,8 +81,7 @@ const Testimonials = () => {
           </div>
         </motion.div>
 
-       
-
+        {/* Right Side: Content & Vertical Avatar Bar */}
         <div
           className="
             relative
@@ -104,6 +98,7 @@ const Testimonials = () => {
             lg:py-12
           "
         >
+          {/* Background Decorative Rings & Dots */}
           <div
             className="
               pointer-events-none
@@ -138,220 +133,202 @@ const Testimonials = () => {
             ))}
           </div>
 
+          {/* Testimonial Animated Details */}
           <AnimatePresence mode="wait">
-          <motion.div
-            key={testimonial.id}
-            initial={{ opacity: 0, y: 14 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -10 }}
-            transition={{ duration: 0.25, ease: "easeOut" }}
-            className="relative z-10 w-full max-w-[600px]"
-          >
-
-            <div className="flex items-center gap-3">
-              <span className="h-[2px] w-[47px] bg-[#438af0]" />
-
-              <span
-                className="
-                  text-[9px]
-                  font-semibold
-                  tracking-[1.8px]
-                  text-[#438af0]
-                  sm:text-[10px]
-                "
-              >
-                {content.badge}
-              </span>
-            </div>
-
-            <h2
-              className="
-                mt-4
-                text-[38px]
-                font-bold
-                leading-[1.02]
-                tracking-[-1.5px]
-                text-[#071b43]
-                sm:text-[46px]
-                lg:text-[52px]
-              "
+            <motion.div
+              key={testimonial.id}
+              initial={{ opacity: 0, y: 14 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -10 }}
+              transition={{ duration: 0.25, ease: "easeOut" }}
+              className="relative z-10 w-full max-w-[600px]"
             >
-              {content.titleStart}
-              <br />
-              <span className="text-[#126ce4]">
-                {content.titleHighlight}
-              </span>
-            </h2>
-
-           
-
-            <div
-              className="
-                mt-5
-                inline-flex
-                items-center
-                gap-[3px]
-                rounded-full
-                bg-[#e9f2ff]
-                px-3
-                py-1.5
-              "
-            >
-              {Array.from({ length: 5 }).map((_, index) => (
+              <div className="flex items-center gap-3">
+                <span className="h-[2px] w-[47px] bg-[#438af0]" />
                 <span
-                  key={index}
-                  className={`text-[15px] leading-none ${
-                    index < testimonial.rating
-                      ? "text-[#1471df]"
-                      : "text-[#c9d8ec]"
-                  }`}
+                  className="
+                    text-[9px]
+                    font-semibold
+                    tracking-[1.8px]
+                    text-[#438af0]
+                    sm:text-[10px]
+                  "
                 >
-                  <FaStar />
-
+                  {content.badge}
                 </span>
-              ))}
-            </div>
-
-           
-            <div className="mt-4 flex items-center gap-3">
-              <div
-                className="
-                  relative
-                  h-[55px]
-                  w-[55px]
-                  shrink-0
-                  overflow-hidden
-                  rounded-full
-                  border
-                  border-[#dce8f7]
-                "
-              >
-                <Image
-                  src={testimonial.image}
-                  alt={testimonial.name}
-                  fill
-                  sizes="55px"
-                  className="object-cover"
-                />
               </div>
 
-              <div>
-                <h3
-                  className="
-                    text-[17px]
-                    font-bold
-                    leading-tight
-                    text-[#10254a]
-                  "
-                >
-                  {testimonial.name}
-                </h3>
-
-                <p
-                  className="
-                    mt-1
-                    text-[10px]
-                    font-medium
-                    tracking-[0.4px]
-                    text-[#8090a8]
-                  "
-                >
-                  {testimonial.role}
-                </p>
-              </div>
-            </div>
-
-           
-            <p
-              className="
-                mt-4
-                max-w-[570px]
-                text-[13px]
-                leading-[1.55]
-                text-[#566981]
-                sm:text-[14px]
-              "
-            >
-              “{testimonial.quote}”
-            </p>
-
-            
-
-            <div className="mt-5 flex items-center gap-5">
-
-              <motion.button
-                type="button"
-                onClick={previousSlide}
-                whileHover={{ scale: 1.06 }}
-                whileTap={{ scale: 0.94 }}
-                aria-label={content.previousLabel}
+              <h2
                 className="
-                  flex
-                  h-[43px]
-                  w-[43px]
-                  items-center
-                  justify-center
-                  rounded-full
-                  border
-                  border-[#dbe8f8]
-                  bg-white
-                  text-[#2776df]
-                  shadow-[0_3px_10px_rgba(30,100,180,0.05)]
-                  transition-all
-                  duration-200
-                  hover:bg-[#1471df]
-                  hover:text-white
+                  mt-4
+                  text-[38px]
+                  font-bold
+                  leading-[1.02]
+                  tracking-[-1.5px]
+                  text-[#071b43]
+                  sm:text-[46px]
+                  lg:text-[52px]
                 "
               >
-                <ArrowLeft size={18} strokeWidth={1.8} className="transition-colors duration-200" />
-              </motion.button>
+                {content.titleStart}
+                <br />
+                <span className="text-[#126ce4]">
+                  {content.titleHighlight}
+                </span>
+              </h2>
 
               <div
                 className="
-                  text-[12px]
-                  font-semibold
-                  text-[#10254a]
+                  mt-5
+                  inline-flex
+                  items-center
+                  gap-[3px]
+                  rounded-full
+                  bg-[#e9f2ff]
+                  px-3
+                  py-1.5
                 "
               >
-                {String(current + 1).padStart(2, "0")}
-                <span className="mx-1 text-[#8292a9]">
-                  /
-                </span>
-                {String(testimonials.length).padStart(2, "0")}
+                {Array.from({ length: 5 }).map((_, index) => (
+                  <span
+                    key={index}
+                    className={`text-[15px] leading-none ${
+                      index < testimonial.rating
+                        ? "text-[#1471df]"
+                        : "text-[#c9d8ec]"
+                    }`}
+                  >
+                    <FaStar />
+                  </span>
+                ))}
               </div>
 
-              <motion.button
-                type="button"
-                onClick={nextSlide}
-                whileHover={{ scale: 1.06 }}
-                whileTap={{ scale: 0.94 }}
-                aria-label={content.nextLabel}
+              <div className="mt-4 flex items-center gap-3">
+                <div
+                  className="
+                    relative
+                    h-[55px]
+                    w-[55px]
+                    shrink-0
+                    overflow-hidden
+                    rounded-full
+                    border
+                    border-[#dce8f7]
+                  "
+                >
+                  <Image
+                    src={testimonial.image}
+                    alt={testimonial.name}
+                    fill
+                    sizes="55px"
+                    className="object-cover"
+                  />
+                </div>
+
+                <div>
+                  <h3
+                    className="
+                      text-[17px]
+                      font-bold
+                      leading-tight
+                      text-[#10254a]
+                    "
+                  >
+                    {testimonial.name}
+                  </h3>
+
+                  <p
+                    className="
+                      mt-1
+                      text-[10px]
+                      font-medium
+                      tracking-[0.4px]
+                      text-[#8090a8]
+                    "
+                  >
+                    {testimonial.role}
+                  </p>
+                </div>
+              </div>
+
+              <p
                 className="
-                  flex
-                  h-[43px]
-                  w-[43px]
-                  items-center
-                  justify-center
-                  rounded-full
-                  border
-                  border-[#dbe8f8]
-                  bg-white
-                  text-[#2776df]
-                  shadow-[0_3px_10px_rgba(30,100,180,0.05)]
-                  transition-all
-                  duration-200
-                  hover:bg-[#1471df]
-                  hover:text-white
+                  mt-4
+                  max-w-[570px]
+                  text-[13px]
+                  leading-[1.55]
+                  text-[#566981]
+                  sm:text-[14px]
                 "
               >
-                <ArrowRight size={18} strokeWidth={1.8} className="transition-colors duration-200" />
-              </motion.button>
-            </div>
-          </motion.div>
+                “{testimonial.quote}”
+              </p>
+
+              <div className="mt-5 flex items-center gap-5">
+                <motion.button
+                  type="button"
+                  onClick={previousSlide}
+                  whileHover={{ scale: 1.06 }}
+                  whileTap={{ scale: 0.94 }}
+                  aria-label={content.previousLabel}
+                  className="
+                    flex
+                    h-[43px]
+                    w-[43px]
+                    items-center
+                    justify-center
+                    rounded-full
+                    border
+                    border-[#dbe8f8]
+                    bg-white
+                    text-[#2776df]
+                    shadow-[0_3px_10px_rgba(30,100,180,0.05)]
+                    transition-all
+                    duration-200
+                    hover:bg-[#1471df]
+                    hover:text-white
+                  "
+                >
+                  <ArrowLeft size={18} strokeWidth={1.8} />
+                </motion.button>
+
+                <div className="text-[12px] font-semibold text-[#10254a]">
+                  {String(current + 1).padStart(2, "0")}
+                  <span className="mx-1 text-[#8292a9]">/</span>
+                  {String(testimonials.length).padStart(2, "0")}
+                </div>
+
+                <motion.button
+                  type="button"
+                  onClick={nextSlide}
+                  whileHover={{ scale: 1.06 }}
+                  whileTap={{ scale: 0.94 }}
+                  aria-label={content.nextLabel}
+                  className="
+                    flex
+                    h-[43px]
+                    w-[43px]
+                    items-center
+                    justify-center
+                    rounded-full
+                    border
+                    border-[#dbe8f8]
+                    bg-white
+                    text-[#2776df]
+                    shadow-[0_3px_10px_rgba(30,100,180,0.05)]
+                    transition-all
+                    duration-200
+                    hover:bg-[#1471df]
+                    hover:text-white
+                  "
+                >
+                  <ArrowRight size={18} strokeWidth={1.8} />
+                </motion.button>
+              </div>
+            </motion.div>
           </AnimatePresence>
 
-          
-
+          {/* Right Vertical Avatar List with Moving Blue Indicator */}
           <div
             className="
               absolute
@@ -366,6 +343,7 @@ const Testimonials = () => {
               lg:flex
             "
           >
+            {/* Background connecting line */}
             <div
               className="
                 absolute
@@ -378,55 +356,71 @@ const Testimonials = () => {
               "
             />
 
-            {testimonials.map((item, index) => (
-              <motion.button
-                key={item.id}
-                type="button"
-                onClick={() => setCurrent(index)}
-                whileHover={{ scale: 1.08 }}
-                whileTap={{ scale: 0.94 }}
-                aria-label={`Show testimonial from ${item.name}`}
-                className={`
-                  relative
-                  z-10
-                  overflow-hidden
-                  rounded-full
-                  transition-all
-                  duration-300
-                  ${
-                    current === index
-                      ? "h-[46px] w-[46px] border-2 border-[#1471df] p-[2px] scale-110"
-                      : "h-[40px] w-[40px] border border-white bg-[#e6edf5] opacity-75"
-                  }
-                `}
-              >
-                <Image
-                  src={item.image}
-                  alt={item.name}
-                  fill
-                  sizes="46px"
-                  className="rounded-full object-cover"
-                />
-              </motion.button>
-            ))}
+            {testimonials.map((item, index) => {
+              const isActive = current === index;
 
-            <span
-              className="
-                absolute
-                -left-[5px]
-                top-1/2
-                h-[30px]
-                w-[3px]
-                -translate-y-1/2
-                rounded-full
-                bg-[#1471df]
-              "
-            />
+              return (
+                <div
+                  key={item.id}
+                  onClick={() => setCurrent(index)}
+                  className="relative flex cursor-pointer items-center justify-center"
+                >
+                  {/* Click kiye gaye avatar ke paas vertical blue line slide karke aayegi */}
+                  {isActive && (
+                    <motion.span
+                      layoutId="activeVerticalIndicator"
+                      className="
+                        absolute
+                        -left-[12px]
+                        top-1/2
+                        h-[26px]
+                        w-[3.5px]
+                        -translate-y-1/2
+                        rounded-full
+                        bg-[#1471df]
+                      "
+                      transition={{
+                        type: "spring",
+                        stiffness: 380,
+                        damping: 28,
+                      }}
+                    />
+                  )}
+
+                  <motion.button
+                    type="button"
+                    onClick={() => setCurrent(index)}
+                    whileHover={{ scale: 1.08 }}
+                    whileTap={{ scale: 0.94 }}
+                    aria-label={`Show testimonial from ${item.name}`}
+                    className={`
+                      relative
+                      z-10
+                      overflow-hidden
+                      rounded-full
+                      transition-all
+                      duration-300
+                      ${
+                        isActive
+                          ? "h-[46px] w-[46px] border-2 border-[#1471df] p-[2px] scale-110 shadow-md"
+                          : "h-[40px] w-[40px] border border-white bg-[#e6edf5] opacity-75 hover:opacity-100"
+                      }
+                    `}
+                  >
+                    <Image
+                      src={item.image}
+                      alt={item.name}
+                      fill
+                      sizes="46px"
+                      className="rounded-full object-cover"
+                    />
+                  </motion.button>
+                </div>
+              );
+            })}
           </div>
 
-         
-         
-
+          {/* Right Bottom Labels */}
           <div
             className="
               absolute
@@ -439,32 +433,17 @@ const Testimonials = () => {
             "
           >
             <div className="text-right">
-              <p
-                className="
-                  text-[8px]
-                  font-semibold
-                  tracking-[1.5px]
-                  text-[#a2aec0]
-                "
-              >
+              <p className="text-[8px] font-semibold tracking-[1.5px] text-[#a2aec0]">
                 {content.sideLabels[0]}
               </p>
-
-              <p
-                className="
-                  text-[8px]
-                  font-semibold
-                  tracking-[1.5px]
-                  text-[#a2aec0]
-                "
-              >
+              <p className="text-[8px] font-semibold tracking-[1.5px] text-[#a2aec0]">
                 {content.sideLabels[1]}
               </p>
             </div>
-
             <span className="h-[2px] w-[45px] bg-[#2776df]" />
           </div>
         </div>
+
       </div>
     </section>
   );

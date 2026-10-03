@@ -41,7 +41,7 @@ const HowItWorks = () => {
           transition={{ duration: 0.55 }}
           className="mx-auto max-w-[800px] text-center"
         >
-          <div className="inline-flex rounded-full border border-[#d8e7fa] bg-[#f7fbff] px-3.5 py-1 text-[9.5px] font-semibold tracking-[0.25em] text-[#2d6fc4] sm:text-[10px] uppercase">
+          <div className="inline-flex rounded-full border border-[#d8e7fa] bg-[#f7fbff] px-3.5 py-1 text-[9.5px] font-semibold tracking-[0.25em] text-[#2d6fc4] sm:text-[10px] uppercase mt-8 sm:mt-2 lg:mt-1">
             {content.badge}
           </div>
 

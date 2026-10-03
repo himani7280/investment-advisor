@@ -34,18 +34,22 @@ const staggerContainer = {
   },
 };
 
-// Component jo string se numbers dhoond kar unhe 1 se animate karega
+// Component jo string se numbers dhoond kar unhe 1 se animate karega (Only ONCE)
 const InlineCounterText = ({ text }: { text: string }) => {
   const ref = useRef<HTMLSpanElement>(null);
   const isInView = useInView(ref, { once: true, amount: 0.5 });
   const [displayCount, setDisplayCount] = useState(1);
+  const hasAnimated = useRef(false);
 
   // String me se pehle digits ko extract kar rahe hain (e.g. "500+ Happy Clients" -> target 500)
   const match = text.match(/\d+/);
   const targetNumber = match ? parseInt(match[0], 10) : null;
 
   useEffect(() => {
-    if (!isInView || !targetNumber) return;
+    // Agar element view me nahi aaya, number missing hai, ya ANIMATION PEHLE HO CHUKA HAI toh exit karein
+    if (!isInView || !targetNumber || hasAnimated.current) return;
+
+    hasAnimated.current = true; // Mark as animated so it never runs again
 
     let start = 1;
     const duration = 2000; // 2 seconds animation duration
@@ -131,7 +135,7 @@ const Whychoose = () => {
               {content.description}
             </motion.p>
 
-            {/* Trusted Clients (Pehle wale text par hi live counter chalega) */}
+            {/* Trusted Clients (Ek baar animated counter run hoga) */}
             <motion.div
               variants={fadeIn}
               className="mt-6 flex items-center lg:mt-7"

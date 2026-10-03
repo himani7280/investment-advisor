@@ -65,7 +65,7 @@ const rightColVariants = {
   },
 };
 
-// Animated Counter Component with Scroll Trigger (useInView)
+// Animated Counter Component with Scroll Trigger (Only Trigger 1 Time)
 const AnimatedMetricCounter = ({
   target,
   suffix,
@@ -74,14 +74,11 @@ const AnimatedMetricCounter = ({
   suffix: string
 }) => {
   const ref = useRef<HTMLSpanElement>(null)
-  const isInView = useInView(ref, { once: false, amount: 0.2 })
+  const isInView = useInView(ref, { once: true, amount: 0.2 })
   const [count, setCount] = useState(1)
 
   useEffect(() => {
-    if (!isInView) {
-      setCount(1)
-      return
-    }
+    if (!isInView) return
 
     let animationFrame: number
     const duration = 1200 // 1.2 Seconds
@@ -170,7 +167,7 @@ export default function AboutMarry() {
               priority
             />
           </div>
-          {/* Key Metrics Banner with Scroll-Triggered Animated Counters */}
+          {/* Key Metrics Banner */}
           <div className="grid grid-cols-3 py-5 text-center divide-x divide-blue-200/60 bg-[#F5F8FF]">
             <div className="px-1">
               <div className="text-xl font-extrabold text-[#0B1E48] sm:text-2xl">
@@ -357,14 +354,18 @@ export default function AboutMarry() {
               const Icon = expertiseIcons[item.icon as keyof typeof expertiseIcons];
 
               return (
-                <motion.div key={item.title} whileHover={{ x: 4 }} className="flex items-center gap-3">
-                  <div className="group flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-blue-50 transition-all duration-200 hover:scale-110 hover:bg-blue-600 hover:shadow-sm">
-                    <Icon className="w-4 h-4 text-blue-600 transition-colors duration-200 group-hover:text-white" />
+                /* Individual Item Wrapper: Clicking or hovering on text/icon highlights specific icon to bg-blue-600 */
+                <div
+                  key={item.title}
+                  className="group/item flex cursor-pointer items-center gap-3 transition-transform duration-200"
+                >
+                  <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-blue-50 text-blue-600 transition-all duration-300 group-hover/item:scale-110 group-hover/item:bg-blue-600 group-hover/item:text-white group-hover/item:shadow-sm">
+                    <Icon className="h-4 w-4 transition-colors duration-300 group-hover/item:text-white" />
                   </div>
-                  <span className="text-xs font-medium text-gray-700 leading-snug sm:text-sm">
+                  <span className="text-xs font-medium text-gray-700 leading-snug transition-all duration-200 group-hover/item:translate-x-1 group-hover/item:text-[#0B1E48] sm:text-sm">
                     {item.title}
                   </span>
-                </motion.div>
+                </div>
               );
             })}
           </div>

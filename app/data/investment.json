@@ -582,10 +582,10 @@
             "closing": "At PrimeCore, we help individuals and businesses create personalized investment strategies designed for long-term success. If you're ready to take control of your financial future, get in touch with our experts today.",
             "recentPostsTitle": "Recent Posts",
             "recentPosts": [
-              { "title": "Smart Investment Strategies for a Brighter Future", "date": "August 22, 2026", "image": "/blog1.png", "href": "/contact" },
-              { "title": "How to Plan for a Secure Retirement", "date": "August 15, 2026", "image": "/blog2.png", "href": "/contact" },
-              { "title": "Top 5 Ways to Build Wealth in 2026", "date": "August 10, 2026", "image": "/blog3.png", "href": "/contact" },
-              { "title": "A Guide to Smart Tax Planning", "date": "August 05, 2026", "image": "/service.png", "href": "/contact" }
+              { "title": "Smart Investment Strategies for a Brighter Future", "date": "August 22, 2026", "image": "/blog1.png", "href": "/service/serviceDetail" },
+              { "title": "How to Plan for a Secure Retirement", "date": "August 15, 2026", "image": "/blog2.png", "href": "/service/serviceDetail" },
+              { "title": "Top 5 Ways to Build Wealth in 2026", "date": "August 10, 2026", "image": "/blog3.png", "href": "/service/serviceDetail" },
+              { "title": "A Guide to Smart Tax Planning", "date": "August 05, 2026", "image": "/service.png", "href": "/service/serviceDetail" }
             ],
             "advice": {
               "eyebrow": "Need Expert Advice?",
@@ -668,9 +668,9 @@
             },
             "header": {
               "tagline": "Invest Today. A Stronger Tomorrow.",
-              "email": "info@gmail.com",
-              "emailHref": "mailto:info@primecore.com",
-              "phone": "+91 xxxxx xxxxx",
+              "email": "xyz@gmail.com",
+              "emailHref": "xyz@gmail.com",
+              "phone": "+1 00000 00000",
               "phoneHref": "#",
               "socials": [
                 { "platform": "LinkedIn", "href": "https://www.linkedin.com" },
@@ -733,11 +733,11 @@
                 { "name": "Tax Planning", "href": "/investment" }
               ],
               "contactTitle": "Contact Us",
-              "addressLines": ["123 Business Avenue,", "New Delhi, 110001, India"],
-              "phone": "+91 xxxxx xxxxx",
+              "addressLines": ["123 Market Street,", "New York, NY 10001, USA"],
+              "phone": "+1 00000 00000",
               "phoneHref": "#",
-              "email": "info@gmail.com.com",
-              "emailHref": "mailto:info@gmail.com.com",
+              "email": "xyz@gmail.com",
+              "emailHref": "xyz@gmail.com",
               "hours": "Mon - Sat: 9:00 AM - 6:00 PM",
               "socials": [
                 { "platform": "LinkedIn", "href": "https://www.linkedin.com" },

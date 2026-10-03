@@ -259,9 +259,9 @@ const ContactForm = () => {
                   >
                     {content.phone}
                   </a>
-                  <p className="mt-1 text-sm text-[#71809d]">
+                  {/* <p className="mt-1 text-sm text-[#71809d]">
                     {content.callHours}
-                  </p>
+                  </p> */}
                 </div>
               </motion.div>
 
@@ -321,9 +321,9 @@ const ContactForm = () => {
                       </React.Fragment>
                     ))}
                   </p>
-                  <p className="mt-1 text-sm text-[#71809d]">
+                  {/* <p className="mt-1 text-sm text-[#71809d]">
                     {content.officeHours}
-                  </p>
+                  </p> */}
                 </div>
               </motion.div>
 

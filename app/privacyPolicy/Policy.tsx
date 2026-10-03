@@ -80,7 +80,7 @@ const Policy = () => {
           </p>
         </motion.div>
 
-        {/* Policy Items List with reduced spacing */}
+        {/* Policy Items List */}
         <motion.div
           initial="hidden"
           whileInView="visible"
@@ -92,18 +92,16 @@ const Policy = () => {
             <motion.div
               key={item.id}
               variants={listItemVariants}
-              className="flex items-start gap-3 py-4 sm:gap-5 md:py-4.5 group"
+              className="group flex cursor-pointer items-start gap-3 py-4 sm:gap-5 md:py-4.5"
             >
-              {/* Circle Badge */}
-              <motion.div
-                whileHover={{ scale: 1.1, backgroundColor: "#1d4ed8", color: "#ffffff" }}
-                transition={{ type: "spring", stiffness: 300, damping: 20 }}
-                className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-[#ebf3fe] font-bold text-[14px] text-[#0052cc] cursor-default"
+              {/* Circle Badge Sync with Parent Group Hover */}
+              <div
+                className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-[#ebf3fe] text-[14px] font-bold text-[#0052cc] transition-all duration-300 group-hover:scale-110 group-hover:bg-[#1d4ed8] group-hover:text-white"
               >
                 {item.id}
-              </motion.div>
+              </div>
 
-              {/* Text */}
+              {/* Text Content */}
               <div className="min-w-0 flex-1 pt-0.5">
                 <h3 className="text-[16px] font-bold text-[#021838] sm:text-[17px] transition-colors duration-200 group-hover:text-[#0052cc]">
                   {item.title}
@@ -118,15 +116,14 @@ const Policy = () => {
           {/* Item 09: Contact Us */}
           <motion.div
             variants={listItemVariants}
-            className="flex items-start gap-3 py-4 sm:gap-5 md:py-4.5 group"
+            className="group flex cursor-pointer items-start gap-3 py-4 sm:gap-5 md:py-4.5"
           >
-            <motion.div
-              whileHover={{ scale: 1.1, backgroundColor: "#1d4ed8", color: "#ffffff" }}
-              transition={{ type: "spring", stiffness: 300, damping: 20 }}
-              className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-[#ebf3fe] font-bold text-[#0052cc] text-[14px] cursor-default"
+            {/* Circle Badge Sync for Item 09 */}
+            <div
+              className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-[#ebf3fe] text-[14px] font-bold text-[#0052cc] transition-all duration-300 group-hover:scale-110 group-hover:bg-[#1d4ed8] group-hover:text-white"
             >
               09
-            </motion.div>
+            </div>
 
             <div className="min-w-0 flex-1 pt-0.5">
               <h3 className="text-[16px] font-bold text-[#021838] sm:text-[17px] transition-colors duration-200 group-hover:text-[#0052cc]">

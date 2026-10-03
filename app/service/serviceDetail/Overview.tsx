@@ -140,9 +140,9 @@ const Overview = () => {
                       variants={itemVariants}
                       whileHover={{ y: -4 }}
                       transition={{ duration: 0.2 }}
-                      className="flex min-h-[120px] items-center gap-6 rounded-xl border border-[#e3eaf3] bg-white px-5 py-5 shadow-[0_2px_10px_rgba(30,80,150,0.03)]"
+                      className="group flex min-h-[120px] items-center gap-6 rounded-xl border border-[#e3eaf3] bg-white px-5 py-5 shadow-[0_2px_10px_rgba(30,80,150,0.03)] cursor-pointer"
                     >
-                      <div className="group flex h-[68px] w-[68px] shrink-0 items-center justify-center rounded-full bg-[#edf5ff] transition-colors duration-200 hover:bg-[#1474e8] sm:h-[76px] sm:w-[76px]">
+                      <div className="flex h-[68px] w-[68px] shrink-0 items-center justify-center rounded-full bg-[#edf5ff] transition-colors duration-200 group-hover:bg-[#1474e8] sm:h-[76px] sm:w-[76px]">
                         <Icon
                           size={34}
                           strokeWidth={1.8}
@@ -186,16 +186,14 @@ const Overview = () => {
                   <motion.div
                     key={index}
                     variants={itemVariants}
-                    className="relative text-center"
+                    className="group relative text-center cursor-pointer"
                   >
                     <div className="relative flex items-center justify-center">
-                      <motion.div
-                        whileHover={{ scale: 1.08 }}
-                        transition={{ duration: 0.2 }}
-                        className="flex h-[68px] w-[68px] items-center justify-center rounded-full bg-[#edf5ff] text-[20px] font-bold text-[#075ed5] transition-colors duration-200 hover:bg-[#1474e8] hover:text-white"
+                      <div
+                        className="flex h-[68px] w-[68px] items-center justify-center rounded-full bg-[#edf5ff] text-[20px] font-bold text-[#075ed5] transition-all duration-200 group-hover:scale-108 group-hover:bg-[#1474e8] group-hover:text-white"
                       >
                         {item.number}
-                      </motion.div>
+                      </div>
 
                       {/* Connecting Line (Only for large desktop view) */}
                       {index !== content.process.length - 1 && (

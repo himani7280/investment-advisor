@@ -13,14 +13,12 @@ type CountUpProps = {
 
 const CountUp = ({ target, prefix = "", suffix = "" }: CountUpProps) => {
   const ref = useRef<HTMLSpanElement>(null);
-  const isInView = useInView(ref, { once: false, amount: 0.2 });
+  // 1. Change once: false to once: true here
+  const isInView = useInView(ref, { once: true, amount: 0.2 });
   const [count, setCount] = useState(1);
 
   useEffect(() => {
-    if (!isInView) {
-      setCount(1);
-      return;
-    }
+    if (!isInView) return; // Animated once it's in view, no reset needed
 
     const duration = 1800; // 1.8 seconds animation duration
     const startTime = performance.now();

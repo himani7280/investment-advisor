@@ -3,9 +3,15 @@
 import React, { createContext, ReactNode } from "react";
 import { investmentContent } from "../data/investmentContent";
 
-interface HeroData {
+export interface ParentBreadcrumb {
+  label: string;
+  href: string;
+}
+
+export interface HeroData {
   title: string;
   image: string;
+  parent?: ParentBreadcrumb;
 }
 
 export type HeroPage =

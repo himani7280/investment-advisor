@@ -161,33 +161,38 @@ const HeroSection: React.FC<HeroSectionProps> = ({ data }) => {
           initial={{ opacity: 0, y: 12 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, delay: 0.2 }}
-          className="grid grid-cols-1 gap-3.5 pb-6 pt-5 sm:grid-cols-3 sm:gap-0 lg:max-w-[680px] lg:grid-cols-[200px_215px_auto] max-xl:lg:rounded-md max-xl:lg:bg-white/70 max-xl:lg:py-2.5 max-xl:lg:backdrop-blur-sm lg:mb-[16px] lg:-ml-[7px] lg:pb-0 lg:pt-5"
+          className="grid grid-cols-1 gap-2 pb-6 pt-5 sm:grid-cols-3 sm:gap-1 lg:max-w-[680px] lg:grid-cols-[200px_215px_auto] max-xl:lg:rounded-md max-xl:lg:bg-white/70 max-xl:lg:py-2.5 max-xl:lg:backdrop-blur-sm lg:mb-[16px] lg:-ml-[7px] lg:pb-0 lg:pt-5"
         >
           {features.map((feature, index) => {
             const Icon = feature.icon;
             return (
               <div
                 key={feature.title}
-                className={`flex items-center gap-2.5 sm:px-2.5 lg:gap-[13px] lg:px-0 ${
+                className={`group cursor-pointer rounded-lg p-2.5 transition-all duration-300 hover:bg-[#eaf2fc]/70 ${
                   index !== 0
                     ? "sm:border-l sm:border-[#d3deec] lg:pl-[14px]"
                     : ""
                 }`}
               >
-                <div className="flex h-[44px] w-[44px] shrink-0 items-center justify-center rounded-full bg-[#dce9f9]">
-                  <Icon size={22} strokeWidth={1.6} className="text-[#2d6fc4]" />
-                </div>
-                <div className="min-h-[44px] flex flex-col justify-center">
-                  <h3 className="whitespace-nowrap text-[11px] font-semibold leading-[15px] text-[#0b1a33]">
-                    {feature.title}
-                  </h3>
-                  <p className="mt-[2px] text-[9.2px] leading-[14px] text-[#5d6c82]">
-                    {feature.lines.map((line: string, i: number) => (
-                      <span key={i} className="block whitespace-nowrap">
-                        {line}
-                      </span>
-                    ))}
-                  </p>
+                <div className="flex items-center gap-2.5 lg:gap-[13px]">
+                  {/* Icon Wrapper with Hover Animation */}
+                  <div className="flex h-[44px] w-[44px] shrink-0 items-center justify-center rounded-full bg-[#dce9f9] transition-all duration-300 group-hover:bg-[#2d6fc4] group-hover:shadow-md">
+                    <Icon size={22} strokeWidth={1.6} className="text-[#2d6fc4] transition-colors duration-300 group-hover:text-white" />
+                  </div>
+
+                  {/* Text Container */}
+                  <div className="min-h-[44px] flex flex-col justify-center">
+                    <h3 className="whitespace-nowrap text-[11px] font-semibold leading-[15px] text-[#0b1a33] transition-colors duration-200 group-hover:text-[#2d6fc4]">
+                      {feature.title}
+                    </h3>
+                    <p className="mt-[2px] text-[9.2px] leading-[14px] text-[#5d6c82]">
+                      {feature.lines.map((line: string, i: number) => (
+                        <span key={i} className="block whitespace-nowrap">
+                          {line}
+                        </span>
+                      ))}
+                    </p>
+                  </div>
                 </div>
               </div>
             );

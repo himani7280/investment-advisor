@@ -27,11 +27,11 @@ const Hero = ({ page }: HeroProps) => {
     return <div>{investmentContent.siteChrome.heroDataMissingText}</div>;
   }
 
-  const { title, image } = data;
+  const { title, image, parent } = data;
 
   return (
     <section className="relative w-full h-[35vh] sm:h-[45vh] md:h-[55vh] min-h-[260px] max-h-[600px] overflow-hidden">
-      {/* Background Image - Clean Cover Fit with zero top/bottom extra space */}
+      {/* Background Image */}
       <Image
         src={image}
         alt={title}
@@ -50,7 +50,7 @@ const Hero = ({ page }: HeroProps) => {
         </h1>
       </div>
 
-      {/* White Box Breadcrumb - Right Bottom Edge Touched */}
+      {/* White Box Breadcrumb */}
       <div className="absolute bottom-0 right-0 sm:right-6 z-10">
         <nav
           aria-label="Breadcrumb"
@@ -63,8 +63,22 @@ const Hero = ({ page }: HeroProps) => {
             Home
           </Link>
 
+          {/* Dynamic Parent Route (e.g., Home > Service OR Home > Blog) */}
+          {parent && (
+            <>
+              <Grid className="h-3.5 w-3.5 sm:h-4 sm:w-4 text-[#0f172a]" />
+              <Link
+                href={parent.href}
+                className="font-semibold text-[#1e293b] transition-colors hover:text-[#2563eb]"
+              >
+                {parent.label}
+              </Link>
+            </>
+          )}
+
           <Grid className="h-3.5 w-3.5 sm:h-4 sm:w-4 text-[#0f172a]" />
 
+          {/* Current Page Title */}
           <span className="font-semibold text-[#3b82f6] truncate max-w-[160px] sm:max-w-none">
             {title}
           </span>

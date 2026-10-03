@@ -103,44 +103,43 @@ const Faq = () => {
                 <motion.div
                   key={faq.id}
                   variants={itemVariants}
-                  className={`overflow-hidden rounded-xl border transition-colors duration-300 ${
+                  className={`group overflow-hidden rounded-xl border transition-colors duration-300 ${
                     isOpen
                       ? "border-blue-100 bg-blue-50/30"
-                      : "border-gray-100 bg-white hover:border-gray-200"
+                      : "border-gray-100 bg-white hover:border-blue-200 hover:bg-slate-50/50"
                   }`}
                 >
-                  {/* QUESTION */}
+                  {/* QUESTION BUTTON */}
                   <button
                     type="button"
                     onClick={() => toggleFaq(faq.id)}
-                    className="flex w-full items-center justify-between gap-4 p-4 text-left sm:p-5"
+                    className="flex w-full items-center justify-between gap-4 p-4 text-left sm:p-5 cursor-pointer"
                     aria-expanded={isOpen}
                   >
                     <div className="flex min-w-0 items-center gap-3 sm:gap-5">
 
-                      {/* NUMBER */}
-                      <motion.div
-                        animate={{
-                          backgroundColor: isOpen ? "#2563eb" : "#eff6ff",
-                          color: isOpen ? "#ffffff" : "#2563eb",
-                        }}
-                        transition={{ duration: 0.25 }}
-                        className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full text-xs font-bold sm:h-10 sm:w-10 sm:text-sm"
+                      {/* NUMBER (Hover pe Blue BG + White Text) */}
+                      <div
+                        className={`flex h-9 w-9 shrink-0 items-center justify-center rounded-full text-xs font-bold transition-colors duration-200 sm:h-10 sm:w-10 sm:text-sm ${
+                          isOpen
+                            ? "bg-blue-600 text-white"
+                            : "bg-blue-50 text-blue-600 group-hover:bg-blue-600 group-hover:text-white"
+                        }`}
                       >
                         {faq.number}
-                      </motion.div>
+                      </div>
 
-                      {/* QUESTION */}
+                      {/* QUESTION TEXT */}
                       <h3
                         className={`text-sm font-bold transition-colors duration-200 sm:text-[17px] ${
-                          isOpen ? "text-gray-900" : "text-gray-700"
+                          isOpen ? "text-gray-900" : "text-gray-700 group-hover:text-blue-600"
                         }`}
                       >
                         {faq.question}
                       </h3>
                     </div>
 
-                    {/* PLUS / MINUS */}
+                    {/* PLUS / MINUS ICON */}
                     <div className="shrink-0">
                       <motion.div
                         animate={{ rotate: isOpen ? 180 : 0 }}
@@ -162,7 +161,7 @@ const Faq = () => {
                           </svg>
                         ) : (
                           <svg
-                            className="h-5 w-5 text-gray-800 sm:h-6 sm:w-6"
+                            className="h-5 w-5 text-gray-500 transition-colors group-hover:text-blue-600 sm:h-6 sm:w-6"
                             fill="none"
                             viewBox="0 0 24 24"
                             stroke="currentColor"
@@ -225,11 +224,11 @@ const Faq = () => {
               <div className="mb-7 flex flex-col gap-5">
 
                 {/* CALL */}
-                <div className="flex items-center gap-4">
+                <div className="group flex cursor-pointer items-center gap-4">
                   <motion.div
-                    whileHover={{ scale: 1.1 }}
+                    whileHover={{ scale: 1.05 }}
                     whileTap={{ scale: 0.95 }}
-                    className="group flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-blue-100 text-blue-600 transition-colors duration-200 hover:bg-blue-600 hover:text-white"
+                    className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-blue-100 text-blue-600 transition-colors duration-200 group-hover:bg-blue-600 group-hover:text-white"
                   >
                     <svg
                       className="h-5 w-5"
@@ -247,7 +246,7 @@ const Faq = () => {
                   </motion.div>
 
                   <div className="flex flex-col">
-                    <span className="text-sm font-bold text-gray-900">
+                    <span className="text-sm font-bold text-gray-900 group-hover:text-blue-600 transition-colors">
                       {content.contact.phoneLabel}
                     </span>
                     <span className="text-sm text-gray-500">
@@ -257,11 +256,11 @@ const Faq = () => {
                 </div>
 
                 {/* EMAIL */}
-                <div className="flex items-center gap-4">
+                <div className="group flex cursor-pointer items-center gap-4">
                   <motion.div
-                    whileHover={{ scale: 1.1 }}
+                    whileHover={{ scale: 1.05 }}
                     whileTap={{ scale: 0.95 }}
-                    className="group flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-blue-100 text-blue-600 transition-colors duration-200 hover:bg-blue-600 hover:text-white"
+                    className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-blue-100 text-blue-600 transition-colors duration-200 group-hover:bg-blue-600 group-hover:text-white"
                   >
                     <svg
                       className="h-5 w-5"
@@ -279,7 +278,7 @@ const Faq = () => {
                   </motion.div>
 
                   <div className="flex min-w-0 flex-col">
-                    <span className="text-sm font-bold text-gray-900">
+                    <span className="text-sm font-bold text-gray-900 group-hover:text-blue-600 transition-colors">
                       {content.contact.emailLabel}
                     </span>
                     <span className="break-all text-sm text-gray-500">
@@ -289,11 +288,11 @@ const Faq = () => {
                 </div>
 
                 {/* LIVE CHAT */}
-                <div className="flex items-center gap-4">
+                <div className="group flex cursor-pointer items-center gap-4">
                   <motion.div
-                    whileHover={{ scale: 1.1 }}
+                    whileHover={{ scale: 1.05 }}
                     whileTap={{ scale: 0.95 }}
-                    className="group flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-blue-100 text-blue-600 transition-colors duration-200 hover:bg-blue-600 hover:text-white"
+                    className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-blue-100 text-blue-600 transition-colors duration-200 group-hover:bg-blue-600 group-hover:text-white"
                   >
                     <svg
                       className="h-5 w-5"
@@ -311,7 +310,7 @@ const Faq = () => {
                   </motion.div>
 
                   <div className="flex flex-col">
-                    <span className="text-sm font-bold text-gray-900">
+                    <span className="text-sm font-bold text-gray-900 group-hover:text-blue-600 transition-colors">
                       {content.contact.chatLabel}
                     </span>
                     <span className="text-sm text-gray-500">
@@ -319,6 +318,7 @@ const Faq = () => {
                     </span>
                   </div>
                 </div>
+
               </div>
 
               {/* CTA */}
@@ -383,8 +383,10 @@ const Faq = () => {
                 </p>
               </div>
             </motion.div>
+
           </motion.div>
         </div>
+
       </div>
     </section>
   );

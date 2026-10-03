@@ -44,7 +44,7 @@ const staggerContainer = {
 
 const BlogsSection = () => {
   return (
-    <section className="w-full bg-white pt-8 sm:pt-10 lg:pt-14 ">
+    <section className="w-full bg-white pt-8 sm:pt-10 lg:pt-14">
       <div className="mx-auto max-w-[1200px] px-2">
         {/* Header */}
         <motion.div
@@ -97,7 +97,8 @@ const BlogsSection = () => {
                     sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
                   />
 
-                  <div className="absolute left-3.5 top-3.5 flex h-[52px] w-[62px] flex-col items-center justify-center rounded-lg bg-blue-600 text-white shadow-md">
+                  {/* Date Badge - Card hover par 360 degree rotate hoke smooth transition ke sath set hota hai */}
+                  <div className="absolute left-3.5 top-3.5 flex h-[52px] w-[62px] flex-col items-center justify-center rounded-lg bg-blue-600 text-white shadow-md transition-transform duration-700 ease-out group-hover:rotate-[360deg] group-hover:scale-105">
                     <span className="text-[20px] font-bold leading-none">
                       {blog.date}
                     </span>

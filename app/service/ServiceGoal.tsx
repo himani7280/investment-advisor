@@ -1,5 +1,6 @@
 "use client";
 
+import { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { motion } from "framer-motion";
@@ -58,6 +59,13 @@ const cardVariants = {
 };
 
 const ServiceGoal = () => {
+  // Track currently active/clicked card title
+  const [activeCard, setActiveCard] = useState<string | null>(null);
+
+  const handleCardClick = (title: string) => {
+    setActiveCard(title);
+  };
+
   return (
     <section className="w-full bg-white pt-10 sm:pt-12 lg:pt-14">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-12">
@@ -101,13 +109,19 @@ const ServiceGoal = () => {
         >
           {content.items.map((service) => {
             const Icon = serviceIcons[service.icon as keyof typeof serviceIcons];
+            const isActive = activeCard === service.title;
 
             return (
               <motion.article
                 key={service.title}
                 variants={cardVariants}
                 whileHover={{ y: -6, transition: { duration: 0.2 } }}
-                className="group flex h-full flex-col overflow-hidden rounded-lg border border-[#e2eaf5] bg-white shadow-sm transition-shadow duration-300 hover:shadow-lg"
+                onClick={() => handleCardClick(service.title)}
+                className={`group flex h-full flex-col cursor-pointer overflow-hidden rounded-lg border transition-all duration-300 ${
+                  isActive
+                    ? "border-[#1769e0] shadow-md"
+                    : "border-[#e2eaf5] bg-white shadow-sm hover:shadow-lg"
+                }`}
               >
                 <div className="relative aspect-16/10 w-full overflow-hidden">
                   <Image
@@ -120,7 +134,14 @@ const ServiceGoal = () => {
                 </div>
 
                 <div className="relative flex flex-1 flex-col px-5 pb-5 pt-12">
-                  <div className="absolute -top-8 left-5 flex h-[68px] w-[68px] items-center justify-center rounded-full border-[5px] border-white bg-[#e8f2ff] text-[#1769e0] shadow-sm transition-colors duration-200 hover:bg-[#1769e0] hover:text-white">
+                  {/* Floating Icon Container: Card hover par OR Click karne par icon background blue ho jata hai */}
+                  <div
+                    className={`absolute -top-8 left-5 flex h-[68px] w-[68px] items-center justify-center rounded-full border-[5px] border-white shadow-sm transition-colors duration-300 ${
+                      isActive
+                        ? "bg-[#1769e0] text-white"
+                        : "bg-[#e8f2ff] text-[#1769e0] group-hover:bg-[#1769e0] group-hover:text-white"
+                    }`}
+                  >
                     <Icon size={31} strokeWidth={1.8} />
                   </div>
 
@@ -134,6 +155,7 @@ const ServiceGoal = () => {
 
                   <Link
                     href={service.href}
+                    onClick={(e) => e.stopPropagation()}
                     className="mt-4 inline-flex w-fit items-center gap-3 text-sm font-bold text-[#1769e0] transition hover:gap-4"
                   >
                     {content.readMoreText}

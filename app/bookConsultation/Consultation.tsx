@@ -252,7 +252,7 @@ const Consultation = () => {
               <div className="space-y-5 bg-[#f7fbff] p-5 sm:p-6">
                 
                 {/* Item 1 */}
-                <motion.div variants={itemVariants} className="flex items-start gap-4 group">
+                <motion.div variants={itemVariants} className="group flex cursor-pointer items-start gap-4">
                   <motion.div
                     whileHover={{ scale: 1.1 }}
                     transition={{ type: "spring", stiffness: 300 }}
@@ -261,7 +261,9 @@ const Consultation = () => {
                     <Calendar size={20} />
                   </motion.div>
                   <div>
-                    <h4 className="text-[14px] font-bold text-[#091e42]">{content.benefits[0].title}</h4>
+                    <h4 className="text-[14px] font-bold text-[#091e42] transition-colors duration-200 group-hover:text-[#1a73e8]">
+                      {content.benefits[0].title}
+                    </h4>
                     <p className="text-[12px] text-[#6b7c96]">
                       {content.benefits[0].description}
                     </p>
@@ -269,7 +271,7 @@ const Consultation = () => {
                 </motion.div>
 
                 {/* Item 2 */}
-                <motion.div variants={itemVariants} className="flex items-start gap-4 group">
+                <motion.div variants={itemVariants} className="group flex cursor-pointer items-start gap-4">
                   <motion.div
                     whileHover={{ scale: 1.1 }}
                     transition={{ type: "spring", stiffness: 300 }}
@@ -278,7 +280,9 @@ const Consultation = () => {
                     <Users size={20} />
                   </motion.div>
                   <div>
-                    <h4 className="text-[14px] font-bold text-[#091e42]">{content.benefits[1].title}</h4>
+                    <h4 className="text-[14px] font-bold text-[#091e42] transition-colors duration-200 group-hover:text-[#1a73e8]">
+                      {content.benefits[1].title}
+                    </h4>
                     <p className="text-[12px] text-[#6b7c96]">
                       {content.benefits[1].description}
                     </p>
@@ -286,7 +290,7 @@ const Consultation = () => {
                 </motion.div>
 
                 {/* Item 3 */}
-                <motion.div variants={itemVariants} className="flex items-start gap-4 group">
+                <motion.div variants={itemVariants} className="group flex cursor-pointer items-start gap-4">
                   <motion.div
                     whileHover={{ scale: 1.1 }}
                     transition={{ type: "spring", stiffness: 300 }}
@@ -295,7 +299,9 @@ const Consultation = () => {
                     <MapPin size={20} />
                   </motion.div>
                   <div>
-                    <h4 className="text-[14px] font-bold text-[#091e42]">{content.benefits[2].title}</h4>
+                    <h4 className="text-[14px] font-bold text-[#091e42] transition-colors duration-200 group-hover:text-[#1a73e8]">
+                      {content.benefits[2].title}
+                    </h4>
                     <p className="text-[12px] text-[#6b7c96]">
                       {content.benefits[2].description}
                     </p>
@@ -303,7 +309,7 @@ const Consultation = () => {
                 </motion.div>
 
                 {/* Item 4 */}
-                <motion.div variants={itemVariants} className="flex items-start gap-4 group">
+                <motion.div variants={itemVariants} className="group flex cursor-pointer items-start gap-4">
                   <motion.div
                     whileHover={{ scale: 1.1 }}
                     transition={{ type: "spring", stiffness: 300 }}
@@ -312,7 +318,9 @@ const Consultation = () => {
                     <ShieldCheck size={20} />
                   </motion.div>
                   <div>
-                    <h4 className="text-[14px] font-bold text-[#091e42]">{content.benefits[3].title}</h4>
+                    <h4 className="text-[14px] font-bold text-[#091e42] transition-colors duration-200 group-hover:text-[#1a73e8]">
+                      {content.benefits[3].title}
+                    </h4>
                     <p className="text-[12px] text-[#6b7c96]">
                       {content.benefits[3].description}
                     </p>
@@ -360,7 +368,11 @@ const Consultation = () => {
             {content.steps.map((step, idx) => {
               const Icon = stepIcons[step.icon as keyof typeof stepIcons];
               return (
-                <motion.div key={idx} variants={stepItemVariants} className="relative flex flex-col items-center text-center">
+                <motion.div 
+                  key={idx} 
+                  variants={stepItemVariants} 
+                  className="group relative flex cursor-pointer flex-col items-center text-center"
+                >
                   
                   {/* Dashed Connector Line Between Circle Icons (Desktop Only) */}
                   {idx < content.steps.length - 1 && (
@@ -371,14 +383,14 @@ const Consultation = () => {
                   <motion.div
                     whileHover={{ scale: 1.1 }}
                     transition={{ type: "spring", stiffness: 300 }}
-                    className="group relative z-10 flex h-16 w-16 items-center justify-center rounded-full bg-[#eef5ff] transition-colors duration-200 hover:bg-[#0066ff] sm:h-20 sm:w-20 cursor-pointer"
+                    className="relative z-10 flex h-16 w-16 items-center justify-center rounded-full bg-[#eef5ff] transition-colors duration-200 group-hover:bg-[#0066ff] sm:h-20 sm:w-20"
                   >
                     <Icon size={24} className="text-[#0066ff] transition-colors duration-200 group-hover:text-white sm:hidden" />
                     <Icon size={28} className="hidden text-[#0066ff] transition-colors duration-200 group-hover:text-white sm:block" />
                   </motion.div>
 
                   {/* Step Title */}
-                  <h4 className="mt-3 sm:mt-5 text-[14px] sm:text-[15px] font-bold text-[#091e42]">
+                  <h4 className="mt-3 sm:mt-5 text-[14px] sm:text-[15px] font-bold text-[#091e42] transition-colors duration-200 group-hover:text-[#0066ff]">
                     <span>{step.number} </span>
                     <span>{step.title}</span>
                   </h4>

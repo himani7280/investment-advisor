@@ -234,14 +234,14 @@ const Footer = () => {
               </div>
 
               {/* Hours */}
-              <div className="flex items-center gap-3">
+              {/* <div className="flex items-center gap-3">
                 <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-[#ebf3fe] text-[#0052cc]">
                   <FaClock size={14} />
                 </div>
                 <p className="text-[14px] text-[#52637e]">
                   {content.hours}
                 </p>
-              </div>
+              </div> */}
             </div>
           </motion.div>
 

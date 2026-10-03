@@ -6,11 +6,6 @@ import { Award, Heart, Users, ShieldCheck } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { investmentContent } from "../data/investmentContent";
 
-type AwardCategory =
-  | "Industry Awards"
-  | "Client Recognition"
-  | "Corporate Excellence";
-
 const content = investmentContent.awards;
 const featureIcons = [Award, Heart, Users, ShieldCheck];
 
@@ -40,11 +35,19 @@ const itemVariants = {
 
 // ================= COMPONENT =================
 const Achievements = () => {
-  const [activeCategory, setActiveCategory] = useState<AwardCategory | "All">("All");
-  const categories = content.categories as Array<AwardCategory | "All">;
-  const filteredAwards = content.awards.filter(
-    (award) => activeCategory === "All" || award.category === activeCategory,
-  );
+  // Direct string type keep karne se activeCategory hamesha content se correctly match hoga
+  const [activeCategory, setActiveCategory] = useState<string>("All");
+
+  const categories = content.categories as string[];
+
+  // Case & space trimming comparison ensure karne ke liye filtering:
+  const filteredAwards = content.awards.filter((award) => {
+    if (activeCategory === "All") return true;
+    return (
+      award.category?.trim().toLowerCase() ===
+      activeCategory.trim().toLowerCase()
+    );
+  });
 
   return (
     <section className="w-full overflow-hidden bg-white pt-10 sm:pt-12 lg:pt-8">
@@ -100,14 +103,14 @@ const Achievements = () => {
               const FeatureIcon = featureIcons[index];
               return (
                 <motion.div
-                  key={feature.title}
+                  key={feature.title || index}
                   variants={itemVariants}
-                  className="flex flex-col gap-2"
+                  className="group flex cursor-pointer flex-col gap-2"
                 >
                   <motion.div 
                     whileHover={{ scale: 1.1 }}
                     whileTap={{ scale: 0.95 }}
-                    className="group flex h-11 w-11 cursor-pointer items-center justify-center rounded-full bg-blue-50 transition-colors duration-200 hover:bg-blue-600"
+                    className="flex h-11 w-11 items-center justify-center rounded-full bg-blue-50 transition-colors duration-200 group-hover:bg-blue-600"
                   >
                     <FeatureIcon className="h-7 w-7 text-blue-600 transition-colors group-hover:text-white" />
                   </motion.div>
@@ -125,17 +128,17 @@ const Achievements = () => {
           </motion.div>
         </div>
 
-        {/* ================= AWARDS HEADING ================= */}
+        {/* ================= AWARDS HEADING & CATEGORIES ================= */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.5, delay: 0.2 }}
-          className="mt-10 flex flex-col gap-4 sm:mt-12 lg:mt-6 lg:flex-row lg:items-center lg:justify-between"
+          className="mt-12 flex flex-col gap-6 sm:mt-14 lg:mt-10 lg:flex-row lg:items-center lg:justify-between"
         >
-
-          <div className="flex items-center gap-3">
-            <h3 className="text-2xl font-bold text-gray-900 sm:text-3xl">
+          {/* HEADING */}
+          <div className="flex items-center gap-4">
+            <h3 className="text-2xl font-extrabold tracking-tight text-gray-900 sm:text-3xl">
               {content.awardsTitle}
             </h3>
 
@@ -149,7 +152,11 @@ const Achievements = () => {
           </div>
 
           {/* FILTER BUTTONS */}
-          <div className="flex w-full flex-wrap gap-2 lg:w-auto" role="group" aria-label={content.filterAriaLabel}>
+          <div 
+            className="flex w-full flex-wrap items-center gap-2 lg:w-auto" 
+            role="group" 
+            aria-label={content.filterAriaLabel}
+          >
             {categories.map((category) => {
               const isActive = activeCategory === category;
 
@@ -159,14 +166,14 @@ const Achievements = () => {
                   type="button"
                   aria-pressed={isActive}
                   onClick={() => setActiveCategory(category)}
-                  className={`relative whitespace-nowrap rounded-full px-3 py-2 text-xs font-semibold transition-colors sm:px-4 sm:text-sm ${
-                    isActive ? "text-white" : "text-gray-600 hover:text-blue-600"
+                  className={`relative cursor-pointer text-black whitespace-nowrap rounded-full px-4 py-2 text-xs font-semibold transition-colors duration-200 sm:px-5 sm:text-sm ${
+                    isActive ? "text-blue-600" : "text-black "
                   }`}
                 >
                   {isActive && (
                     <motion.div
                       layoutId="activeCategoryPill"
-                      className="absolute inset-0 rounded-full bg-blue-600 -z-10"
+                      className="absolute inset-0 -z-10 rounded-full bg-blue-600 shadow-sm"
                       transition={{ type: "spring", stiffness: 380, damping: 28 }}
                     />
                   )}
@@ -180,47 +187,57 @@ const Achievements = () => {
         {/* ================= AWARDS GRID ================= */}
         <motion.div
           layout
-          className="mt-7 grid grid-cols-1 gap-4 sm:grid-cols-2 sm:gap-5 lg:grid-cols-3 xl:grid-cols-4"
+          className="mt-8 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4"
         >
           <AnimatePresence mode="popLayout">
-            {filteredAwards.map((award) => (
+            {filteredAwards.length > 0 ? (
+              filteredAwards.map((award, index) => (
+                <motion.div
+                  key={award.id || `${award.title}-${index}`}
+                  layout
+                  initial={{ opacity: 0, scale: 0.9 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  exit={{ opacity: 0, scale: 0.9 }}
+                  transition={{ duration: 0.35, ease: "easeInOut" }}
+                  whileHover={{ y: -6, transition: { duration: 0.2 } }}
+                  className="group flex flex-col overflow-hidden rounded-xl border border-gray-200 bg-white shadow-sm transition-shadow duration-300 hover:shadow-md"
+                >
+                  {/* IMAGE */}
+                  <div className="relative aspect-[4/3] w-full overflow-hidden bg-gray-100">
+                    <Image
+                      src={award.image}
+                      alt={award.title}
+                      fill
+                      className="object-cover transition-transform duration-500 group-hover:scale-105"
+                      sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
+                    />
+                  </div>
+
+                  {/* CONTENT */}
+                  <div className="p-4 sm:p-5">
+                    <h4 className="mb-1 text-[15px] font-bold leading-snug text-gray-900 sm:text-[16px]">
+                      {award.title}
+                    </h4>
+
+                    <span className="mb-1 block text-sm font-medium text-gray-500">
+                      {award.year}
+                    </span>
+
+                    <p className="text-[13px] leading-5 text-gray-500 sm:text-[14px]">
+                      {award.organization}
+                    </p>
+                  </div>
+                </motion.div>
+              ))
+            ) : (
               <motion.div
-                key={award.id}
-                layout
-                initial={{ opacity: 0, scale: 0.9 }}
-                animate={{ opacity: 1, scale: 1 }}
-                exit={{ opacity: 0, scale: 0.9 }}
-                transition={{ duration: 0.35, ease: "easeInOut" }}
-                whileHover={{ y: -6, transition: { duration: 0.2 } }}
-                className="group flex flex-col overflow-hidden rounded-xl border border-gray-200 bg-white shadow-sm transition-shadow duration-300 hover:shadow-md"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                className="col-span-full py-10 text-center text-gray-500"
               >
-                {/* IMAGE */}
-                <div className="relative aspect-[4/3] w-full overflow-hidden bg-gray-100">
-                  <Image
-                    src={award.image}
-                    alt={award.title}
-                    fill
-                    className="object-cover transition-transform duration-500 group-hover:scale-105"
-                    sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
-                  />
-                </div>
-
-                {/* CONTENT */}
-                <div className="p-4 sm:p-5">
-                  <h4 className="mb-1 text-[15px] font-bold leading-snug text-gray-900 sm:text-[16px]">
-                    {award.title}
-                  </h4>
-
-                  <span className="mb-1 block text-sm font-medium text-gray-500">
-                    {award.year}
-                  </span>
-
-                  <p className="text-[13px] leading-5 text-gray-500 sm:text-[14px]">
-                    {award.organization}
-                  </p>
-                </div>
+                No awards found for this category.
               </motion.div>
-            ))}
+            )}
           </AnimatePresence>
         </motion.div>
 

@@ -6,6 +6,7 @@ import Navbar from "./common/Navbar";
 import Footer from "./common/Footer";
 import HeroProvide from "./context/HeroProvide";
 import { investmentContent } from "./data/investmentContent";
+// import BackgroundAnimation from "./common/components/BackgroundAnimation";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -33,6 +34,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
     >
        <body className={`min-h-full flex flex-col ${poppins.className}`}>
+        {/* <BackgroundAnimation /> */}
         <HeroProvide>
           <Header />
           <Navbar />

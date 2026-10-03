@@ -12,8 +12,20 @@ export const investmentContent = {
     blog: sections.Hero.variants.InvestmentBlogHero1,
     service: sections.Hero.variants.InvestmentServicesHero1,
     investment: sections.Hero.variants.InvestmentProcessHero1,
-    BlogDetail: sections.Hero.variants.InvestmentBlogDetailHero1,
-    serviceDetail: sections.Hero.variants.InvestmentServiceDetailHero1,
+    BlogDetail: {
+      ...sections.Hero.variants.InvestmentBlogDetailHero1,
+      parent: {
+        label: "Blog",
+        href: "/blog",
+      },
+    },
+    serviceDetail: {
+      ...sections.Hero.variants.InvestmentServiceDetailHero1,
+      parent: {
+        label: "Service",
+        href: "/service",
+      },
+    },
     missionVision: sections.Hero.variants.InvestmentMissionVisionHero1,
     whyChooseUs: sections.Hero.variants.InvestmentWhyChooseUsHero1,
     ourTeam: sections.Hero.variants.InvestmentOurTeamHero1,

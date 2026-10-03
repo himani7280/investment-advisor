@@ -42,8 +42,8 @@ const Aboutus = () => {
   const content = investmentContent.aboutPage;
 
   return (
-    <section className="w-full overflow-hidden bg-white pt-8 sm:pt-12 lg:pt-14">
-      <div className="mx-auto w-full max-w-7xl pr-8">
+    <section className="relative w-full overflow-hidden bg-transparent pt-8 sm:pt-12 lg:pt-10">
+      <div className="relative z-10 mx-auto w-full max-w-7xl pr-8 ps-8 sm:px-12 px-20">
         <div className="grid grid-cols-1 items-center gap-6 sm:gap-7 lg:grid-cols-[46%_54%] lg:gap-4 xl:gap-6">
           {/* ================= IMAGE SIDE ================= */}
           <motion.div

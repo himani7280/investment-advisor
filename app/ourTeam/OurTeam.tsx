@@ -41,7 +41,7 @@ const containerVariants = {
 
 const OurTeam: React.FC = () => {
   return (
-    <section className="mx-auto w-full max-w-7xl bg-white px-8 sm:px-10 lg:px-12 pt-8 sm:pt-10 lg:pt-12">
+    <section className="mx-auto w-full max-w-7xl bg-white px-4 sm:px-10 lg:px-12 pt-8 sm:pt-10 lg:pt-12">
       {/* Header Section */}
       <motion.div
         initial={{ opacity: 0, y: 16 }}
