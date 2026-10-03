@@ -1,6 +1,6 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { motion, Variants } from "framer-motion";
 import { investmentContent } from "../data/investmentContent";
 
 const processStepIcons = [
@@ -153,8 +153,8 @@ const processSteps = investmentContent.investmentProcess.steps.map(
   (step, index) => ({ ...step, icon: processStepIcons[index].icon })
 );
 
-// Framer Motion Animation Variants
-const containerVariants = {
+// Explicitly typing Framer Motion Variants resolves TypeScript easing errors
+const containerVariants: Variants = {
   hidden: { opacity: 0 },
   visible: {
     opacity: 1,
@@ -165,7 +165,7 @@ const containerVariants = {
   },
 };
 
-const itemVariants = {
+const itemVariants: Variants = {
   hidden: { opacity: 0, y: 28 },
   visible: {
     opacity: 1,
@@ -177,7 +177,7 @@ const itemVariants = {
   },
 };
 
-const lineVariants = {
+const lineVariants: Variants = {
   hidden: { scaleX: 0, opacity: 0 },
   visible: {
     scaleX: 1,
@@ -194,7 +194,6 @@ const OurProcess = () => {
   return (
     <section className="w-full bg-white pt-10 sm:pt-12 lg:pt-14 overflow-hidden">
       <div className="mx-auto max-w-7xl px-2">
-
         {/* ================= HEADING ================= */}
         <motion.div
           initial={{ opacity: 0, y: -20 }}
@@ -241,7 +240,6 @@ const OurProcess = () => {
             >
               {/* ================= ICON ================= */}
               <div className="relative mb-4 sm:mb-5">
-
                 {/* NUMBER BADGE */}
                 <motion.div
                   initial={{ scale: 0.6, opacity: 0 }}

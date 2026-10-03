@@ -28,19 +28,17 @@ const itemVariants = {
     y: 0,
     transition: {
       duration: 0.5,
-      ease: [0.25, 0.1, 0.25, 1],
+      ease: [0.25, 0.1, 0.25, 1] as const, // Fixed TypeScript error
     },
   },
 };
 
 // ================= COMPONENT =================
 const Achievements = () => {
-  // Direct string type keep karne se activeCategory hamesha content se correctly match hoga
   const [activeCategory, setActiveCategory] = useState<string>("All");
 
   const categories = content.categories as string[];
 
-  // Case & space trimming comparison ensure karne ke liye filtering:
   const filteredAwards = content.awards.filter((award) => {
     if (activeCategory === "All") return true;
     return (
@@ -166,8 +164,8 @@ const Achievements = () => {
                   type="button"
                   aria-pressed={isActive}
                   onClick={() => setActiveCategory(category)}
-                  className={`relative cursor-pointer text-black whitespace-nowrap rounded-full px-4 py-2 text-xs font-semibold transition-colors duration-200 sm:px-5 sm:text-sm ${
-                    isActive ? "text-blue-600" : "text-black "
+                  className={`relative cursor-pointer whitespace-nowrap rounded-full px-4 py-2 text-xs font-semibold transition-colors duration-200 sm:px-5 sm:text-sm ${
+                    isActive ? "text-white" : "text-gray-700 hover:text-black"
                   }`}
                 >
                   {isActive && (
