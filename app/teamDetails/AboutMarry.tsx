@@ -1,8 +1,9 @@
 'use client'
 
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState, useRef } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
+import { motion, useInView } from 'framer-motion'
 import {
   Phone,
   Mail,
@@ -22,7 +23,96 @@ import { investmentContent } from '../data/investmentContent'
 const content = investmentContent.teamProfile;
 const expertiseIcons = { Users, Settings, TrendingUp, Award };
 
-// Custom SVGs for exact Brand Social Icons (LinkedIn, Facebook, X/Twitter) - resized to w-5 h-5
+// Motion Variants
+const containerVariants = {
+  hidden: { opacity: 0, y: 20 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: {
+      duration: 0.5,
+      ease: [0.22, 1, 0.36, 1] as const,
+      staggerChildren: 0.1,
+      delayChildren: 0.1,
+    },
+  },
+};
+
+const itemVariants = {
+  hidden: { opacity: 0, y: 15 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.45, ease: [0.22, 1, 0.36, 1] as const },
+  },
+};
+
+const leftColVariants = {
+  hidden: { opacity: 0, x: -30 },
+  visible: {
+    opacity: 1,
+    x: 0,
+    transition: { duration: 0.6, ease: [0.22, 1, 0.36, 1] as const },
+  },
+};
+
+const rightColVariants = {
+  hidden: { opacity: 0, x: 30 },
+  visible: {
+    opacity: 1,
+    x: 0,
+    transition: { duration: 0.6, ease: [0.22, 1, 0.36, 1] as const },
+  },
+};
+
+// Animated Counter Component with Scroll Trigger (useInView)
+const AnimatedMetricCounter = ({
+  target,
+  suffix,
+}: {
+  target: number
+  suffix: string
+}) => {
+  const ref = useRef<HTMLSpanElement>(null)
+  const isInView = useInView(ref, { once: false, amount: 0.2 })
+  const [count, setCount] = useState(1)
+
+  useEffect(() => {
+    if (!isInView) {
+      setCount(1)
+      return
+    }
+
+    let animationFrame: number
+    const duration = 1200 // 1.2 Seconds
+    const start = performance.now()
+
+    const updateValue = (timestamp: number) => {
+      const progress = Math.min((timestamp - start) / duration, 1)
+      const eased = 1 - Math.pow(1 - progress, 3) // Smooth ease-out effect
+      const current = Math.max(1, Math.round(1 + (target - 1) * eased))
+
+      setCount(current)
+
+      if (progress < 1) {
+        animationFrame = requestAnimationFrame(updateValue)
+      }
+    }
+
+    animationFrame = requestAnimationFrame(updateValue)
+
+    return () => cancelAnimationFrame(animationFrame)
+  }, [isInView, target])
+
+  return (
+    <span ref={ref}>
+      {count}
+      {suffix}
+    </span>
+  )
+}
+
+// Custom SVGs for Brand Social Icons (LinkedIn, Facebook, X/Twitter)
 const LinkedinIcon = () => (
   <svg className="w-5 h-5 fill-[#0B1E48] transition-colors duration-200 group-hover:fill-white" viewBox="0 0 24 24">
     <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z" />
@@ -43,28 +133,6 @@ const TwitterXIcon = () => (
 
 export default function AboutMarry() {
   const [copied, setCopied] = useState(false)
-  const [experienceCount, setExperienceCount] = useState(1)
-  const [portfolioCount, setPortfolioCount] = useState(1)
-  const [satisfactionCount, setSatisfactionCount] = useState(1)
-
-  useEffect(() => {
-    const startTime = performance.now()
-    let frameId: number
-
-    const updateCount = (currentTime: number) => {
-      const progress = Math.min((currentTime - startTime) / 1200, 1)
-      setExperienceCount(Math.floor(1 + progress * (content.metrics[0].target - 1)))
-      setPortfolioCount(Math.floor(1 + progress * (content.metrics[1].target - 1)))
-      setSatisfactionCount(Math.floor(1 + progress * (content.metrics[2].target - 1)))
-
-      if (progress < 1) {
-        frameId = requestAnimationFrame(updateCount)
-      }
-    }
-
-    frameId = requestAnimationFrame(updateCount)
-    return () => cancelAnimationFrame(frameId)
-  }, [])
 
   const handleCopyLink = async () => {
     try {
@@ -79,46 +147,69 @@ export default function AboutMarry() {
   }
 
   return (
-    <section className="mx-auto w-full max-w-7xl bg-white px-3 font-sans antialiased text-slate-800 sm:px-5 lg:px-12 pt-10 sm:pt-12 lg:pt-14 ">
+    <section className="mx-auto w-full max-w-7xl bg-white px-3 font-sans antialiased text-slate-800 sm:px-5 lg:px-12 pt-10 sm:pt-12 lg:pt-14 overflow-hidden">
       {/* ==================== SECTION 1: TOP HERO ROW ==================== */}
-      <div className="mb-6 grid grid-cols-1 items-start gap-6 sm:gap-8 md:grid-cols-2 lg:grid-cols-12">
-        
+      <motion.div
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, amount: 0.15 }}
+        variants={containerVariants}
+        className="mb-6 grid grid-cols-1 items-start gap-6 sm:gap-8 md:grid-cols-2 lg:grid-cols-12"
+      >
         {/* Left Column: Image + Integrated Stats Card */}
-        <div className="flex min-w-0 flex-col justify-between overflow-hidden rounded-2xl border border-blue-100 bg-[#F5F8FF] md:col-span-1 lg:col-span-4">
-          <div className="relative w-full h-[290px]">
+        <motion.div
+          variants={leftColVariants}
+          className="flex min-w-0 flex-col justify-between overflow-hidden rounded-2xl border border-blue-100 bg-[#F5F8FF] md:col-span-1 lg:col-span-4"
+        >
+          <div className="relative w-full h-[290px] overflow-hidden">
             <Image
               src={content.image}
               alt={content.imageAlt}
               fill
-              className="object-cover object-top"
+              className="object-cover object-top transition-transform duration-700 hover:scale-105"
               priority
             />
           </div>
-          {/* Key Metrics Banner */}
+          {/* Key Metrics Banner with Scroll-Triggered Animated Counters */}
           <div className="grid grid-cols-3 py-5 text-center divide-x divide-blue-200/60 bg-[#F5F8FF]">
             <div className="px-1">
-              <div className="text-xl font-extrabold text-[#0B1E48] sm:text-2xl">{experienceCount}{content.metrics[0].suffix}</div>
+              <div className="text-xl font-extrabold text-[#0B1E48] sm:text-2xl">
+                <AnimatedMetricCounter
+                  target={content.metrics[0].target}
+                  suffix={content.metrics[0].suffix}
+                />
+              </div>
               <div className="text-[11px] text-gray-500 font-medium leading-tight mt-1">
                 {content.metrics[0].labelLines.map((line) => <span key={line} className="block">{line}</span>)}
               </div>
             </div>
             <div className="px-1">
-              <div className="text-xl sm:text-2xl font-extrabold text-[#0B1E48]">{portfolioCount}{content.metrics[1].suffix}</div>
+              <div className="text-xl sm:text-2xl font-extrabold text-[#0B1E48]">
+                <AnimatedMetricCounter
+                  target={content.metrics[1].target}
+                  suffix={content.metrics[1].suffix}
+                />
+              </div>
               <div className="text-[11px] text-gray-500 font-medium leading-tight mt-1">
                 {content.metrics[1].labelLines.map((line) => <span key={line} className="block">{line}</span>)}
               </div>
             </div>
             <div className="px-1">
-              <div className="text-xl sm:text-2xl font-extrabold text-[#0B1E48]">{satisfactionCount}{content.metrics[2].suffix}</div>
+              <div className="text-xl sm:text-2xl font-extrabold text-[#0B1E48]">
+                <AnimatedMetricCounter
+                  target={content.metrics[2].target}
+                  suffix={content.metrics[2].suffix}
+                />
+              </div>
               <div className="text-[11px] text-gray-500 font-medium leading-tight mt-1">
                 {content.metrics[2].labelLines.map((line) => <span key={line} className="block">{line}</span>)}
               </div>
             </div>
           </div>
-        </div>
+        </motion.div>
 
         {/* Center Column: Bio & Direct Contact Details */}
-        <div className="flex h-full min-w-0 flex-col justify-between pt-1 md:col-span-1 lg:col-span-5">
+        <motion.div variants={itemVariants} className="flex h-full min-w-0 flex-col justify-between pt-1 md:col-span-1 lg:col-span-5">
           <div>
             <h1 className="text-3xl sm:text-4xl font-extrabold text-[#0B1E48] tracking-tight">{content.name}</h1>
             <p className="text-blue-600 font-semibold text-base mt-1 mb-2">{content.role}</p>
@@ -152,28 +243,28 @@ export default function AboutMarry() {
               <span className="text-gray-700">{content.location}</span>
             </div>
           </div>
-        </div>
+        </motion.div>
 
         {/* Right Column: Share Profile & Let's Connect Card */}
-        <div className="flex h-full min-w-0 flex-col justify-between pt-1 md:col-span-2 lg:col-span-3">
-          {/* Share Profile Social Icons - Bada aur niche shift kiya gaya */}
+        <motion.div variants={rightColVariants} className="flex h-full min-w-0 flex-col justify-between pt-1 md:col-span-2 lg:col-span-3">
+          {/* Share Profile Social Icons */}
           <div className="pt-2">
             <h3 className="text-xs font-bold text-[#0B1E48] uppercase tracking-wider mb-3">
               {content.shareTitle}
             </h3>
             <div className="mt-3 flex flex-wrap items-center gap-3 sm:mt-4">
-              <button aria-label={content.socials[0]} className="group flex h-11 w-11 items-center justify-center rounded-full border border-gray-200 shadow-sm transition-all hover:scale-105 hover:border-blue-600 hover:bg-blue-600">
+              <motion.button whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.95 }} aria-label={content.socials[0]} className="group flex h-11 w-11 items-center justify-center rounded-full border border-gray-200 shadow-sm transition-all hover:border-blue-600 hover:bg-blue-600">
                 <LinkedinIcon />
-              </button>
-              <button aria-label={content.socials[1]} className="group flex h-11 w-11 items-center justify-center rounded-full border border-gray-200 shadow-sm transition-all hover:scale-105 hover:border-blue-600 hover:bg-blue-600">
+              </motion.button>
+              <motion.button whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.95 }} aria-label={content.socials[1]} className="group flex h-11 w-11 items-center justify-center rounded-full border border-gray-200 shadow-sm transition-all hover:border-blue-600 hover:bg-blue-600">
                 <FacebookIcon />
-              </button>
-              <button aria-label={content.socials[2]} className="group flex h-11 w-11 items-center justify-center rounded-full border border-gray-200 shadow-sm transition-all hover:scale-105 hover:border-blue-600 hover:bg-blue-600">
+              </motion.button>
+              <motion.button whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.95 }} aria-label={content.socials[2]} className="group flex h-11 w-11 items-center justify-center rounded-full border border-gray-200 shadow-sm transition-all hover:border-blue-600 hover:bg-blue-600">
                 <TwitterXIcon />
-              </button>
-              <button onClick={handleCopyLink} aria-label={content.copyLinkLabel} className="group flex h-11 w-11 items-center justify-center rounded-full border border-gray-200 shadow-sm transition-all hover:scale-105 hover:border-blue-600 hover:bg-blue-600">
+              </motion.button>
+              <motion.button whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.95 }} onClick={handleCopyLink} aria-label={content.copyLinkLabel} className="group flex h-11 w-11 items-center justify-center rounded-full border border-gray-200 shadow-sm transition-all hover:border-blue-600 hover:bg-blue-600">
                 {copied ? <Check className="h-5 w-5 text-green-600" /> : <LinkIcon className="h-5 w-5 text-[#0B1E48] transition-colors group-hover:text-white" />}
-              </button>
+              </motion.button>
             </div>
           </div>
 
@@ -188,21 +279,29 @@ export default function AboutMarry() {
                 {content.connect.description}
               </p>
             </div>
-            <Link
-              href={content.connect.href}
-              className="w-full py-2.5 px-4 bg-blue-600 hover:bg-blue-700 text-white rounded-md font-medium text-xs flex items-center justify-center gap-2 shadow-sm transition-colors"
-            >
-              {content.connect.buttonText}
-              <ArrowRight className="w-4 h-4" />
-            </Link>
+            <motion.div whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }}>
+              <Link
+                href={content.connect.href}
+                className="w-full py-2.5 px-4 bg-blue-600 hover:bg-blue-700 text-white rounded-md font-medium text-xs flex items-center justify-center gap-2 shadow-sm transition-colors"
+              >
+                {content.connect.buttonText}
+                <ArrowRight className="w-4 h-4" />
+              </Link>
+            </motion.div>
           </div>
-        </div>
-      </div>
+        </motion.div>
+      </motion.div>
 
       {/* ==================== SECTION 2: MIDDLE ROW (ABOUT & SKILLS) ==================== */}
-      <div className="mb-6 grid grid-cols-1 gap-6 border-t border-gray-100 pt-5 sm:gap-8 md:grid-cols-2 lg:grid-cols-12">
+      <motion.div
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, amount: 0.2 }}
+        variants={containerVariants}
+        className="mb-6 grid grid-cols-1 gap-6 border-t border-gray-100 pt-5 sm:gap-8 md:grid-cols-2 lg:grid-cols-12"
+      >
         {/* Left: About Paragraphs */}
-        <div className="md:col-span-1 lg:col-span-6 pr-0 lg:pr-4">
+        <motion.div variants={leftColVariants} className="md:col-span-1 lg:col-span-6 pr-0 lg:pr-4">
           <h2 className="text-lg font-bold text-[#0B1E48] mb-1">{content.aboutTitle}</h2>
           <div className="w-8 h-[2px] bg-blue-600 mb-4"></div>
 
@@ -211,10 +310,10 @@ export default function AboutMarry() {
               {paragraph}
             </p>
           ))}
-        </div>
+        </motion.div>
 
         {/* Right: Key Skills Progress Bars */}
-        <div className="md:col-span-1 lg:col-span-6">
+        <motion.div variants={rightColVariants} className="md:col-span-1 lg:col-span-6">
           <h2 className="text-lg font-bold text-[#0B1E48] mb-1">{content.skillsTitle}</h2>
           <div className="w-8 h-[2px] bg-blue-600 mb-6"></div>
 
@@ -226,22 +325,30 @@ export default function AboutMarry() {
                   <span>{skill.percentage}{content.skillSuffix}</span>
                 </div>
                 <div className="w-full bg-blue-50 h-2 rounded-full overflow-hidden">
-                  <div
-                    className="bg-blue-600 h-full rounded-full transition-all duration-500"
-                    style={{ width: `${skill.percentage}%` }}
-                  ></div>
+                  <motion.div
+                    initial={{ width: 0 }}
+                    whileInView={{ width: `${skill.percentage}%` }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 1, ease: [0.22, 1, 0.36, 1] as const }}
+                    className="bg-blue-600 h-full rounded-full"
+                  ></motion.div>
                 </div>
               </div>
             ))}
           </div>
-        </div>
-      </div>
+        </motion.div>
+      </motion.div>
 
       {/* ==================== SECTION 3: BOTTOM ROW (EXPERTISE, QUOTE & EXPERIENCE) ==================== */}
-      <div className="grid grid-cols-1 items-stretch gap-6 border-t border-gray-100 pt-5 sm:gap-8 md:grid-cols-2 lg:grid-cols-12">
-        
+      <motion.div
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, amount: 0.2 }}
+        variants={containerVariants}
+        className="grid grid-cols-1 items-stretch gap-6 border-t border-gray-100 pt-5 sm:gap-8 md:grid-cols-2 lg:grid-cols-12"
+      >
         {/* Column 1: Areas of Expertise */}
-        <div className="md:col-span-1 lg:col-span-4 flex flex-col justify-start">
+        <motion.div variants={itemVariants} className="md:col-span-1 lg:col-span-4 flex flex-col justify-start">
           <h2 className="text-lg font-bold text-[#0B1E48] mb-1">{content.expertiseTitle}</h2>
           <div className="w-8 h-[2px] bg-blue-600 mb-6"></div>
 
@@ -250,21 +357,21 @@ export default function AboutMarry() {
               const Icon = expertiseIcons[item.icon as keyof typeof expertiseIcons];
 
               return (
-              <div key={item.title} className="flex items-center gap-3">
-                <div className="group flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-blue-50 transition-all duration-200 hover:scale-110 hover:bg-blue-600 hover:shadow-sm">
-                  <Icon className="w-4 h-4 text-blue-600 transition-colors duration-200 group-hover:text-white" />
-                </div>
-                <span className="text-xs font-medium text-gray-700 leading-snug sm:text-sm">
-                  {item.title}
-                </span>
-              </div>
+                <motion.div key={item.title} whileHover={{ x: 4 }} className="flex items-center gap-3">
+                  <div className="group flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-blue-50 transition-all duration-200 hover:scale-110 hover:bg-blue-600 hover:shadow-sm">
+                    <Icon className="w-4 h-4 text-blue-600 transition-colors duration-200 group-hover:text-white" />
+                  </div>
+                  <span className="text-xs font-medium text-gray-700 leading-snug sm:text-sm">
+                    {item.title}
+                  </span>
+                </motion.div>
               );
             })}
           </div>
-        </div>
+        </motion.div>
 
         {/* Column 2: Quote Box */}
-        <div className="md:col-span-1 lg:col-span-4 bg-[#F5F8FF] border border-blue-100 rounded-2xl p-6 sm:p-8 flex flex-col justify-between">
+        <motion.div variants={itemVariants} className="md:col-span-1 lg:col-span-4 bg-[#F5F8FF] border border-blue-100 rounded-2xl p-6 sm:p-8 flex flex-col justify-between">
           <div>
             <div className="text-blue-600 text-5xl font-serif font-bold leading-none mb-3">“</div>
             <p className="text-base sm:text-lg font-bold text-[#0B1E48] leading-snug mb-8">
@@ -275,10 +382,10 @@ export default function AboutMarry() {
             <div className="w-8 h-[2px] bg-blue-600 mb-2"></div>
             <p className="text-xs font-bold text-[#0B1E48]">{content.quoteAuthor}</p>
           </div>
-        </div>
+        </motion.div>
 
         {/* Column 3: Experience Timeline & Education */}
-        <div className="md:col-span-2 lg:col-span-4 flex flex-col justify-between">
+        <motion.div variants={rightColVariants} className="md:col-span-2 lg:col-span-4 flex flex-col justify-between">
           <div>
             <h2 className="text-lg font-bold text-[#0B1E48] mb-1">{content.experienceTitle}</h2>
             <div className="w-8 h-[2px] bg-blue-600 mb-6"></div>
@@ -289,7 +396,7 @@ export default function AboutMarry() {
                 <div key={`${exp.company}-${exp.period}`} className="relative flex items-start gap-3">
                   {/* Blue Timeline Node */}
                   <div className="absolute -left-[21px] top-1.5 w-2.5 h-2.5 rounded-full bg-blue-600"></div>
-                  
+
                   <span className="text-[11px] font-semibold text-gray-400 shrink-0 w-20 pt-0.5">
                     {exp.period}
                   </span>
@@ -314,9 +421,8 @@ export default function AboutMarry() {
               <div className="text-[11px] text-gray-500">{content.education.institution}</div>
             </div>
           </div>
-        </div>
-
-      </div>
+        </motion.div>
+      </motion.div>
     </section>
   )
 }

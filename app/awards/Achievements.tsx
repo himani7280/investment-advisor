@@ -1,7 +1,9 @@
-'use client'
+'use client';
+
 import React, { useState } from "react";
 import Image from "next/image";
 import { Award, Heart, Users, ShieldCheck } from "lucide-react";
+import { motion, AnimatePresence } from "framer-motion";
 import { investmentContent } from "../data/investmentContent";
 
 type AwardCategory =
@@ -12,6 +14,30 @@ type AwardCategory =
 const content = investmentContent.awards;
 const featureIcons = [Award, Heart, Users, ShieldCheck];
 
+// Framer Motion Variants
+const containerVariants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.12,
+      delayChildren: 0.1,
+    },
+  },
+};
+
+const itemVariants = {
+  hidden: { opacity: 0, y: 20 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: {
+      duration: 0.5,
+      ease: [0.25, 0.1, 0.25, 1],
+    },
+  },
+};
+
 // ================= COMPONENT =================
 const Achievements = () => {
   const [activeCategory, setActiveCategory] = useState<AwardCategory | "All">("All");
@@ -21,20 +47,31 @@ const Achievements = () => {
   );
 
   return (
-    <section className="w-full bg-white pt-10 sm:pt-12 lg:pt-8">
+    <section className="w-full overflow-hidden bg-white pt-10 sm:pt-12 lg:pt-8">
       <div className="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-12">
 
         {/* ================= TOP AREA ================= */}
         <div className="grid grid-cols-1 items-center gap-8 lg:grid-cols-2 lg:gap-10">
 
           {/* LEFT CONTENT */}
-          <div>
+          <motion.div
+            initial={{ opacity: 0, x: -30 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, ease: "easeOut" }}
+          >
             <div className="mb-3 flex items-center gap-3">
               <span className="text-xs font-bold uppercase tracking-wider text-gray-500 sm:text-sm">
                 {content.featureBadge}
               </span>
 
-              <div className="h-[2px] w-12 bg-blue-600 sm:w-16" />
+              <motion.div
+                initial={{ width: 0 }}
+                whileInView={{ width: "3rem" }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: 0.2 }}
+                className="h-[2px] bg-blue-600 sm:w-16"
+              />
             </div>
 
             <h2 className="mb-4 text-3xl font-extrabold leading-tight text-gray-900 sm:text-4xl lg:text-[40px]">
@@ -49,43 +86,66 @@ const Achievements = () => {
             <p className="max-w-xl text-sm leading-6 text-gray-500 sm:text-base">
               {content.intro}
             </p>
-          </div>
+          </motion.div>
 
           {/* RIGHT FEATURES */}
-          <div className="grid grid-cols-1 gap-x-8 gap-y-7 rounded-2xl bg-slate-50/60 p-5 sm:grid-cols-2 sm:p-7 lg:p-8">
+          <motion.div
+            variants={containerVariants}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+            className="grid grid-cols-1 gap-x-8 gap-y-7 rounded-2xl bg-slate-50/60 p-5 sm:grid-cols-2 sm:p-7 lg:p-8"
+          >
             {content.featureItems.map((feature, index) => {
               const FeatureIcon = featureIcons[index];
               return (
-              <div
-                key={feature.title}
-                className="flex flex-col gap-2"
-              >
-                <div className="group flex h-11 w-11 items-center justify-center rounded-full bg-blue-50 transition-colors duration-200 hover:bg-blue-600">
-                  <FeatureIcon className="h-7 w-7 text-blue-600 transition-colors group-hover:text-white" />
-                </div>
+                <motion.div
+                  key={feature.title}
+                  variants={itemVariants}
+                  className="flex flex-col gap-2"
+                >
+                  <motion.div 
+                    whileHover={{ scale: 1.1 }}
+                    whileTap={{ scale: 0.95 }}
+                    className="group flex h-11 w-11 cursor-pointer items-center justify-center rounded-full bg-blue-50 transition-colors duration-200 hover:bg-blue-600"
+                  >
+                    <FeatureIcon className="h-7 w-7 text-blue-600 transition-colors group-hover:text-white" />
+                  </motion.div>
 
-                <h4 className="text-[16px] font-bold leading-snug text-gray-900">
-                  {feature.title}
-                </h4>
+                  <h4 className="text-[16px] font-bold leading-snug text-gray-900">
+                    {feature.title}
+                  </h4>
 
-                <p className="text-sm leading-5 text-gray-500">
-                  {feature.description}
-                </p>
-              </div>
+                  <p className="text-sm leading-5 text-gray-500">
+                    {feature.description}
+                  </p>
+                </motion.div>
               );
             })}
-          </div>
+          </motion.div>
         </div>
 
         {/* ================= AWARDS HEADING ================= */}
-        <div className="mt-10 flex flex-col gap-4 sm:mt-12 lg:mt-6 lg:flex-row lg:items-center lg:justify-between">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5, delay: 0.2 }}
+          className="mt-10 flex flex-col gap-4 sm:mt-12 lg:mt-6 lg:flex-row lg:items-center lg:justify-between"
+        >
 
           <div className="flex items-center gap-3">
             <h3 className="text-2xl font-bold text-gray-900 sm:text-3xl">
               {content.awardsTitle}
             </h3>
 
-            <div className="hidden h-[2px] w-14 bg-blue-600 sm:block" />
+            <motion.div
+              initial={{ width: 0 }}
+              whileInView={{ width: "3.5rem" }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: 0.3 }}
+              className="hidden h-[2px] bg-blue-600 sm:block"
+            />
           </div>
 
           {/* FILTER BUTTONS */}
@@ -99,54 +159,70 @@ const Achievements = () => {
                   type="button"
                   aria-pressed={isActive}
                   onClick={() => setActiveCategory(category)}
-                  className={`whitespace-nowrap rounded-full px-3 py-2 text-xs font-semibold transition-colors sm:px-4 sm:text-sm ${
-                    isActive
-                      ? "bg-blue-600 text-white"
-                      : "text-gray-600 hover:bg-blue-50 hover:text-blue-600"
+                  className={`relative whitespace-nowrap rounded-full px-3 py-2 text-xs font-semibold transition-colors sm:px-4 sm:text-sm ${
+                    isActive ? "text-white" : "text-gray-600 hover:text-blue-600"
                   }`}
                 >
+                  {isActive && (
+                    <motion.div
+                      layoutId="activeCategoryPill"
+                      className="absolute inset-0 rounded-full bg-blue-600 -z-10"
+                      transition={{ type: "spring", stiffness: 380, damping: 28 }}
+                    />
+                  )}
                   {category}
                 </button>
               );
             })}
           </div>
-        </div>
+        </motion.div>
 
         {/* ================= AWARDS GRID ================= */}
-        <div className="mt-7 grid grid-cols-1 gap-4 sm:grid-cols-2 sm:gap-5 lg:grid-cols-3 xl:grid-cols-4">
-          {filteredAwards.map((award) => (
-            <div
-              key={award.id}
-              className="group flex flex-col overflow-hidden rounded-xl border border-gray-200 bg-white shadow-sm transition-all duration-300 hover:shadow-md"
-            >
-              {/* IMAGE */}
-              <div className="relative aspect-[4/3] w-full overflow-hidden bg-gray-100">
-                <Image
-                  src={award.image}
-                  alt={award.title}
-                  fill
-                  className="object-cover transition-transform duration-500 group-hover:scale-105"
-                  sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
-                />
-              </div>
+        <motion.div
+          layout
+          className="mt-7 grid grid-cols-1 gap-4 sm:grid-cols-2 sm:gap-5 lg:grid-cols-3 xl:grid-cols-4"
+        >
+          <AnimatePresence mode="popLayout">
+            {filteredAwards.map((award) => (
+              <motion.div
+                key={award.id}
+                layout
+                initial={{ opacity: 0, scale: 0.9 }}
+                animate={{ opacity: 1, scale: 1 }}
+                exit={{ opacity: 0, scale: 0.9 }}
+                transition={{ duration: 0.35, ease: "easeInOut" }}
+                whileHover={{ y: -6, transition: { duration: 0.2 } }}
+                className="group flex flex-col overflow-hidden rounded-xl border border-gray-200 bg-white shadow-sm transition-shadow duration-300 hover:shadow-md"
+              >
+                {/* IMAGE */}
+                <div className="relative aspect-[4/3] w-full overflow-hidden bg-gray-100">
+                  <Image
+                    src={award.image}
+                    alt={award.title}
+                    fill
+                    className="object-cover transition-transform duration-500 group-hover:scale-105"
+                    sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
+                  />
+                </div>
 
-              {/* CONTENT */}
-              <div className="p-4 sm:p-5">
-                <h4 className="mb-1 text-[15px] font-bold leading-snug text-gray-900 sm:text-[16px]">
-                  {award.title}
-                </h4>
+                {/* CONTENT */}
+                <div className="p-4 sm:p-5">
+                  <h4 className="mb-1 text-[15px] font-bold leading-snug text-gray-900 sm:text-[16px]">
+                    {award.title}
+                  </h4>
 
-                <span className="mb-1 block text-sm font-medium text-gray-500">
-                  {award.year}
-                </span>
+                  <span className="mb-1 block text-sm font-medium text-gray-500">
+                    {award.year}
+                  </span>
 
-                <p className="text-[13px] leading-5 text-gray-500 sm:text-[14px]">
-                  {award.organization}
-                </p>
-              </div>
-            </div>
-          ))}
-        </div>
+                  <p className="text-[13px] leading-5 text-gray-500 sm:text-[14px]">
+                    {award.organization}
+                  </p>
+                </div>
+              </motion.div>
+            ))}
+          </AnimatePresence>
+        </motion.div>
 
       </div>
     </section>
@@ -154,4 +230,3 @@ const Achievements = () => {
 };
 
 export default Achievements;
-

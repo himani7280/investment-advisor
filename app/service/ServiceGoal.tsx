@@ -1,6 +1,8 @@
+"use client";
 
 import Image from "next/image";
 import Link from "next/link";
+import { motion } from "framer-motion";
 import {
   BarChart3,
   BriefcaseBusiness,
@@ -25,13 +27,48 @@ const serviceIcons = {
   UsersRound,
 };
 
+// Animation Variants
+const headerVariants = {
+  hidden: { opacity: 0, y: 20 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.5, ease: [0.22, 1, 0.36, 1] as const },
+  },
+};
+
+const containerVariants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.08,
+      delayChildren: 0.1,
+    },
+  },
+};
+
+const cardVariants = {
+  hidden: { opacity: 0, y: 24 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.45, ease: [0.22, 1, 0.36, 1] as const },
+  },
+};
+
 const ServiceGoal = () => {
   return (
     <section className="w-full bg-white pt-10 sm:pt-12 lg:pt-14">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-12">
-
-        <div className="mb-9 text-center sm:mb-11 lg:mb-12">
-
+        {/* Animated Header Section */}
+        <motion.div
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.2 }}
+          variants={headerVariants}
+          className="mb-9 text-center sm:mb-11 lg:mb-12"
+        >
           <div className="mb-3 flex items-center justify-center gap-4">
             <span className="h-[2px] w-14 bg-[#5b9df9] sm:w-[68px]" />
 
@@ -52,76 +89,81 @@ const ServiceGoal = () => {
           <p className="mx-auto mt-3 max-w-3xl text-sm leading-6 text-[#62799e] sm:text-base sm:leading-7">
             {content.description}
           </p>
-        </div>
+        </motion.div>
 
-        <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
-
+        {/* Animated Service Cards Grid */}
+        <motion.div
+          variants={containerVariants}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.1 }}
+          className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4"
+        >
           {content.items.map((service) => {
             const Icon = serviceIcons[service.icon as keyof typeof serviceIcons];
 
             return (
-            <article
-              key={service.title}
-              className="group flex h-full flex-col overflow-hidden rounded-lg border border-[#e2eaf5] bg-white shadow-sm transition duration-300 hover:-translate-y-1 hover:shadow-lg"
-            >
-
-              <div className="relative aspect-16/10 w-full overflow-hidden">
-                <Image
-                  src={service.image}
-                  alt={service.title}
-                  fill
-                  className="object-cover transition duration-500 group-hover:scale-105"
-                  sizes="(max-width: 639px) 100vw, (max-width: 1023px) 50vw, 25vw"
-                />
-              </div>
-
-              <div className="relative flex flex-1 flex-col px-5 pb-5 pt-12">
-
-                <div className="absolute -top-8 left-5 flex h-[68px] w-[68px] items-center justify-center rounded-full border-[5px] border-white bg-[#e8f2ff] text-[#1769e0] shadow-sm transition-colors duration-200 hover:bg-[#1769e0] hover:text-white">
-                  <Icon size={31} strokeWidth={1.8} />
+              <motion.article
+                key={service.title}
+                variants={cardVariants}
+                whileHover={{ y: -6, transition: { duration: 0.2 } }}
+                className="group flex h-full flex-col overflow-hidden rounded-lg border border-[#e2eaf5] bg-white shadow-sm transition-shadow duration-300 hover:shadow-lg"
+              >
+                <div className="relative aspect-16/10 w-full overflow-hidden">
+                  <Image
+                    src={service.image}
+                    alt={service.title}
+                    fill
+                    className="object-cover transition duration-500 group-hover:scale-105"
+                    sizes="(max-width: 639px) 100vw, (max-width: 1023px) 50vw, 25vw"
+                  />
                 </div>
 
-                <h3 className="min-h-12 text-lg font-bold leading-6 text-[#102e65]">
-                  {service.title}
-                </h3>
+                <div className="relative flex flex-1 flex-col px-5 pb-5 pt-12">
+                  <div className="absolute -top-8 left-5 flex h-[68px] w-[68px] items-center justify-center rounded-full border-[5px] border-white bg-[#e8f2ff] text-[#1769e0] shadow-sm transition-colors duration-200 hover:bg-[#1769e0] hover:text-white">
+                    <Icon size={31} strokeWidth={1.8} />
+                  </div>
 
-                <p className="mt-2 min-h-[68px] flex-1 text-sm leading-6 text-[#61799e]">
-                  {service.description}
-                </p>
+                  <h3 className="min-h-12 text-lg font-bold leading-6 text-[#102e65]">
+                    {service.title}
+                  </h3>
 
-                <Link
-                  href={service.href}
-                  className="mt-4 inline-flex w-fit items-center gap-3 text-sm font-bold text-[#1769e0] transition hover:gap-4"
-                >
-                  {content.readMoreText}
+                  <p className="mt-2 min-h-[68px] flex-1 text-sm leading-6 text-[#61799e]">
+                    {service.description}
+                  </p>
 
-                  <svg
-                    width="21"
-                    height="21"
-                    viewBox="0 0 24 24"
-                    fill="none"
+                  <Link
+                    href={service.href}
+                    className="mt-4 inline-flex w-fit items-center gap-3 text-sm font-bold text-[#1769e0] transition hover:gap-4"
                   >
-                    <path
-                      d="M4 12H19"
-                      stroke="currentColor"
-                      strokeWidth="2"
-                      strokeLinecap="round"
-                    />
-                    <path
-                      d="M14 7L19 12L14 17"
-                      stroke="currentColor"
-                      strokeWidth="2"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                    />
-                  </svg>
-                </Link>
-              </div>
-            </article>
+                    {content.readMoreText}
+
+                    <svg
+                      width="21"
+                      height="21"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                    >
+                      <path
+                        d="M4 12H19"
+                        stroke="currentColor"
+                        strokeWidth="2"
+                        strokeLinecap="round"
+                      />
+                      <path
+                        d="M14 7L19 12L14 17"
+                        stroke="currentColor"
+                        strokeWidth="2"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                      />
+                    </svg>
+                  </Link>
+                </div>
+              </motion.article>
             );
           })}
-
-        </div>
+        </motion.div>
       </div>
     </section>
   );

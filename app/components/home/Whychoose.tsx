@@ -1,6 +1,6 @@
 "use client";
 
-import React from "react";
+import React, { useEffect, useState, useRef } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import {
@@ -9,7 +9,7 @@ import {
   ShieldCheck,
   TrendingUp,
 } from "lucide-react";
-import { motion } from "framer-motion";
+import { motion, useInView } from "framer-motion";
 import { investmentContent } from "../../data/investmentContent";
 
 const content = investmentContent.whyChooseUs;
@@ -32,6 +32,52 @@ const staggerContainer = {
       delayChildren: 0.1,
     },
   },
+};
+
+// Component jo string se numbers dhoond kar unhe 1 se animate karega
+const InlineCounterText = ({ text }: { text: string }) => {
+  const ref = useRef<HTMLSpanElement>(null);
+  const isInView = useInView(ref, { once: true, amount: 0.5 });
+  const [displayCount, setDisplayCount] = useState(1);
+
+  // String me se pehle digits ko extract kar rahe hain (e.g. "500+ Happy Clients" -> target 500)
+  const match = text.match(/\d+/);
+  const targetNumber = match ? parseInt(match[0], 10) : null;
+
+  useEffect(() => {
+    if (!isInView || !targetNumber) return;
+
+    let start = 1;
+    const duration = 2000; // 2 seconds animation duration
+    const totalSteps = 60;
+    const stepTime = Math.max(Math.floor(duration / totalSteps), 16);
+    const increment = (targetNumber - start) / (duration / stepTime);
+
+    const timer = setInterval(() => {
+      start += increment;
+      if (start >= targetNumber) {
+        setDisplayCount(targetNumber);
+        clearInterval(timer);
+      } else {
+        setDisplayCount(Math.floor(start));
+      }
+    }, stepTime);
+
+    return () => clearInterval(timer);
+  }, [isInView, targetNumber]);
+
+  if (!targetNumber) return <>{text}</>;
+
+  // String ko split karke animated number ke saath replace kar rahe hain
+  const parts = text.split(match![0]);
+
+  return (
+    <span ref={ref}>
+      {parts[0]}
+      {displayCount}
+      {parts[1]}
+    </span>
+  );
 };
 
 const Whychoose = () => {
@@ -85,7 +131,7 @@ const Whychoose = () => {
               {content.description}
             </motion.p>
 
-            {/* Trusted Clients */}
+            {/* Trusted Clients (Pehle wale text par hi live counter chalega) */}
             <motion.div
               variants={fadeIn}
               className="mt-6 flex items-center lg:mt-7"
@@ -93,11 +139,15 @@ const Whychoose = () => {
               <div className="flex h-[46px] w-[46px] shrink-0 items-center justify-center rounded-full bg-[#1554a2] lg:h-[50px] lg:w-[50px]">
                 <Handshake size={22} strokeWidth={1.8} className="text-white" />
               </div>
+
               <div className="ml-3">
                 <h3 className="text-[12px] font-bold leading-[1.3] text-white sm:text-[13px] lg:text-[14px]">
-                  <span className="whitespace-pre-line">{content.trustedTitle}</span>
+                  <span className="whitespace-pre-line">
+                    <InlineCounterText text={content.trustedTitle} />
+                  </span>
                 </h3>
               </div>
+
               <div className="mx-4 h-[44px] w-[1px] bg-white/30 lg:h-[48px]" />
               <p className="max-w-[170px] text-[10px] leading-[1.45] text-white/70 sm:text-[11px] lg:text-[12px]">
                 {content.trustedDescription}

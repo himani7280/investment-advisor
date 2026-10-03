@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import Image from "next/image";
 import {
   Users,
@@ -8,7 +8,7 @@ import {
   Trophy,
   Handshake,
 } from "lucide-react";
-import { motion } from "framer-motion";
+import { motion, useInView } from "framer-motion";
 import { investmentContent } from "../../data/investmentContent";
 
 const content = investmentContent.trusted;
@@ -25,18 +25,29 @@ const formatDisplayValue = (value: number, raw: string) => {
 };
 
 const AnimatedCounter = ({ value }: { value: string }) => {
+  const ref = useRef<HTMLSpanElement>(null);
+  // once: false & amount: 0.1 taaki screen se thoda sa bahar jaate hi detect kar sake
+  const isInView = useInView(ref, { once: false, amount: 0.1 });
   const [count, setCount] = useState(1);
 
   useEffect(() => {
+    // Jab tak view me nahi hai, tab tak har baar count ko 1 par reset rakho
+    if (!isInView) {
+      setCount(1);
+      return;
+    }
+
+    // View me aate hi 1 se target tak animate hoga
     const target = Number(value.replace(/[^\d]/g, "")) || 1;
     let animationFrame = 0;
-    const duration = 1200;
+    const duration = 1200; // 1.2 seconds
     const start = performance.now();
 
     const updateValue = (timestamp: number) => {
       const progress = Math.min((timestamp - start) / duration, 1);
-      const eased = 1 - Math.pow(1 - progress, 3);
-      const current = Math.max(1, Math.round(target * eased));
+      const eased = 1 - Math.pow(1 - progress, 3); // Smooth ease-out effect
+      const current = Math.max(1, Math.round(1 + (target - 1) * eased));
+      
       setCount(current);
 
       if (progress < 1) {
@@ -46,10 +57,12 @@ const AnimatedCounter = ({ value }: { value: string }) => {
 
     animationFrame = requestAnimationFrame(updateValue);
 
-    return () => cancelAnimationFrame(animationFrame);
-  }, [value]);
+    return () => {
+      cancelAnimationFrame(animationFrame);
+    };
+  }, [isInView, value]);
 
-  return <span>{formatDisplayValue(count, value)}</span>;
+  return <span ref={ref}>{formatDisplayValue(count, value)}</span>;
 };
 
 const fadeIn = {
@@ -96,7 +109,7 @@ const Trusted = () => {
         <motion.div
           initial={{ opacity: 0, y: 16 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, amount: 0.2 }}
+          viewport={{ once: false, amount: 0.2 }}
           transition={{ duration: 0.55 }}
           className="mx-auto max-w-[850px] text-center"
         >
@@ -123,7 +136,7 @@ const Trusted = () => {
           variants={staggerContainer}
           initial="hidden"
           whileInView="visible"
-          viewport={{ once: true, amount: 0.15 }}
+          viewport={{ once: false, amount: 0.1 }}
           className="relative mx-auto mt-8 grid max-w-[1080px] grid-cols-2 gap-y-6 lg:mt-10 lg:grid-cols-4 lg:gap-y-0"
         >
           {stats.map((stat, index) => {
@@ -146,7 +159,7 @@ const Trusted = () => {
                   <Icon size={24} strokeWidth={1.8} className="text-white" />
                 </div>
 
-                {/* Number */}
+                {/* Number (Scroll karne par hamesha 1 se start hoga) */}
                 <h3 className="mt-3 text-[26px] font-bold leading-none tracking-[-0.8px] text-white sm:text-[32px] lg:text-[36px]">
                   <AnimatedCounter value={stat.number} />
                 </h3>

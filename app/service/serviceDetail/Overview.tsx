@@ -1,3 +1,6 @@
+'use client'
+
+import React from "react";
 import {
   UserRound,
   TrendingUp,
@@ -8,19 +11,69 @@ import {
   ArrowRight,
 } from "lucide-react";
 import Link from "next/link";
+import { motion } from "framer-motion";
 import { investmentContent } from "../../data/investmentContent";
 
 const content = investmentContent.serviceDetail;
 const benefitIcons = { UserRound, TrendingUp, ShieldCheck, UsersRound };
 
+// Motion Animation Variants
+const containerVariants = {
+  hidden: { opacity: 0, y: 20 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: {
+      duration: 0.5,
+      ease: [0.22, 1, 0.36, 1] as const,
+      staggerChildren: 0.1,
+      delayChildren: 0.1,
+    },
+  },
+};
+
+const itemVariants = {
+  hidden: { opacity: 0, y: 15 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.45, ease: [0.22, 1, 0.36, 1] as const },
+  },
+};
+
+const leftColVariants = {
+  hidden: { opacity: 0, x: -25 },
+  visible: {
+    opacity: 1,
+    x: 0,
+    transition: { duration: 0.55, ease: [0.22, 1, 0.36, 1] as const },
+  },
+};
+
+const rightColVariants = {
+  hidden: { opacity: 0, x: 25 },
+  visible: {
+    opacity: 1,
+    x: 0,
+    transition: { duration: 0.55, ease: [0.22, 1, 0.36, 1] as const },
+  },
+};
+
 const Overview = () => {
   return (
-    <section className="w-full bg-white">
-      <div className="mx-auto max-w-[1200px] px-3 pt-10 sm:pt-12  lg:px-4 lg:pt-14">
+    <section className="w-full bg-white overflow-hidden">
+      <div className="mx-auto max-w-[1200px] px-3 pt-10 sm:pt-12 lg:px-4 lg:pt-14">
         <div className="grid grid-cols-1 gap-7 xl:grid-cols-[minmax(0,1fr)_315px]">
           <div>
-            <div className="grid grid-cols-1 items-start gap-8 md:grid-cols-[1fr_325px]">
-              <div className="min-w-0">
+            {/* HERO / OVERVIEW SECTION */}
+            <motion.div
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true, amount: 0.2 }}
+              variants={containerVariants}
+              className="grid grid-cols-1 items-start gap-8 md:grid-cols-[1fr_325px]"
+            >
+              <motion.div variants={leftColVariants} className="min-w-0">
                 <div className="mb-3 flex items-center gap-4">
                   <span className="text-sm font-semibold uppercase tracking-wide text-[#6883ad]">
                     {content.overviewBadge}
@@ -45,18 +98,30 @@ const Overview = () => {
                 <p className="mt-5 max-w-[560px] text-[15px] leading-6 text-[#7183a1]">
                   {content.overviewParagraphs[1]}
                 </p>
-              </div>
+              </motion.div>
 
-              <div className="aspect-4/3 overflow-hidden rounded-xl md:aspect-3/4">
+              <motion.div
+                variants={rightColVariants}
+                whileHover={{ scale: 1.02 }}
+                transition={{ duration: 0.3 }}
+                className="aspect-4/3 overflow-hidden rounded-xl md:aspect-3/4"
+              >
                 <img
                   src={content.image}
                   alt={content.imageAlt}
-                  className="h-full w-full object-cover"
+                  className="h-full w-full object-cover transition-transform duration-700 hover:scale-105"
                 />
-              </div>
-            </div>
+              </motion.div>
+            </motion.div>
 
-            <div className="mt-10">
+            {/* BENEFITS SECTION */}
+            <motion.div
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true, amount: 0.2 }}
+              variants={containerVariants}
+              className="mt-10"
+            >
               <div className="mb-6 flex items-center gap-5">
                 <h2 className="text-[26px] font-bold text-[#09295f]">
                   {content.benefitsTitle}
@@ -70,8 +135,11 @@ const Overview = () => {
                   const Icon = benefitIcons[benefit.icon as keyof typeof benefitIcons];
 
                   return (
-                    <div
+                    <motion.div
                       key={index}
+                      variants={itemVariants}
+                      whileHover={{ y: -4 }}
+                      transition={{ duration: 0.2 }}
                       className="flex min-h-[120px] items-center gap-6 rounded-xl border border-[#e3eaf3] bg-white px-5 py-5 shadow-[0_2px_10px_rgba(30,80,150,0.03)]"
                     >
                       <div className="group flex h-[68px] w-[68px] shrink-0 items-center justify-center rounded-full bg-[#edf5ff] transition-colors duration-200 hover:bg-[#1474e8] sm:h-[76px] sm:w-[76px]">
@@ -91,14 +159,20 @@ const Overview = () => {
                           {benefit.description}
                         </p>
                       </div>
-                    </div>
+                    </motion.div>
                   );
                 })}
               </div>
-            </div>
+            </motion.div>
 
-            {/* OUR PROCESS SECTION UPDATED */}
-            <div className="mt-10">
+            {/* OUR PROCESS SECTION */}
+            <motion.div
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true, amount: 0.2 }}
+              variants={containerVariants}
+              className="mt-10"
+            >
               <div className="mb-6 flex items-center gap-5">
                 <h2 className="text-[26px] font-bold text-[#09295f]">
                   {content.processTitle}
@@ -107,17 +181,21 @@ const Overview = () => {
                 <span className="h-[2px] w-20 bg-[#4c9cff]" />
               </div>
 
-              {/* grid-cols-2 small screens me 1 row me 2 cards show karega */}
               <div className="grid grid-cols-1 gap-x-4 gap-y-8 min-[420px]:grid-cols-2 sm:gap-8 md:grid-cols-4">
                 {content.process.map((item, index) => (
-                  <div
+                  <motion.div
                     key={index}
+                    variants={itemVariants}
                     className="relative text-center"
                   >
                     <div className="relative flex items-center justify-center">
-                      <div className="flex h-[68px] w-[68px] items-center justify-center rounded-full bg-[#edf5ff] text-[20px] font-bold text-[#075ed5] transition-colors duration-200 hover:bg-[#1474e8] hover:text-white">
+                      <motion.div
+                        whileHover={{ scale: 1.08 }}
+                        transition={{ duration: 0.2 }}
+                        className="flex h-[68px] w-[68px] items-center justify-center rounded-full bg-[#edf5ff] text-[20px] font-bold text-[#075ed5] transition-colors duration-200 hover:bg-[#1474e8] hover:text-white"
+                      >
                         {item.number}
-                      </div>
+                      </motion.div>
 
                       {/* Connecting Line (Only for large desktop view) */}
                       {index !== content.process.length - 1 && (
@@ -132,13 +210,20 @@ const Overview = () => {
                     <p className="mx-auto mt-2 max-w-[190px] text-[13px] sm:text-[14px] leading-5 text-[#7183a1]">
                       {item.description}
                     </p>
-                  </div>
+                  </motion.div>
                 ))}
               </div>
-            </div>
+            </motion.div>
           </div>
 
-          <aside className="space-y-6 xl:sticky xl:top-6 xl:self-start">
+          {/* SIDEBAR SECTION */}
+          <motion.aside
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, amount: 0.15 }}
+            variants={rightColVariants}
+            className="space-y-6 xl:sticky xl:top-6 xl:self-start"
+          >
             <div className="rounded-xl border border-[#e2eaf4] bg-[#f8fbff] p-7">
               <h2 className="text-[23px] font-bold text-[#09295f]">
                 {content.adviceTitle}
@@ -150,13 +235,15 @@ const Overview = () => {
                 {content.adviceDescription}
               </p>
 
-              <Link
-                href={content.adviceHref}
-                className="mt-6 flex w-full items-center justify-center gap-3 rounded-md bg-[#086df0] px-5 py-4 text-[15px] font-semibold text-white transition hover:bg-[#055dcc]"
-              >
-                {content.adviceButtonText}
-                <ArrowRight size={19} />
-              </Link>
+              <motion.div whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }}>
+                <Link
+                  href={content.adviceHref}
+                  className="mt-6 flex w-full items-center justify-center gap-3 rounded-md bg-[#086df0] px-5 py-4 text-[15px] font-semibold text-white transition hover:bg-[#055dcc]"
+                >
+                  {content.adviceButtonText}
+                  <ArrowRight size={19} />
+                </Link>
+              </motion.div>
 
               <div className="mt-6 space-y-4">
                 <div className="flex items-center gap-3">
@@ -196,8 +283,10 @@ const Overview = () => {
 
               <div>
                 {content.otherServices.map((service, index) => (
-                  <div
+                  <motion.div
                     key={index}
+                    whileHover={{ x: 3 }}
+                    transition={{ duration: 0.2 }}
                     className={`flex items-center gap-4 py-3 ${
                       index !== content.otherServices.length - 1
                         ? "border-b border-[#e6edf5]"
@@ -226,11 +315,11 @@ const Overview = () => {
                         />
                       </Link>
                     </div>
-                  </div>
+                  </motion.div>
                 ))}
               </div>
             </div>
-          </aside>
+          </motion.aside>
         </div>
       </div>
     </section>

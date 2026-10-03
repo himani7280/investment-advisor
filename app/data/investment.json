@@ -673,10 +673,10 @@
               "phone": "+91 xxxxx xxxxx",
               "phoneHref": "#",
               "socials": [
-                { "platform": "LinkedIn", "href": "#" },
-                { "platform": "Facebook", "href": "#" },
-                { "platform": "Instagram", "href": "#" },
-                { "platform": "YouTube", "href": "#" }
+                { "platform": "LinkedIn", "href": "https://www.linkedin.com" },
+                { "platform": "Facebook", "href": "https://www.facebook.com" },
+                { "platform": "Instagram", "href": "https://www.instagram.com" },
+                { "platform": "YouTube", "href": "https://www.youtube.com" }
               ],
               "navigation": {
                 "items": [
@@ -740,10 +740,10 @@
               "emailHref": "mailto:info@gmail.com.com",
               "hours": "Mon - Sat: 9:00 AM - 6:00 PM",
               "socials": [
-                { "platform": "LinkedIn", "href": "#" },
-                { "platform": "Facebook", "href": "#" },
-                { "platform": "Instagram", "href": "#" },
-                { "platform": "YouTube", "href": "#" }
+                { "platform": "LinkedIn", "href": "https://www.linkedin.com" },
+                { "platform": "Facebook", "href": "https://www.facebook.com" },
+                { "platform": "Instagram", "href": "https://www.instagram.com" },
+                { "platform": "YouTube", "href": "https://www.youtube.com" }
               ],
               "legalLinks": [
                 { "name": "Privacy Policy", "href": "/privacyPolicy" },

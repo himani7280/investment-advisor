@@ -19,76 +19,139 @@ import {
   BarChart2,
   UserCheck,
 } from "lucide-react";
+import { motion, Variants } from "framer-motion";
 
 import { investmentContent } from "../data/investmentContent";
 
 const content = investmentContent.consultation;
 const stepIcons = { Calendar, MessageSquare, UserCheck, BarChart2 };
 
+// Animation Variants
+const containerVariants: Variants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.1,
+      delayChildren: 0.1,
+    },
+  },
+};
+
+const leftColumnVariants: Variants = {
+  hidden: { opacity: 0, x: -30 },
+  visible: {
+    opacity: 1,
+    x: 0,
+    transition: {
+      duration: 0.6,
+      ease: [0.22, 1, 0.36, 1],
+      staggerChildren: 0.08,
+    },
+  },
+};
+
+const rightColumnVariants: Variants = {
+  hidden: { opacity: 0, x: 30 },
+  visible: {
+    opacity: 1,
+    x: 0,
+    transition: {
+      duration: 0.6,
+      ease: [0.22, 1, 0.36, 1],
+      staggerChildren: 0.1,
+    },
+  },
+};
+
+const itemVariants: Variants = {
+  hidden: { opacity: 0, y: 20 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.5, ease: [0.22, 1, 0.36, 1] },
+  },
+};
+
+const stepItemVariants: Variants = {
+  hidden: { opacity: 0, y: 25 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.5, ease: [0.22, 1, 0.36, 1] },
+  },
+};
+
 const Consultation = () => {
   return (
-    <section className="w-full bg-[#f8fbff] pt-10 sm:pt-12 lg:pt-14">
+    <section className="w-full bg-[#f8fbff] pt-10 sm:pt-12 lg:pt-14 overflow-hidden">
       <div className="mx-auto max-w-[1240px] px-4 sm:px-6 lg:px-10">
         
         {/* ================= SECTION 1: FORM & RIGHT CARD ================= */}
         <div className="grid grid-cols-1 gap-8 lg:grid-cols-12 lg:gap-10">
           
           {/* LEFT: FORM CONTAINER */}
-          <div className="lg:col-span-7 flex flex-col justify-between">
+          <motion.div
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, margin: "-50px" }}
+            variants={leftColumnVariants}
+            className="lg:col-span-7 flex flex-col justify-between"
+          >
             <div>
               {/* Header Badge */}
-              <div className="flex items-center gap-2">
+              <motion.div variants={itemVariants} className="flex items-center gap-2">
                 <span className="text-[11px] font-bold tracking-[1.5px] uppercase text-[#1a5bb8]">
                   {content.badge}
                 </span>
                 <span className="h-[2px] w-8 bg-[#1a5bb8]" />
-              </div>
+              </motion.div>
 
               {/* Title */}
-              <h2 className="mt-2 text-[28px] font-bold text-[#091e42] sm:text-[36px] lg:text-[40px] leading-[1.15]">
+              <motion.h2 variants={itemVariants} className="mt-2 text-[28px] font-bold text-[#091e42] sm:text-[36px] lg:text-[40px] leading-[1.15]">
                 {content.titleStart} <span className="text-[#1a73e8]">{content.titleHighlight}</span>
-              </h2>
+              </motion.h2>
 
-              <p className="mt-2 text-[13px] text-[#6b7c96] sm:text-[14px]">
+              <motion.p variants={itemVariants} className="mt-2 text-[13px] text-[#6b7c96] sm:text-[14px]">
                 {content.description}
-              </p>
+              </motion.p>
 
               {/* Form Fields Grid */}
               <form onSubmit={(e) => e.preventDefault()} className="mt-6 space-y-4">
                 <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
                   
                   {/* Full Name */}
-                  <div className="relative">
+                  <motion.div variants={itemVariants} className="relative">
                     <User className="absolute left-3.5 top-1/2 -translate-y-1/2 text-[#8fa0b5]" size={18} />
                     <input
                       type="text"
                       placeholder={content.namePlaceholder}
                       className="w-full rounded-xl border border-[#e2e8f0] bg-white py-3 pl-11 pr-4 text-[14px] text-[#091e42] placeholder-[#8fa0b5] outline-none transition focus:border-[#1a73e8] focus:ring-1 focus:ring-[#1a73e8]"
                     />
-                  </div>
+                  </motion.div>
 
                   {/* Email Address */}
-                  <div className="relative">
+                  <motion.div variants={itemVariants} className="relative">
                     <Mail className="absolute left-3.5 top-1/2 -translate-y-1/2 text-[#8fa0b5]" size={18} />
                     <input
                       type="email"
                       placeholder={content.emailPlaceholder}
                       className="w-full rounded-xl border border-[#e2e8f0] bg-white py-3 pl-11 pr-4 text-[14px] text-[#091e42] placeholder-[#8fa0b5] outline-none transition focus:border-[#1a73e8] focus:ring-1 focus:ring-[#1a73e8]"
                     />
-                  </div>
+                  </motion.div>
 
                   {/* Phone Number */}
-                  <div className="relative">
+                  <motion.div variants={itemVariants} className="relative">
                     <Phone className="absolute left-3.5 top-1/2 -translate-y-1/2 text-[#8fa0b5]" size={18} />
                     <input
                       type="tel"
                       placeholder={content.phonePlaceholder}
                       className="w-full rounded-xl border border-[#e2e8f0] bg-white py-3 pl-11 pr-4 text-[14px] text-[#091e42] placeholder-[#8fa0b5] outline-none transition focus:border-[#1a73e8] focus:ring-1 focus:ring-[#1a73e8]"
                     />
-                  </div>
+                  </motion.div>
 
                   {/* Select Consultation Type */}
-                  <div className="relative">
+                  <motion.div variants={itemVariants} className="relative">
                     <LayoutGrid className="absolute left-3.5 top-1/2 -translate-y-1/2 text-[#8fa0b5]" size={18} />
                     <select className="w-full rounded-xl border border-[#e2e8f0] bg-white py-3 pl-11 pr-8 text-[14px] text-[#8fa0b5] outline-none transition focus:border-[#1a73e8] focus:ring-1 focus:ring-[#1a73e8] appearance-none cursor-pointer">
                       <option value="">{content.typePlaceholder}</option>
@@ -97,10 +160,10 @@ const Consultation = () => {
                       ))}
                     </select>
                     <div className="pointer-events-none absolute right-3.5 top-1/2 -translate-y-1/2 border-l-4 border-r-4 border-t-4 border-l-transparent border-r-transparent border-t-[#8fa0b5]" />
-                  </div>
+                  </motion.div>
 
                   {/* Preferred Date */}
-                  <div className="relative">
+                  <motion.div variants={itemVariants} className="relative">
                     <Calendar className="absolute left-3.5 top-1/2 -translate-y-1/2 text-[#8fa0b5]" size={18} />
                     <input
                       type="text"
@@ -109,10 +172,10 @@ const Consultation = () => {
                       placeholder={content.datePlaceholder}
                       className="w-full rounded-xl border border-[#e2e8f0] bg-white py-3 pl-11 pr-4 text-[14px] text-[#091e42] placeholder-[#8fa0b5] outline-none transition focus:border-[#1a73e8] focus:ring-1 focus:ring-[#1a73e8]"
                     />
-                  </div>
+                  </motion.div>
 
                   {/* Preferred Time */}
-                  <div className="relative">
+                  <motion.div variants={itemVariants} className="relative">
                     <Clock className="absolute left-3.5 top-1/2 -translate-y-1/2 text-[#8fa0b5]" size={18} />
                     <select className="w-full rounded-xl border border-[#e2e8f0] bg-white py-3 pl-11 pr-8 text-[14px] text-[#8fa0b5] outline-none transition focus:border-[#1a73e8] focus:ring-1 focus:ring-[#1a73e8] appearance-none cursor-pointer">
                       <option value="">{content.timePlaceholder}</option>
@@ -121,50 +184,58 @@ const Consultation = () => {
                       ))}
                     </select>
                     <div className="pointer-events-none absolute right-3.5 top-1/2 -translate-y-1/2 border-l-4 border-r-4 border-t-4 border-l-transparent border-r-transparent border-t-[#8fa0b5]" />
-                  </div>
+                  </motion.div>
                 </div>
 
                 {/* Textarea */}
-                <div className="relative">
+                <motion.div variants={itemVariants} className="relative">
                   <MessageSquare className="absolute left-3.5 top-3.5 text-[#8fa0b5]" size={18} />
                   <textarea
                     rows={4}
                     placeholder={content.goalsPlaceholder}
                     className="w-full rounded-xl border border-[#e2e8f0] bg-white py-3 pl-11 pr-4 text-[14px] text-[#091e42] placeholder-[#8fa0b5] outline-none transition focus:border-[#1a73e8] focus:ring-1 focus:ring-[#1a73e8]"
                   />
-                </div>
+                </motion.div>
 
                 {/* Submit Button */}
-                <div className="pt-2">
-                  <Link
-                    href={content.submitHref}
-                    className="inline-flex w-full items-center justify-center gap-2 rounded-xl bg-[#0066ff] px-6 py-3.5 text-[14px] font-semibold text-white shadow-md shadow-blue-500/20 transition hover:bg-[#0052cc] sm:w-auto"
-                  >
-                    {content.submitText}
-                    <ArrowRight size={16} />
-                  </Link>
-                </div>
+                <motion.div variants={itemVariants} className="pt-2">
+                  <motion.div whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }}>
+                    <Link
+                      href={content.submitHref}
+                      className="group inline-flex w-full items-center justify-center gap-2 rounded-xl bg-[#0066ff] px-6 py-3.5 text-[14px] font-semibold text-white shadow-md shadow-blue-500/20 transition hover:bg-[#0052cc] sm:w-auto"
+                    >
+                      {content.submitText}
+                      <ArrowRight size={16} className="transition-transform duration-200 group-hover:translate-x-1" />
+                    </Link>
+                  </motion.div>
+                </motion.div>
 
                 {/* Privacy Text */}
-                <div className="flex items-start gap-2 pt-1 text-[12px] text-[#5e6e82]">
+                <motion.div variants={itemVariants} className="flex items-start gap-2 pt-1 text-[12px] text-[#5e6e82]">
                   <Lock size={14} className="mt-0.5 shrink-0 text-[#091e42]" />
                   <span>{content.privacyText}</span>
-                </div>
+                </motion.div>
               </form>
             </div>
-          </div>
+          </motion.div>
 
           {/* RIGHT: CARD WITH IMAGE & FEATURES */}
-          <div className="lg:col-span-5">
+          <motion.div
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, margin: "-50px" }}
+            variants={rightColumnVariants}
+            className="lg:col-span-5"
+          >
             <div className="overflow-hidden rounded-2xl bg-white shadow-xl shadow-blue-900/5">
               
               {/* Image Banner Container */}
-              <div className="relative h-[220px] w-full sm:h-[250px]">
+              <div className="relative h-[220px] w-full sm:h-[250px] overflow-hidden">
                 <Image
                   src={content.image}
                   alt={content.imageAlt}
                   fill
-                  className="object-cover"
+                  className="object-cover transition-transform duration-500 hover:scale-105"
                 />
                 <div className="absolute inset-0 bg-gradient-to-r from-[#031127]/80 via-[#031127]/40 to-transparent" />
                 
@@ -181,90 +252,115 @@ const Consultation = () => {
               <div className="space-y-5 bg-[#f7fbff] p-5 sm:p-6">
                 
                 {/* Item 1 */}
-                <div className="flex items-start gap-4">
-                  <div className="group flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-[#e3efff] text-[#1a73e8] transition-colors duration-200 hover:bg-[#1a73e8] hover:text-white">
+                <motion.div variants={itemVariants} className="flex items-start gap-4 group">
+                  <motion.div
+                    whileHover={{ scale: 1.1 }}
+                    transition={{ type: "spring", stiffness: 300 }}
+                    className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-[#e3efff] text-[#1a73e8] transition-colors duration-200 group-hover:bg-[#1a73e8] group-hover:text-white"
+                  >
                     <Calendar size={20} />
-                  </div>
+                  </motion.div>
                   <div>
                     <h4 className="text-[14px] font-bold text-[#091e42]">{content.benefits[0].title}</h4>
                     <p className="text-[12px] text-[#6b7c96]">
                       {content.benefits[0].description}
                     </p>
                   </div>
-                </div>
+                </motion.div>
 
                 {/* Item 2 */}
-                <div className="flex items-start gap-4">
-                  <div className="group flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-[#e3efff] text-[#1a73e8] transition-colors duration-200 hover:bg-[#1a73e8] hover:text-white">
+                <motion.div variants={itemVariants} className="flex items-start gap-4 group">
+                  <motion.div
+                    whileHover={{ scale: 1.1 }}
+                    transition={{ type: "spring", stiffness: 300 }}
+                    className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-[#e3efff] text-[#1a73e8] transition-colors duration-200 group-hover:bg-[#1a73e8] group-hover:text-white"
+                  >
                     <Users size={20} />
-                  </div>
+                  </motion.div>
                   <div>
                     <h4 className="text-[14px] font-bold text-[#091e42]">{content.benefits[1].title}</h4>
                     <p className="text-[12px] text-[#6b7c96]">
                       {content.benefits[1].description}
                     </p>
                   </div>
-                </div>
+                </motion.div>
 
                 {/* Item 3 */}
-                <div className="flex items-start gap-4">
-                  <div className="group flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-[#e3efff] text-[#1a73e8] transition-colors duration-200 hover:bg-[#1a73e8] hover:text-white">
+                <motion.div variants={itemVariants} className="flex items-start gap-4 group">
+                  <motion.div
+                    whileHover={{ scale: 1.1 }}
+                    transition={{ type: "spring", stiffness: 300 }}
+                    className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-[#e3efff] text-[#1a73e8] transition-colors duration-200 group-hover:bg-[#1a73e8] group-hover:text-white"
+                  >
                     <MapPin size={20} />
-                  </div>
+                  </motion.div>
                   <div>
                     <h4 className="text-[14px] font-bold text-[#091e42]">{content.benefits[2].title}</h4>
                     <p className="text-[12px] text-[#6b7c96]">
                       {content.benefits[2].description}
                     </p>
                   </div>
-                </div>
+                </motion.div>
 
                 {/* Item 4 */}
-                <div className="flex items-start gap-4">
-                  <div className="group flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-[#e3efff] text-[#1a73e8] transition-colors duration-200 hover:bg-[#1a73e8] hover:text-white">
+                <motion.div variants={itemVariants} className="flex items-start gap-4 group">
+                  <motion.div
+                    whileHover={{ scale: 1.1 }}
+                    transition={{ type: "spring", stiffness: 300 }}
+                    className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-[#e3efff] text-[#1a73e8] transition-colors duration-200 group-hover:bg-[#1a73e8] group-hover:text-white"
+                  >
                     <ShieldCheck size={20} />
-                  </div>
+                  </motion.div>
                   <div>
                     <h4 className="text-[14px] font-bold text-[#091e42]">{content.benefits[3].title}</h4>
                     <p className="text-[12px] text-[#6b7c96]">
                       {content.benefits[3].description}
                     </p>
                   </div>
-                </div>
+                </motion.div>
 
               </div>
             </div>
-          </div>
+          </motion.div>
 
         </div>
 
         {/* ================= SECTION 2: WHAT TO EXPECT ================= */}
-        <div className="mt-12 text-center">
+        <motion.div
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: "-50px" }}
+          variants={containerVariants}
+          className="mt-12 text-center"
+        >
           
           {/* Header Subtitle */}
-          <div className="flex items-center justify-center gap-2">
+          <motion.div variants={itemVariants} className="flex items-center justify-center gap-2">
             <span className="text-[11px] font-bold tracking-[1.5px] uppercase text-[#1a5bb8]">
               {content.processBadge}
             </span>
             <span className="h-[2px] w-8 bg-[#1a5bb8]" />
-          </div>
+          </motion.div>
 
           {/* Title */}
-          <h3 className="mt-2 text-[28px] font-bold text-[#091e42] sm:text-[34px]">
+          <motion.h3 variants={itemVariants} className="mt-2 text-[28px] font-bold text-[#091e42] sm:text-[34px]">
             {content.processTitleStart} <span className="text-[#1a73e8]">{content.processTitleHighlight}</span>
-          </h3>
+          </motion.h3>
 
           {/* Description */}
-          <p className="mt-2 text-[13px] text-[#6b7c96] sm:text-[14px]">
+          <motion.p variants={itemVariants} className="mt-2 text-[13px] text-[#6b7c96] sm:text-[14px]">
             {content.processDescription}
-          </p>
+          </motion.p>
 
-          {/* Process Grid: Set default 2 columns (grid-cols-2) for mobile/small screens */}
-          <div className="relative mt-12 grid grid-cols-1 gap-x-4 gap-y-8 min-[420px]:grid-cols-2 sm:gap-x-6 sm:gap-y-10 lg:grid-cols-4 lg:gap-8">
+          {/* Process Grid */}
+          <motion.div
+            variants={containerVariants}
+            className="relative mt-12 grid grid-cols-1 gap-x-4 gap-y-8 min-[420px]:grid-cols-2 sm:gap-x-6 sm:gap-y-10 lg:grid-cols-4 lg:gap-8"
+          >
             {content.steps.map((step, idx) => {
               const Icon = stepIcons[step.icon as keyof typeof stepIcons];
               return (
-                <div key={idx} className="relative flex flex-col items-center text-center">
+                <motion.div key={idx} variants={stepItemVariants} className="relative flex flex-col items-center text-center">
                   
                   {/* Dashed Connector Line Between Circle Icons (Desktop Only) */}
                   {idx < content.steps.length - 1 && (
@@ -272,10 +368,14 @@ const Consultation = () => {
                   )}
 
                   {/* Soft Light-Blue Circular Icon Wrapper */}
-                  <div className="group relative z-10 flex h-16 w-16 items-center justify-center rounded-full bg-[#eef5ff] transition-colors duration-200 hover:bg-[#0066ff] sm:h-20 sm:w-20">
+                  <motion.div
+                    whileHover={{ scale: 1.1 }}
+                    transition={{ type: "spring", stiffness: 300 }}
+                    className="group relative z-10 flex h-16 w-16 items-center justify-center rounded-full bg-[#eef5ff] transition-colors duration-200 hover:bg-[#0066ff] sm:h-20 sm:w-20 cursor-pointer"
+                  >
                     <Icon size={24} className="text-[#0066ff] transition-colors duration-200 group-hover:text-white sm:hidden" />
                     <Icon size={28} className="hidden text-[#0066ff] transition-colors duration-200 group-hover:text-white sm:block" />
-                  </div>
+                  </motion.div>
 
                   {/* Step Title */}
                   <h4 className="mt-3 sm:mt-5 text-[14px] sm:text-[15px] font-bold text-[#091e42]">
@@ -287,12 +387,12 @@ const Consultation = () => {
                   <p className="mt-1 sm:mt-1.5 max-w-[180px] sm:max-w-[210px] text-[12px] sm:text-[13px] leading-[1.4] text-[#6b7c96]">
                     {step.description}
                   </p>
-                </div>
+                </motion.div>
               );
             })}
-          </div>
+          </motion.div>
 
-        </div>
+        </motion.div>
 
       </div>
     </section>

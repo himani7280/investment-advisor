@@ -1,7 +1,10 @@
+"use client";
+
 import React from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
-import { Share2, ArrowRight } from 'lucide-react'
+import { ArrowRight } from 'lucide-react'
+import { motion } from 'framer-motion'
 import { investmentContent } from '../data/investmentContent'
 
 interface TeamMember {
@@ -16,11 +19,37 @@ interface TeamMember {
 const content = investmentContent.team
 const teamMembers: TeamMember[] = content.items
 
+const cardVariants = {
+  hidden: { opacity: 0, y: 20 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.45, ease: [0.22, 1, 0.36, 1] as const },
+  },
+}
+
+const containerVariants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.08,
+      delayChildren: 0.1,
+    },
+  },
+}
+
 const OurTeam: React.FC = () => {
   return (
-    <section className="mx-auto w-full max-w-7xl bg-white  px-8 sm:px-10 lg:px-12 pt-8 sm:pt-10 lg:pt-12">
+    <section className="mx-auto w-full max-w-7xl bg-white px-8 sm:px-10 lg:px-12 pt-8 sm:pt-10 lg:pt-12">
       {/* Header Section */}
-      <div className="text-center mb-10 md:mb-14">
+      <motion.div
+        initial={{ opacity: 0, y: 16 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, amount: 0.2 }}
+        transition={{ duration: 0.5 }}
+        className="text-center mb-10 md:mb-14"
+      >
         <div className="inline-flex items-center gap-2 mb-2">
           <span className="w-8 h-[2px] bg-[#2563eb]"></span>
           <span className="text-xs sm:text-sm font-semibold tracking-wider text-[#1e3a8a] uppercase">
@@ -34,31 +63,32 @@ const OurTeam: React.FC = () => {
         <p className="text-[#64748b] text-sm sm:text-base max-w-xl mx-auto font-normal">
           {content.description}
         </p>
-      </div>
+      </motion.div>
 
-      {/* Team Cards Grid */}
-      <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+      {/* Team Cards Grid with Animations */}
+      <motion.div
+        variants={containerVariants}
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, amount: 0.1 }}
+        className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4"
+      >
         {teamMembers.map((member) => (
-          <div
+          <motion.div
             key={member.id}
-            className="bg-white border border-[#e2e8f0] rounded-2xl overflow-hidden shadow-sm flex flex-col justify-between hover:shadow-md transition-shadow duration-300"
+            variants={cardVariants}
+            whileHover={{ y: -4, transition: { duration: 0.2 } }}
+            className="bg-white border border-[#e2e8f0] rounded-2xl overflow-hidden shadow-sm flex flex-col justify-between hover:shadow-md transition-all duration-300"
           >
-            {/* Image & Share Button */}
+            {/* Image Container */}
             <div className="relative aspect-[4/3] sm:aspect-square w-full bg-slate-100 overflow-hidden">
               <Image
                 src={member.image}
                 alt={member.name}
                 fill
-                className="object-cover object-center"
+                className="object-cover object-center transition-transform duration-300 hover:scale-105"
                 sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
               />
-              <button
-                type="button"
-                aria-label={`Share ${member.name}'s profile`}
-                className="absolute bottom-3 right-3 w-9 h-9 rounded-full bg-white text-[#2563eb] flex items-center justify-center shadow-md hover:bg-blue-50 transition-colors"
-              >
-                <Share2 className="w-4 h-4" />
-              </button>
             </div>
 
             {/* Info Section */}
@@ -88,9 +118,9 @@ const OurTeam: React.FC = () => {
                 <ArrowRight className="w-4 h-4" />
               </Link>
             </div>
-          </div>
+          </motion.div>
         ))}
-      </div>
+      </motion.div>
     </section>
   )
 }

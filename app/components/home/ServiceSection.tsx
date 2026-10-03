@@ -143,7 +143,7 @@ const ServiceSection = () => {
                       className="group relative flex h-full min-h-[130px] flex-col justify-between rounded-[8px] border border-[#dfe7f1] bg-white p-3.5 shadow-[0_2px_8px_rgba(25,65,120,0.03)] transition-all duration-300 hover:border-[#bdd3f0] hover:bg-[#edf5ff] hover:shadow-[0_8px_20px_rgba(30,90,160,0.08)] sm:p-4"
                     >
                       {/* Icon + Title */}
-                      <div className="flex items-start gap-2.5">
+                      <div className="flex items-start gap-1.5">
                         <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-[#e1edfe] transition-all duration-200 group-hover:scale-105 group-hover:bg-[#1264d4] sm:h-10 sm:w-10">
                           <Icon
                             size={18}

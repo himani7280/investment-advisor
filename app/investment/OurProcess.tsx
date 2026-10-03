@@ -1,3 +1,6 @@
+"use client";
+
+import { motion } from "framer-motion";
 import { investmentContent } from "../data/investmentContent";
 
 const processStepIcons = [
@@ -147,17 +150,59 @@ const processStepIcons = [
 ];
 
 const processSteps = investmentContent.investmentProcess.steps.map(
-  (step, index) => ({ ...step, icon: processStepIcons[index].icon }),
+  (step, index) => ({ ...step, icon: processStepIcons[index].icon })
 );
+
+// Framer Motion Animation Variants
+const containerVariants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.18,
+      delayChildren: 0.2,
+    },
+  },
+};
+
+const itemVariants = {
+  hidden: { opacity: 0, y: 28 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: {
+      duration: 0.55,
+      ease: [0.25, 0.1, 0.25, 1],
+    },
+  },
+};
+
+const lineVariants = {
+  hidden: { scaleX: 0, opacity: 0 },
+  visible: {
+    scaleX: 1,
+    opacity: 1,
+    transition: {
+      duration: 0.45,
+      delay: 0.35,
+      ease: "easeOut",
+    },
+  },
+};
 
 const OurProcess = () => {
   return (
-    <section className="w-full bg-white pt-10 sm:pt-12 lg:pt-14">
+    <section className="w-full bg-white pt-10 sm:pt-12 lg:pt-14 overflow-hidden">
       <div className="mx-auto max-w-7xl px-2">
 
         {/* ================= HEADING ================= */}
-        <div className="mb-10 text-center sm:mb-12 lg:mb-14">
-
+        <motion.div
+          initial={{ opacity: 0, y: -20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-80px" }}
+          transition={{ duration: 0.6, ease: "easeOut" }}
+          className="mb-10 text-center sm:mb-12 lg:mb-14"
+        >
           <div className="mb-3 flex items-center justify-center gap-4">
             <span className="h-[2px] w-14 bg-[#5b9df9] sm:w-18" />
 
@@ -178,23 +223,31 @@ const OurProcess = () => {
           <p className="mx-auto mt-2 max-w-3xl text-sm leading-6 text-[#61799e] sm:text-base sm:leading-7">
             {investmentContent.investmentProcess.description}
           </p>
-        </div>
+        </motion.div>
 
         {/* ================= PROCESS STEPS ================= */}
-        {/* Mobile par 1 row me 2 cards ke liye grid-cols-2 lagaya gaya hai */}
-        <div className="grid grid-cols-1 gap-x-4 gap-y-10 min-[380px]:grid-cols-2 sm:gap-x-6 lg:grid-cols-5 lg:gap-0">
-
+        <motion.div
+          variants={containerVariants}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: "-60px" }}
+          className="grid grid-cols-1 gap-x-4 gap-y-10 min-[380px]:grid-cols-2 sm:gap-x-6 lg:grid-cols-5 lg:gap-0"
+        >
           {processSteps.map((step, index) => (
-            <div
+            <motion.div
               key={step.number}
-              className="relative flex min-w-0 flex-col items-center px-1 text-center"
+              variants={itemVariants}
+              className="relative flex min-w-0 flex-col items-center px-1 text-center group"
             >
-
               {/* ================= ICON ================= */}
               <div className="relative mb-4 sm:mb-5">
 
-                {/* NUMBER */}
-                <div
+                {/* NUMBER BADGE */}
+                <motion.div
+                  initial={{ scale: 0.6, opacity: 0 }}
+                  whileInView={{ scale: 1, opacity: 1 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: 0.2 + index * 0.1, duration: 0.4 }}
                   className="
                     absolute
                     -left-1
@@ -220,10 +273,13 @@ const OurProcess = () => {
                   "
                 >
                   {step.number}
-                </div>
+                </motion.div>
 
                 {/* ICON CIRCLE */}
-                <div
+                <motion.div
+                  whileHover={{ scale: 1.08 }}
+                  whileTap={{ scale: 0.95 }}
+                  transition={{ type: "spring", stiffness: 300, damping: 20 }}
                   className="
                     flex
                     h-[76px]
@@ -233,22 +289,25 @@ const OurProcess = () => {
                     rounded-full
                     bg-[#eaf3ff]
                     text-[#1769e0]
+                    shadow-sm
                     transition-colors
-                    duration-200
-                    hover:bg-[#1769e0]
-                    hover:text-white
+                    duration-300
+                    group-hover:bg-[#1769e0]
+                    group-hover:text-white
+                    group-hover:shadow-lg
                     sm:h-[92px]
                     sm:w-[92px]
+                    cursor-pointer
                   "
                 >
-                  <div className="scale-85 sm:scale-100">
+                  <div className="scale-85 sm:scale-100 transition-transform duration-300 group-hover:scale-110">
                     {step.icon}
                   </div>
-                </div>
+                </motion.div>
               </div>
 
               {/* ================= TITLE ================= */}
-              <h3 className="mb-1 text-lg font-bold text-[#102e65] sm:mb-2 sm:text-xl">
+              <h3 className="mb-1 text-lg font-bold text-[#102e65] sm:mb-2 sm:text-xl transition-colors duration-200 group-hover:text-[#1769e0]">
                 {step.title}
               </h3>
 
@@ -270,12 +329,17 @@ const OurProcess = () => {
                   "
                 >
                   <div className="relative flex w-full justify-center items-center right-8">
-
-                    {/* LINE */}
-                    <div className="h-[2px] w-full bg-[#8ebeff]" />
+                    {/* ANIMATED LINE */}
+                    <motion.div
+                      variants={lineVariants}
+                      className="h-[2px] w-full bg-[#8ebeff] origin-left"
+                    />
 
                     {/* ARROW */}
-                    <span
+                    <motion.span
+                      initial={{ opacity: 0, x: -6 }}
+                      animate={{ opacity: 1, x: 0 }}
+                      transition={{ delay: 0.5 + index * 0.1, duration: 0.3 }}
                       className="
                         absolute
                         right-0
@@ -304,16 +368,13 @@ const OurProcess = () => {
                           strokeLinejoin="round"
                         />
                       </svg>
-                    </span>
-
+                    </motion.span>
                   </div>
                 </div>
               )}
-
-            </div>
+            </motion.div>
           ))}
-
-        </div>
+        </motion.div>
       </div>
     </section>
   );
