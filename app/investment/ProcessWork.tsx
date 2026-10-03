@@ -2,7 +2,7 @@
 
 import { useEffect, useState, useRef } from "react";
 import Image from "next/image";
-import { motion, useInView } from "framer-motion";
+import { motion, useInView, Variants } from "framer-motion";
 import { investmentContent } from "../data/investmentContent";
 
 type CountUpProps = {
@@ -13,12 +13,11 @@ type CountUpProps = {
 
 const CountUp = ({ target, prefix = "", suffix = "" }: CountUpProps) => {
   const ref = useRef<HTMLSpanElement>(null);
-  // 1. Change once: false to once: true here
   const isInView = useInView(ref, { once: true, amount: 0.2 });
   const [count, setCount] = useState(1);
 
   useEffect(() => {
-    if (!isInView) return; // Animated once it's in view, no reset needed
+    if (!isInView) return;
 
     const duration = 1800; // 1.8 seconds animation duration
     const startTime = performance.now();
@@ -47,8 +46,8 @@ const CountUp = ({ target, prefix = "", suffix = "" }: CountUpProps) => {
   );
 };
 
-// Motion Variants
-const containerVariants = {
+// Motion Variants (as const add kar ke TypeScript build error fix kiya gaya h)
+const containerVariants: Variants = {
   hidden: { opacity: 0 },
   visible: {
     opacity: 1,
@@ -59,14 +58,14 @@ const containerVariants = {
   },
 };
 
-const itemVariants = {
+const itemVariants: Variants = {
   hidden: { opacity: 0, y: 20 },
   visible: {
     opacity: 1,
     y: 0,
     transition: {
       duration: 0.5,
-      ease: [0.25, 0.1, 0.25, 1],
+      ease: [0.25, 0.1, 0.25, 1] as const, // <-- 'as const' added here
     },
   },
 };
